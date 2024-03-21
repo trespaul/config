@@ -8,10 +8,9 @@
       stateVersion = "23.05";
 
       shellAliases =
-        { "l" = "eza -la --icons --git --group-directories-first";
-          "la" = "eza -a --icons --git --group-directories-first";
-          "lla" = "eza -la --icons --git --group-directories-first";
-          "lt" = "eza -laT --icons --git --group-directories-first";
+        { "l" = "eza -l";
+          "la" = "eza -la";
+          "lt" = "eza -laT";
           "x" = "xdg-open";
           "qmv" = "qmv --format destination-only";
           "ffmpeg" = "ffmpeg -hide_banner";
@@ -21,58 +20,65 @@
           "s" = "kitten ssh";
           "wget" = "wget --hsts-file=.local/share/wget-hsts";
           "fd" = "fd --hidden";
+          "sortl" = # sort lines: sort witin and throughout lines
+            ''tr " " "\n" | sort | paste -s -d " " '';
+          "sortli" = # sort lines independently: each line sort separately
+            ''split -l 1 --filter 'tr " " "\n" | sort | paste -s -d " "' '';
         };
 
       packages = with pkgs;
         [ # misc cli
-          bat eza fd file fzf gawk glow gnupg gnused gnutar jq kitty lf
-          libnotify neofetch p7zip parallel renameutils ripgrep slides tealdeer
-          tmux unar unzip which xdg-ninja xz yq-go zip zstd
+          bat fd file fzf gawk glow gnupg gnused gnutar hyperfine libnotify
+          libsecret neofetch p7zip parallel pinentry-gnome3 renameutils slides
+          unar unzip which xdg-ninja xz yq-go zip zstd
           # networking tools
-          dnsutils ldns nmap sshfs
+          dnsutils ldns netscanner nmap sshfs
           # nix related
           nix-output-monitor
           # system tools
-          btop clinfo glxinfo iftop iotop lsof ltrace strace ethtool lm_sensors
+          clinfo glxinfo iftop iotop lsof ltrace strace ethtool lm_sensors
           pciutils usbutils
-          # media
-          ardour audacity bespokesynth blanket blender calf cardinal darktable
-          ffmpeg ghostscript gimp-with-plugins haskellPackages.tidal helvum
-          inkscape-with-extensions jbig2dec jbig2enc kdenlive libtiff
-          musescore obs-studio pdftk poppler_utils pwvucontrol scantailor spot
-          supercollider supercolliderPlugins.sc3-plugins vcv-rack vital vlc
-          yt-dlp
+          # media utils
+          ffmpeg helvum spot vlc scrcpy
+            # pwvucontrol 
+          # audio production
+          ardour audacity bespokesynth calf cardinal haskellPackages.tidal
+          musescore supercollider supercolliderPlugins.sc3-plugins vital
+          #vcv-rack
+          # graphics apps
+          blender darktable eyedropper inkscape-with-extensions
+            # gimp-with-plugins 
+          # video etc. apps
+          kdenlive 
           # dev etc.
-          android-tools boxes deno ghc haskellPackages.matrix
-          haskellPackages.utility-ht hugo python311
-          scrcpy
-          google-cloud-sdk
-            # .withExtraComponents # ( with pkgs.google-cloud-sdk.components; [ ... ] )
-          # pentesting
-          aircrack-ng crunch hashcat hcxdumptool hcxtools iw macchanger wifite2
-          wireshark
+          android-tools boxes deno ghc haskellPackages.utility-ht python311
+          python311Packages.beautifulsoup4 google-cloud-sdk
           # LSPs
-          haskell-language-server ltex-ls marksman
-          nil nodePackages.bash-language-server
-          nodePackages.typescript-language-server
-          python311Packages.beautifulsoup4 vscode-langservers-extracted
+          haskell-language-server ltex-ls marksman nil
+          nodePackages.bash-language-server
+          nodePackages.typescript-language-server vscode-langservers-extracted
           yaml-language-server
-          # internet
-          bitwarden discord discordo newsflash signal-desktop tailscale
-          telegram-desktop tor-browser-bundle-bin transmission-gtk tuba wike
+          # pentesting
+          aircrack-ng bettercap crunch dsniff hashcat hcxdumptool hcxtools iw
+          macchanger tcpdump wifite2 wireshark
+          # internet utils
+          bitwarden tailscale warp magic-wormhole
+          # internet apps
+          discord newsflash signal-desktop telegram-desktop
+          tor-browser-bundle-bin transmission-gtk tuba wike
           # desktop environment
-          gnomeExtensions.gsconnect gnome.gnome-tweaks
-          # documents etc.
-          dialect foliate libreoffice-fresh ocrmypdf pandoc
-          texliveMedium zotero gnome-decoder eyedropper warp magic-wormhole
-          gnome-solanum
-          hunspell
+          gnomeExtensions.gsconnect gnome.gnome-tweaks gnome-themes-extra
+          # document cli utils
+          ocrmypdf hunspell ghostscript pdftk poppler_utils jbig2dec jbig2enc
+          libtiff
+          # document apps
+          dialect foliate libreoffice-fresh scantailor zotero gnome-decoder gnome-solanum
             # obsidian 
           # games
           vitetris
           # fonts
-          brill fira-code-nerdfont inter noto-fonts-cjk-sans public-sans
-          ubuntu_font_family
+          brill fira-code-nerdfont inter iosevka nerdfonts noto-fonts-cjk-sans
+          public-sans ubuntu_font_family
         ];
 
       # sessionVariables = # doesn't work here??
@@ -89,6 +95,13 @@
   programs =
     { home-manager.enable = true;
 
+      gitui.enable = true;
+      jq.enable = true;
+      obs-studio.enable = true;
+      ripgrep.enable = true;
+      tealdeer.enable = true;
+      yt-dlp.enable = true;
+
       bat =
         { enable = true;
           config =
@@ -97,25 +110,48 @@
             };
         };
 
+      btop =
+        { enable = true;
+          settings =
+            { color_theme = "gruvbox_dark";
+              theme_background = false;
+            };
+        };
+
+      eza =
+        { enable = true;
+          enableBashIntegration = true;
+          enableZshIntegration = true;
+          git = true;
+          icons = true;
+          extraOptions = [ "--group-directories-first" ];
+        };
+  
       kitty =
         { enable = true;
           theme = "Gruvbox Dark";
-          font =
-            { name = "FiraCode Nerd Font";
-              size = 12;
-            };
           extraConfig =
             ''
-              background #1D2021
-              cursor_shape beam
-              cursor_blink_interval 0
-              strip_trailing_spaces smart
+              font_family       Iosevka Light Extended
+              bold_font         Iosevka Semibold Extended
+              italic_font       Iosevka Light Extended Italic
+              bold_italic_font  Iosevka Semibold Extended Italic
+              font_features     Iosevka-Light-Extended           +dlig +PURS
+              font_features     Iosevka-Semibold-Extended        +dlig +PURS
+              font_features     Iosevka-Light-Extended-Italic    +dlig +PURS
+              font_features     Iosevka-Semibold-Extended-Italic +dlig +PURS
+
+              font_size                       12
+              narrow_symbols                  U+279C-U+27BF
+              background                      #1D2021
+              cursor_shape                    beam
+              cursor_blink_interval           0
+              strip_trailing_spaces           smart
               scrollback_fill_enlarged_window yes
-              touch_scroll_multiplier 3.0
-              wayland_titlebar_color background
-              hide_window_decorations yes
-              tab_bar_style powerline
-              tab_powerline_style slanted
+              touch_scroll_multiplier         3.0
+              hide_window_decorations         yes
+              tab_bar_style                   powerline
+              tab_powerline_style             slanted
             '';
           shellIntegration =
             { enableBashIntegration = true;
@@ -126,12 +162,6 @@
               "kitty_mod+enter" = "launch --cwd=current";
             };
         };
-
-      yazi = {
-        enable = true;
-        enableZshIntegration = true;
-        enableBashIntegration = true;
-      };
 
       helix =
         { enable = true;
@@ -159,7 +189,7 @@
                 };
                 keys.normal =
                   { "esc"   = ["collapse_selection" "keep_primary_selection"];
-                    "A-ret" = ":pipe-to ./tidal_send.sh";
+                    "A-ret" = ":pipe-to kitten @ send-text --match-tab 'title:^tidal' --stdin ':{\n' && kitten @ send-text --match-tab 'title:^tidal' ':}\n'";
                   };
             };
           languages =
@@ -208,12 +238,53 @@
         { enable = true;
           userName = "Paul Joubert";
           userEmail = "paul@trespaul.com";
+          delta =
+            { enable = true;
+              options =
+                { features.decorations = true;
+                  line-numbers = true;
+                };
+            };
+          signing =
+            { key = "8547C047479405D1AF8BA47C394493769D46A76C";
+              signByDefault = true;
+            };
+        };
+
+      pandoc =
+        { enable = true;
+          # citationStyles = [];
+          # defaults = {};
+          # templates = {};
+        };
+
+      rbw =
+        { enable = true;
+          settings =
+            { email = "paul@trespaul.com";
+              pinentry = pkgs.pinentry-gnome3;
+              lock_timeout = 600;
+              base_url = "https://vault.bitwarden.com/";
+              identity_url = "https://identity.bitwarden.com/";
+              notifications_url = "https://notifications.bitwarden.com/";
+            };
+        };
+
+      texlive =
+        { enable = true;
+          # packageSet = pkgs.texliveMedium;
+        };
+
+      yazi =
+        { enable = true;
+          enableZshIntegration = true;
+          enableBashIntegration = true;
         };
 
       zsh =
         { enable = true;
           dotDir = ".config/zsh";
-          enableAutosuggestions = true;
+          autosuggestion.enable = true;
           enableCompletion = true;
           completionInit = "autoload -U compinit && compinit -d ${config.xdg.cacheHome}/zsh/zcompdump-\"$ZSH_VERSION\"";
           enableVteIntegration = true;
@@ -243,6 +314,20 @@
         { enable = true;
           enableBashIntegration = true;
           enableZshIntegration = true;
+          colors = # gruvbox dark
+            { fg      = "#ebdbb2";
+              bg      = "#282828";
+              hl      = "#fabd2f";
+              "fg+"   = "#ebdbb2";
+              "bg+"   = "#3c3836";
+              "hl+"   = "#fabd2f";
+              info    = "#83a598";
+              prompt  = "#bdae93";
+              spinner = "#fabd2f";
+              pointer = "#83a598";
+              marker  = "#fe8019";
+              header  = "#665c54";
+            };
         };
 
       firefox =
@@ -274,30 +359,35 @@
 
     };
 
+  # services =
+  #   {
+  #     keybase.enable = true;
+  #   };
+
   xdg =
-  { enable = true;
-    configFile = 
-      { "python/pythonrc".text =
-          ''
-            import os
-            import atexit
-            import readline
+    { enable = true;
+      configFile = 
+        { "python/pythonrc".text =
+            ''
+              import os
+              import atexit
+              import readline
 
-            history = os.path.join(os.environ['XDG_CACHE_HOME'], 'python_history')
-            try:
-                readline.read_history_file(history)
-            except OSError:
-                pass
+              history = os.path.join(os.environ['XDG_CACHE_HOME'], 'python_history')
+              try:
+                  readline.read_history_file(history)
+              except OSError:
+                  pass
 
-            def write_history():
-                try:
-                    readline.write_history_file(history)
-                except OSError:
-                    pass
+              def write_history():
+                  try:
+                      readline.write_history_file(history)
+                  except OSError:
+                      pass
 
-            atexit.register(write_history)
-          '';
-      };
-  };
+              atexit.register(write_history)
+            '';
+        };
+    };
 
 }

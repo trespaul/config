@@ -15,19 +15,13 @@
         { systemd-boot.enable = true;
           efi.canTouchEfiVariables = true;
         };
-      extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
-      kernelModules = [ "v4l2loopback" ];
-      extraModprobeConfig =
-        ''
-          options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
-        '';
       initrd.secrets =
         { "/crypto_keyfile.bin" = null;
         };
     };
 
   networking =
-    { hostName = "paulpad";
+    { hostName = "polyaenus";
       networkmanager.enable = true;
     };
 
@@ -41,12 +35,19 @@
 
   services =
     {
+
+      logind =
+        { lidSwitch = "suspend";
+          lidSwitchExternalPower = "lock";
+        };
       xserver =
         { enable = true;
           displayManager.gdm.enable = true;
           desktopManager.gnome.enable = true;
-          layout = "za";
-          xkbVariant = "";
+          xkb =
+            { layout = "za";
+              variant = "";
+            };
         };
 
       pipewire =
@@ -60,6 +61,8 @@
 
       printing.enable = true;
 
+      pcscd.enable = true; # for gpg pinentry
+
       syncthing =
         { enable = true;
           user = "paul";
@@ -69,17 +72,19 @@
           overrideFolders = true;
           settings =
             { devices =
-                { "pi" = { id = "X"; };
-                  "android" = { id = "Y"; };
+                { "paulpad".id =
+                    "LUIFU3Y-QGAT64E-BVKWJ4D-JU72BY7-3ZMCO3N-J2HCB5V-TJUU6CF-IIXZRAU";
+                  "android".id =
+                    "4RGYVLA-KNPUDSU-BHRUXCO-KFUR64C-5AGTQXQ-RVMX2O5-Z2AD7FI-PAN4GA3";
                 };
               folders =
-                { "Z" =
-                    { path = "/home/paul/Z";
-                      devices = [ "pi" "android" ];
+                { "Notes" =
+                    { path = "/home/paul/Syncs/Notes";
+                      devices = [ "paulpad" "android" ];
                     };
                   "Zotero storage" =
-                    { path = "/home/paul/Zotero/storage";
-                      devices = [ "pi" "android" ];
+                    { path = "/home/paul/Syncs/Zotero";
+                      devices = [ "paulpad" "android" ];
                     };
                 };
             };
@@ -94,14 +99,6 @@
 
   hardware = 
     { pulseaudio.enable = false;
-      opengl = 
-        { enable = true;
-          extraPackages = with pkgs;
-            [ intel-media-driver
-              #intel-ocl
-              intel-compute-runtime
-            ];
-        };
     };
 
 
@@ -109,7 +106,8 @@
     { defaultUserShell = pkgs.zsh;
       users.paul =
         { isNormalUser = true;
-          extraGroups = [ "networkmanager" "wheel" ];
+          description = "Paul Joubert";
+          extraGroups = [ "networkmanager" "wheel" "audio" ];
           shell = pkgs.zsh;
         };
     };
@@ -118,6 +116,7 @@
     { zsh.enable = true; # necessary for defaultUserShell
       steam.enable = true; # doesn't work as user program
       virt-manager.enable = true;
+      gnupg.agent.enable = true;
     };
 
   virtualisation.libvirtd.enable = true;
@@ -130,14 +129,15 @@
   environment =
     { variables =
         let
-          makePluginPath = format:
-            ( lib.strings.makeSearchPath format
-              [ "$HOME/.nix-profile/lib"
-                "/run/current-system/sw/lib"
-                "/etc/profiles/per-user/$USER/lib"
-              ]
-            )
-            + ":$HOME/.${format}";
+          makePluginPath =
+            format:
+              ( lib.strings.makeSearchPath format
+                [ "$HOME/.nix-profile/lib"
+                  "/run/current-system/sw/lib"
+                  "/etc/profiles/per-user/$USER/lib"
+                ]
+              )
+              + ":$HOME/.${format}";
         in
           { EDITOR = "hx";
             PAGER = "bat";
@@ -159,7 +159,9 @@
             VST_PATH    = makePluginPath "vst";
             VST3_PATH   = makePluginPath "vst3";
           };
+
       shells = with pkgs; [ zsh ];
+
       systemPackages = with pkgs;
         [ curl
           git
@@ -169,16 +171,21 @@
         ];
     };
 
-  system.autoUpgrade =
-    { enable = true;
-      flake = inputs.self.outpath;
-      allowReboot = true;
-      flags = [ "--update-input" "nixpkgs" "-L" ];
-      dates = "02:00";
-      randomizeDelaySec = "45min";
-    };
+  #system.autoUpgrade =
+  #  { enable = true;
+  #    flake = inputs.self.outpath;
+  #    allowReboot = true;
+  #    flags = [ "--update-input" "nixpkgs" "-L" ];
+  #    dates = "02:00";
+  #  };
 
-  # services.openssh.enable = true;
+  services.openssh =
+  { enable = true;
+    settings =
+      { PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+      };
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
