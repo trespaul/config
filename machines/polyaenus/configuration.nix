@@ -1,67 +1,16 @@
 { inputs, lib, config, pkgs, ... }:
 
 {
-  imports =
-    [ ./hardware-configuration.nix
-    ];
+  imports = [ ./hardware-configuration.nix ];
 
-  nix.settings =
-    { experimental-features = [ "nix-command" "flakes" ];
-      trusted-users = [ "paul" ];
-    };
-  
-  boot =
-    { loader =
-        { systemd-boot.enable = true;
-          efi.canTouchEfiVariables = true;
-        };
-      initrd.secrets =
-        { "/crypto_keyfile.bin" = null;
-        };
-    };
-
-  networking =
-    { hostName = "polyaenus";
-      networkmanager.enable = true;
-    };
-
-  time.timeZone = "Africa/Johannesburg";
-
-  i18n =
-    { defaultLocale = "en_ZA.UTF-8";
-      extraLocaleSettings.LC_TIME = "en_GB.UTF-8";
-    };
-
+  networking.hostName = "polyaenus";
 
   services =
     {
-
       logind =
         { lidSwitch = "suspend";
           lidSwitchExternalPower = "lock";
         };
-      xserver =
-        { enable = true;
-          displayManager.gdm.enable = true;
-          desktopManager.gnome.enable = true;
-          xkb =
-            { layout = "za";
-              variant = "";
-            };
-        };
-
-      pipewire =
-        { enable = true;
-          wireplumber.enable = true;
-          alsa.enable = true;
-          alsa.support32Bit = true;
-          pulse.enable = true;
-          jack.enable = true;
-        };
-
-      printing.enable = true;
-
-      pcscd.enable = true; # for gpg pinentry
 
       syncthing =
         { enable = true;
@@ -90,120 +39,61 @@
             };
         };
 
-      tailscale.enable = true;
-
-    };
-
-  # for audio
-  security.rtkit.enable = true;
-
-  hardware = 
-    { pulseaudio.enable = false;
-    };
-
-
-  users =
-    { defaultUserShell = pkgs.zsh;
-      users.paul =
-        { isNormalUser = true;
-          description = "Paul Joubert";
-          extraGroups = [ "networkmanager" "wheel" "audio" ];
-          shell = pkgs.zsh;
+      tailscale =
+        { enable = true;
+          useRoutingFeatures = "both";
+          extraUpFlags = [ "--advertise-exit-node" ];
+          permitCertUid = "caddy";
         };
-    };
 
-  programs =
-    { zsh.enable = true; # necessary for defaultUserShell
-      steam.enable = true; # doesn't work as user program
-      virt-manager.enable = true;
-      gnupg.agent.enable = true;
-    };
+      # caddy =
+      #   { enable = true;
+      #     virtualHosts =
+      #       { "polyaenus.kamori-carp.ts.net".extraConfig =
+      #           ''
+      #             respond "Hello, world!"
+      #             tls internal
+      #           '';
+      #         # "ntfy.polyaenus.kamori-carp.ts.net".extraConfig =
+      #         #   ''
+      #         #     reverse_proxy 127.0.0.1:2586
+      #         #     @httpget {
+      #         #       protocol http
+      #         #       method GET
+      #         #       path_regexp ^/([-_a-z0-9]{0,64}$|docs/|static/)
+      #         #     }
+      #         #     redir @httpget https://ntfy.polyaenus.kamori-carp.ts.net
+      #         #   '';
+      #       };
+      #   };
 
-  virtualisation.libvirtd.enable = true;
-
-  nixpkgs.config =
-    { allowUnfree = true;
-      permittedInsecurePackages = [];
+      # ntfy-sh =
+      #   { enable = true;
+      #     settings =
+      #       { base-url = "https://polyaenus.kamori-carp.ts.net";
+      #         behind-proxy = true;
+      #         listen-http = ":2586";
+      #       };
+      #   };
     };
 
   environment =
-    { variables =
-        let
-          makePluginPath =
-            format:
-              ( lib.strings.makeSearchPath format
-                [ "$HOME/.nix-profile/lib"
-                  "/run/current-system/sw/lib"
-                  "/etc/profiles/per-user/$USER/lib"
-                ]
-              )
-              + ":$HOME/.${format}";
-        in
-          { EDITOR = "hx";
-            PAGER = "bat";
-
-            # user paths, not ideal but doesn't work in home.nix?
-            ANDROID_HOME       = "/home/paul/.local/share/android";
-            GNUPGHOME          = "/home/paul/.local/share/gnupg";
-            IPYTHONDIR         = "/home/paul/.config/ipython";
-            JUPYTER_CONFIG_DIR = "/home/paul/.config/jupyter";
-            PYTHONSTARTUP      = "/home/paul/.config/pythonrc";
-            PARALLEL_HOME      = "/home/paul/.config/parallel";
-            #ZDOTDIR            = "/home/paul/.config/zsh";
-        
-            # audio plugin paths
-            DSSI_PATH   = makePluginPath "dssi";
-            LADSPA_PATH = makePluginPath "ladspa";
-            LV2_PATH    = makePluginPath "lv2";
-            LXVST_PATH  = makePluginPath "lxvst";
-            VST_PATH    = makePluginPath "vst";
-            VST3_PATH   = makePluginPath "vst3";
-          };
-
-      shells = with pkgs; [ zsh ];
-
-      systemPackages = with pkgs;
-        [ curl
-          git
-          helix
-          wget
-          bat
+    { systemPackages = with pkgs;
+        [ nss_latest # for caddy
         ];
     };
 
-  #system.autoUpgrade =
-  #  { enable = true;
-  #    flake = inputs.self.outpath;
-  #    allowReboot = true;
-  #    flags = [ "--update-input" "nixpkgs" "-L" ];
-  #    dates = "02:00";
-  #  };
-
   services.openssh =
-  { enable = true;
-    settings =
-      { PasswordAuthentication = false;
-        KbdInteractiveAuthentication = false;
-      };
-  };
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+    { enable = true;
+      settings =
+        { PasswordAuthentication = false;
+          KbdInteractiveAuthentication = false;
+        };
+    };
 
   networking.firewall =
-    { enable = true;
-      trustedInterfaces = [ "tailscale0" ];
-      allowedTCPPortRanges =
-        [  { from = 1714; to = 1764; } # KDE Connect
-        ];  
-      allowedUDPPortRanges =
-        [  { from = 1714; to = 1764; } # KDE Connect
+    { allowedTCPPorts =
+        [ 80 443 # http(s)
         ];
     };  
-
-  system.stateVersion = "23.05";
-
 }

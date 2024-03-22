@@ -1,22 +1,10 @@
 { inputs, lib, config, pkgs, ... }:
 
 {
-  imports =
-    [ ./hardware-configuration.nix
-    ];
+  imports = [ ./hardware-configuration.nix ];
 
-  nix.settings =
-    { experimental-features = [ "nix-command" "flakes" ];
-      trusted-users = [ "paul" ];
-    };
-  
   boot =
-    { loader =
-        { systemd-boot.enable = true;
-          efi.canTouchEfiVariables = true;
-        };
-      binfmt.emulatedSystems = [ "riscv64-linux" ];
-      extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+    { extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
       kernelModules = [ "v4l2loopback" ];
       extraModprobeConfig =
         ''
@@ -27,44 +15,10 @@
         };
     };
 
-  networking =
-    { hostName = "paulpad";
-      networkmanager.enable = true;
-    };
-
-  time.timeZone = "Africa/Johannesburg";
-
-  i18n =
-    { defaultLocale = "en_ZA.UTF-8";
-      extraLocaleSettings.LC_TIME = "en_GB.UTF-8";
-    };
-
+  networking.hostName = "paulpad";
 
   services =
     {
-      xserver =
-        { enable = true;
-          displayManager.gdm.enable = true;
-          desktopManager.gnome.enable = true;
-          xkb =
-            { layout = "za";
-              variant = "";
-            };
-        };
-
-      pipewire =
-        { enable = true;
-          wireplumber.enable = true;
-          alsa.enable = true;
-          alsa.support32Bit = true;
-          pulse.enable = true;
-          jack.enable = true;
-        };
-
-      printing.enable = true;
-
-      pcscd.enable = true; # for gpg pinentry
-
       syncthing =
         { enable = true;
           user = "paul";
@@ -91,119 +45,12 @@
                 };
             };
         };
-
-      tailscale.enable = true;
-
-      #kubo =
-      #  { enable = true;
-      #    settings.Addresses.API = ["/ip4/127.0.0.1/tcp/5001"];
-      #  };
     };
 
-  # for audio
-  security.rtkit.enable = true;
-
-  hardware = 
-    { pulseaudio.enable = false;
-      opengl = 
-        { enable = true;
-          extraPackages = with pkgs;
-            [ intel-media-driver
-              #intel-ocl
-              intel-compute-runtime
-            ];
-        };
-    };
-
-
-  users =
-    { defaultUserShell = pkgs.zsh;
-      users.paul =
-        { isNormalUser = true;
-          description = "Paul Joubert";
-          extraGroups = [ "networkmanager" "wheel" "audio" ];
-          shell = pkgs.zsh;
-        };
-    };
-
-  programs =
-    { zsh.enable = true; # necessary for defaultUserShell
-      steam.enable = true; # doesn't work as user program
-      virt-manager.enable = true;
-      gnupg.agent.enable = true;
-    };
-
-  virtualisation.libvirtd.enable = true;
-
-  nixpkgs.config =
-    { allowUnfree = true;
-      permittedInsecurePackages = [];
-    };
-
-  environment =
-    { variables =
-        let
-          makePluginPath =
-            format:
-              ( lib.strings.makeSearchPath format
-                [ "$HOME/.nix-profile/lib"
-                  "/run/current-system/sw/lib"
-                  "/etc/profiles/per-user/$USER/lib"
-                ]
-              )
-              + ":$HOME/.${format}";
-        in
-          { EDITOR = "hx";
-            PAGER = "bat";
-
-            # user paths, not ideal but doesn't work in home.nix?
-            ANDROID_HOME       = "/home/paul/.local/share/android";
-            GNUPGHOME          = "/home/paul/.local/share/gnupg";
-            IPYTHONDIR         = "/home/paul/.config/ipython";
-            JUPYTER_CONFIG_DIR = "/home/paul/.config/jupyter";
-            PYTHONSTARTUP      = "/home/paul/.config/pythonrc";
-            PARALLEL_HOME      = "/home/paul/.config/parallel";
-            #ZDOTDIR            = "/home/paul/.config/zsh";
-        
-            # audio plugin paths
-            DSSI_PATH   = makePluginPath "dssi";
-            LADSPA_PATH = makePluginPath "ladspa";
-            LV2_PATH    = makePluginPath "lv2";
-            LXVST_PATH  = makePluginPath "lxvst";
-            VST_PATH    = makePluginPath "vst";
-            VST3_PATH   = makePluginPath "vst3";
-          };
-
-      shells = with pkgs; [ zsh ];
-
-      systemPackages = with pkgs;
-        [ curl
-          git
-          helix
-          wget
-          bat
-        ];
-    };
-
-  #system.autoUpgrade =
-  #  { enable = true;
-  #    flake = inputs.self.outpath;
-  #    allowReboot = true;
-  #    flags = [ "--update-input" "nixpkgs" "-L" ];
-  #    dates = "02:00";
-  #  };
-
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  programs.steam.enable = true; # doesn't work as user program
 
   networking.firewall =
-    { enable = true;
-      trustedInterfaces = [ "tailscale0" ];
+    { allowedTCPPorts = [];
       allowedTCPPortRanges =
         [  { from = 1714; to = 1764; } # KDE Connect
         ];  
@@ -211,7 +58,4 @@
         [  { from = 1714; to = 1764; } # KDE Connect
         ];
     };  
-
-  system.stateVersion = "23.05";
-
 }
