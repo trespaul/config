@@ -3,7 +3,15 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
-  networking.hostName = "polyaenus";
+  networking =
+    { hostName = "polyaenus";
+      hosts =
+        { "100.127.18.104" =
+            [ "polyaenus.kamori-carp.ts.net"
+              "ntfy.polyaenus.kamori-carp.ts.net"
+            ];
+        };
+    };
 
   services =
     {
@@ -46,40 +54,46 @@
           permitCertUid = "caddy";
         };
 
-      # caddy =
-      #   { enable = true;
-      #     virtualHosts =
-      #       { "polyaenus.kamori-carp.ts.net".extraConfig =
-      #           ''
-      #             respond "Hello, world!"
-      #             tls internal
-      #           '';
-      #         # "ntfy.polyaenus.kamori-carp.ts.net".extraConfig =
-      #         #   ''
-      #         #     reverse_proxy 127.0.0.1:2586
-      #         #     @httpget {
-      #         #       protocol http
-      #         #       method GET
-      #         #       path_regexp ^/([-_a-z0-9]{0,64}$|docs/|static/)
-      #         #     }
-      #         #     redir @httpget https://ntfy.polyaenus.kamori-carp.ts.net
-      #         #   '';
-      #       };
-      #   };
+      dnsmasq =
+        { enable = true;
+          # settings = {};
+        };
 
-      # ntfy-sh =
-      #   { enable = true;
-      #     settings =
-      #       { base-url = "https://polyaenus.kamori-carp.ts.net";
-      #         behind-proxy = true;
-      #         listen-http = ":2586";
-      #       };
-      #   };
+      caddy =
+        { enable = true;
+          virtualHosts =
+            {
+              "polyaenus.kamori-carp.ts.net".extraConfig =
+                ''
+                  respond "OK"
+                '';
+
+              "ntfy.polyaenus.kamori-carp.ts.net".extraConfig =
+                ''
+                  reverse_proxy 127.0.0.1:2586
+                  @httpget {
+                    protocol http
+                    method GET
+                    path_regexp ^/([-_a-z0-9]{0,64}$|docs/|static/)
+                  }
+                  redir @httpget https://ntfy.polyaenus.kamori-carp.ts.net
+                '';
+            };
+        };
+
+      ntfy-sh =
+        { enable = true;
+          settings =
+            { base-url = "https://polyaenus.kamori-carp.ts.net";
+              behind-proxy = true;
+              listen-http = ":2586";
+            };
+        };
     };
 
   environment =
     { systemPackages = with pkgs;
-        [ nss_latest # for caddy
+        [ nssTools # for caddy
         ];
     };
 
