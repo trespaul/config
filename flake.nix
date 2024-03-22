@@ -12,46 +12,33 @@
         };
     };
 
-  outputs = inputs@{ self, nixpkgs, agenix, home-manager, ... }:
+  outputs = { nixpkgs, agenix, home-manager, ... }:
     { nixosConfigurations =
-        {
-          "paulpad" = nixpkgs.lib.nixosSystem
-            { system = "x86_64-linux";
-              modules =
-                [ ./machines/paulpad/configuration.nix
-                  agenix.nixosModules.default
-                  home-manager.nixosModules.home-manager
-                  { home-manager =
-                      { useGlobalPkgs = true;
-                        useUserPackages = true;
-                        users.paul.imports =
-                          [ ./machines/paulpad/home.nix
-                            agenix.homeManagerModules.default
-                            ./secrets/secrets.module.nix
-                          ];
-                      };
-                  }
-                ];
-            };
-
-          "polyaenus" = nixpkgs.lib.nixosSystem
-            { system = "x86_64-linux";
-              modules =
-                [ ./machines/polyaenus/configuration.nix
-                  agenix.nixosModules.default
-                  home-manager.nixosModules.home-manager
-                  { home-manager =
-                      { useGlobalPkgs = true;
-                        useUserPackages = true;
-                        users.paul.imports =
-                          [ ./machines/polyaenus/home.nix
-                            agenix.homeManagerModules.default
-                            ./secrets/secrets.module.nix
-                          ];
-                      };
-                  }
-                ];
-            };
-        };
+        let
+          mkConfig = hostname:
+              nixpkgs.lib.nixosSystem
+                { system = "x86_64-linux";
+                  modules =
+                    [ ./common/configuration.nix
+                      ./machines/${hostname}/configuration.nix
+                      agenix.nixosModules.default
+                      home-manager.nixosModules.home-manager
+                      { home-manager =
+                          { useGlobalPkgs = true;
+                            useUserPackages = true;
+                            users.paul.imports =
+                              [ ./common/home.nix
+                                ./machines/${hostname}/home.nix
+                                agenix.homeManagerModules.default
+                                ./secrets/secrets.module.nix
+                              ];
+                          };
+                      }
+                    ];
+                };
+        in
+          { "paulpad"   = mkConfig "paulpad";
+            "polyaenus" = mkConfig "polyaenus";
+          };
     };
 }
