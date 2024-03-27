@@ -138,13 +138,13 @@
         ];
     };
 
-  #system.autoUpgrade =
-  #  { enable = true;
-  #    flake = inputs.self.outpath;
-  #    allowReboot = true;
-  #    flags = [ "--update-input" "nixpkgs" "-L" ];
-  #    dates = "02:00";
-  #  };
+  system.autoUpgrade =
+    { enable = true;
+      flake = "github:trespaul/config";
+      allowReboot = true;
+      flags = [ "--update-input" "nixpkgs" "-L" ];
+      dates = "02:00";
+    };
 
   networking.firewall =
     { enable = true;
