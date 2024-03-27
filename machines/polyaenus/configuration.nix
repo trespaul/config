@@ -7,14 +7,27 @@
     { hostName = "polyaenus";
       hosts =
         { "100.127.18.104" =
-            [ "polyaenus.kamori-carp.ts.net"
-              "ntfy.polyaenus.kamori-carp.ts.net"
+            [      "polyaenus.internal"
+              "ntfy.polyaenus.internal"
+            ];
+        };
+      firewall =
+        { allowedTCPPorts =
+            [ 80 443 # http(s)
             ];
         };
     };
 
   services =
     {
+      openssh =
+        { enable = true;
+          settings =
+            { PasswordAuthentication = false;
+              KbdInteractiveAuthentication = false;
+            };
+        };
+
       logind =
         { lidSwitch = "suspend";
           lidSwitchExternalPower = "lock";
@@ -61,22 +74,17 @@
 
       caddy =
         { enable = true;
+          globalConfig = ''auto_https disable_redirects'';
           virtualHosts =
-            {
-              "polyaenus.kamori-carp.ts.net".extraConfig =
+            { "polyaenus.internal".extraConfig =
                 ''
                   respond "OK"
+                  tls internal
                 '';
-
-              "ntfy.polyaenus.kamori-carp.ts.net".extraConfig =
+              "ntfy.polyaenus.internal".extraConfig =
                 ''
                   reverse_proxy 127.0.0.1:2586
-                  @httpget {
-                    protocol http
-                    method GET
-                    path_regexp ^/([-_a-z0-9]{0,64}$|docs/|static/)
-                  }
-                  redir @httpget https://ntfy.polyaenus.kamori-carp.ts.net
+                  tls internal
                 '';
             };
         };
@@ -84,7 +92,7 @@
       ntfy-sh =
         { enable = true;
           settings =
-            { base-url = "https://polyaenus.kamori-carp.ts.net";
+            { base-url = "http://ntfy.polyaenus.internal";
               behind-proxy = true;
               listen-http = ":2586";
             };
@@ -96,18 +104,4 @@
         [ nssTools # for caddy
         ];
     };
-
-  services.openssh =
-    { enable = true;
-      settings =
-        { PasswordAuthentication = false;
-          KbdInteractiveAuthentication = false;
-        };
-    };
-
-  networking.firewall =
-    { allowedTCPPorts =
-        [ 80 443 # http(s)
-        ];
-    };  
 }
