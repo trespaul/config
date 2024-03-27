@@ -8,8 +8,8 @@
           ardour audacity bespokesynth calf cardinal haskellPackages.tidal
           musescore supercollider supercolliderPlugins.sc3-plugins vital
           # graphics & video apps
-          blender darktable eyedropper inkscape-with-extensions kdenlive scrcpy
-            # gimp-with-plugins 
+          blender darktable eyedropper gimp inkscape-with-extensions kdenlive
+          scrcpy
           # dev etc.
           android-tools boxes google-cloud-sdk
           # LSPs
