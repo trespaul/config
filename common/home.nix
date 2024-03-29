@@ -39,7 +39,7 @@
           clinfo glxinfo iftop iotop lsof ltrace strace ethtool lm_sensors
           pciutils usbutils
           # media utils
-          ffmpeg helvum vlc
+          eartag ffmpeg helvum vlc
             # pwvucontrol
           # internet utils
           bitwarden tailscale warp magic-wormhole
@@ -48,8 +48,8 @@
           # document cli utils
           hunspell ghostscript pdftk poppler_utils jbig2dec jbig2enc libtiff
           # fonts
-          brill fira-code-nerdfont inter iosevka nerdfonts noto-fonts-cjk-sans
-          public-sans ubuntu_font_family
+          brill fira-code-nerdfont inter iosevka noto-fonts-cjk-sans public-sans
+          ubuntu_font_family
         ];
 
       # sessionVariables = # doesn't work here??
@@ -159,7 +159,12 @@
                 };
                 keys.normal =
                   { "esc"   = ["collapse_selection" "keep_primary_selection"];
-                    "A-ret" = ":pipe-to kitten @ send-text --match-tab 'title:^tidal' --stdin ':{\n' && kitten @ send-text --match-tab 'title:^tidal' ':}\n'";
+                    "A-ret" =
+                      ''
+                        :pipe-to kitten @ send-text --match-tab 'title:^tidal' --stdin ':{\n' \
+                              && kitten @ send-text --match-tab 'title:^tidal'         ':}\n'
+                      '';
+
                   };
             };
           languages =
@@ -330,6 +335,44 @@
     };
 
   # services = { };
+
+  dconf =
+    { enable = true;
+      settings =
+        { "org/gnome/desktop/interface" =
+            { color-scheme = "prefer-dark";
+              clock-show-weekday = true;
+              gtk-theme = "Adwaita-dark";
+              monospace-font-name = "Iosevka Light Expanded 11";
+              show-battery-percentage = true;
+            };
+          "org/gnome/desktop/peripherals/touchpad" =
+            { speed = 0.3;
+              tap-to-click = true;
+            };
+          "org/gnome/desktop/peripherals/keyboard" =
+            { numlock-state = true;
+            };
+          "org/gnome/desktop/peripherals/mouse" =
+            { natural-scroll = false;
+              speed = 0.3;
+            };
+          "org/gnome/desktop/sound".event-sounds = false;
+          "org/gnome/desktop/input-sources".xkb-options =
+            [ "terminate:ctrl_alt_bksp"
+              "compose:ralt"
+              "lv3:rwin_switch"
+              "caps:swapescape"
+            ];
+          "org/gnome/shell".favorite-apps =
+            [ "kitty.desktop"
+              "org.gnome.Nautilus.desktop"
+              "firefox.desktop"
+              "discord.desktop"
+            ];
+        };
+
+    };
 
   xdg =
     { enable = true;
