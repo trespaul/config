@@ -1,7 +1,7 @@
 { description = "trespaul's nixos flake";
 
   inputs =
-    { nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    { nixpkgs.url = "github:NixOS/nixpkgs/master";
       agenix =
         { url = "github:ryantm/agenix";
           inputs.darwin.follows = "";
