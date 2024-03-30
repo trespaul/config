@@ -30,7 +30,7 @@
         [ # misc cli
           bat fd file gawk glow gnupg gnused gnutar hyperfine libnotify
           libsecret neofetch p7zip parallel pinentry-gnome3 renameutils slides
-          unar unzip which xdg-ninja xz yq-go zip zstd
+          unar unzip watchexec which xdg-ninja xz yq-go zip zstd
           # networking tools
           dnsutils ldns netscanner nmap sshfs
           # nix related
@@ -45,6 +45,7 @@
           bitwarden tailscale warp magic-wormhole
           # desktop environment
           gnomeExtensions.gsconnect gnome.gnome-tweaks gnome-themes-extra
+          smile gnomeExtensions.smile-complementary-extension
           # document cli utils
           hunspell ghostscript pdftk poppler_utils jbig2dec jbig2enc libtiff
           # fonts
