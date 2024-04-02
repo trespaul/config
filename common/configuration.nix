@@ -77,6 +77,7 @@
           description = "Paul Joubert";
           extraGroups = [ "networkmanager" "wheel" "audio" ];
           shell = pkgs.zsh;
+          linger = true;
         };
     };
 
