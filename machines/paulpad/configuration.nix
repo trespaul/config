@@ -17,6 +17,12 @@
 
   networking.hostName = "paulpad";
 
+  musnix =
+    { enable = true;
+      rtcqs.enable = true;
+      kernel.realtime = true;
+    };
+
   services =
     {
       syncthing =
