@@ -63,7 +63,11 @@
       tailscale =
         { enable = true;
           useRoutingFeatures = "both";
-          extraUpFlags = [ "--advertise-exit-node" ];
+          extraUpFlags =
+            [ "--advertise-exit-node"
+              "--exit-node-allow-lan-access"
+              "--ssh"
+            ];
           permitCertUid = "caddy";
         };
 
