@@ -1,6 +1,6 @@
 # my nixos config flake
 
-## Applying config to remote
+Deploy using [`deploy-rs`](https://github.com/serokell/deploy-rs) or
 
 ```sh
 nixos-rebuild \
@@ -10,5 +10,3 @@ nixos-rebuild \
   --build-host remote_host \
   switch
 ```
-
-It currently asks for the remote user's sudo password three times, idk why.

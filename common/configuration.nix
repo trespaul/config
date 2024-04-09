@@ -146,6 +146,7 @@
           helix
           wget
           bat
+          deploy-rs
         ];
     };
 
