@@ -29,6 +29,9 @@
     { networkmanager.enable = true;
     };
 
+  systemd.services =
+    { NetworkManager-wait-online.enable = false; };
+
   time.timeZone = "Africa/Johannesburg";
 
   i18n =
