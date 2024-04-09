@@ -14,12 +14,16 @@
         { url = "github:musnix/musnix";
           inputs.nixpkgs.follows = "nixpkgs";
         };
+      deploy-rs =
+        { url = "github:serokell/deploy-rs";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-  outputs = { nixpkgs, agenix, home-manager, musnix, ... }:
+  outputs = { self, nixpkgs, agenix, home-manager, musnix, deploy-rs, ... }:
     { nixosConfigurations =
         let
-          mkConfig = { hostname, extraModules }:
+          mkConfig = { hostname, extraModules ? [] }:
             nixpkgs.lib.nixosSystem
               { system = "x86_64-linux";
                 modules =
@@ -45,7 +49,33 @@
               { hostname = "paulpad";
                 extraModules = [ musnix.nixosModules.musnix ];
               };
-            "polyaenus" = mkConfig "polyaenus";
+            "polyaenus" = mkConfig
+              { hostname = "polyaenus"; };
           };
+
+      deploy =
+        { remoteBuild = true;
+          nodes =
+            let
+              mkNode = hostname:
+                { hostname = hostname;
+                  interactiveSudo = true;
+                  profiles.system =
+                    { user = "root";
+                      path =
+                        deploy-rs.lib.x86_64-linux.activate.nixos
+                          self.nixosConfigurations.polyaenus;
+                    };
+                };
+            in
+              { paulpad   = mkNode "paulpad";
+                polyaenus = mkNode "polyaenus";
+              };
+        };
+
+      checks =
+        builtins.mapAttrs
+          (system: deployLib: deployLib.deployChecks self.deploy)
+          deploy-rs.lib;
     };
 }
