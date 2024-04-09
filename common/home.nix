@@ -380,23 +380,37 @@
       configFile =
         { "python/pythonrc".text =
             ''
-              import os
-              import atexit
-              import readline
+              def is_vanilla() -> bool:
+                  import sys
+                  return not hasattr(__builtins__, '__IPYTHON__') and 'bpython' not in sys.argv[0]
 
-              history = os.path.join(os.environ['XDG_CACHE_HOME'], 'python_history')
-              try:
-                  readline.read_history_file(history)
-              except OSError:
-                  pass
 
-              def write_history():
-                  try:
-                      readline.write_history_file(history)
-                  except OSError:
-                      pass
+              def setup_history():
+                  import os
+                  import atexit
+                  import readline
+                  from pathlib import Path
 
-              atexit.register(write_history)
+                  if state_home := os.environ.get('XDG_STATE_HOME'):
+                      state_home = Path(state_home)
+                  else:
+                      state_home = Path.home() / '.local' / 'state'
+
+                  history: Path = state_home / 'python_history'
+
+                  readline.read_history_file(str(history))
+                  atexit.register(readline.write_history_file, str(history))
+
+
+              if is_vanilla():
+                  setup_history()
+            '';
+
+          "npm/npmrc".text =
+            ''
+              prefix=''${XDG_DATA_HOME}/npm
+              cache=''${XDG_CACHE_HOME}/npm
+              init-module=''${XDG_CONFIG_HOME}/npm/config/npm-init.js
             '';
         };
     };
