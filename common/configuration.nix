@@ -8,6 +8,7 @@
         { experimental-features = [ "nix-command" "flakes" ];
           trusted-users = [ "paul" ];
           auto-optimise-store = true;
+          use-xdg-base-directories = true;
         };
       gc =
         { automatic = true;
@@ -110,12 +111,18 @@
           PAGER = "bat";
 
           # user paths, not ideal here but doesn't work in home.nix?
-          ANDROID_HOME       = "/home/paul/.local/share/android";
-          GNUPGHOME          = "/home/paul/.local/share/gnupg";
-          IPYTHONDIR         = "/home/paul/.config/ipython";
-          JUPYTER_CONFIG_DIR = "/home/paul/.config/jupyter";
-          PYTHONSTARTUP      = "/home/paul/.config/pythonrc";
-          PARALLEL_HOME      = "/home/paul/.config/parallel";
+          ANDROID_HOME          = "/home/paul/.local/share/android";
+          GNUPGHOME             = "/home/paul/.local/share/gnupg";
+          IPYTHONDIR            = "/home/paul/.config/ipython";
+          JUPYTER_CONFIG_DIR    = "/home/paul/.config/jupyter";
+          PYTHONSTARTUP         = "/home/paul/.config/python/pythonrc";
+          PARALLEL_HOME         = "/home/paul/.config/parallel";
+          CABAL_CONFIG          = "/home/paul/.config/cabal/config";
+          CABAL_DIR             = "/home/paul/.local/share/cabal";
+          CARGO_HOME            = "/home/paul/.local/share/cargo";
+          NODE_REPL_HISTORY     = "/home/paul/.local/share/node_repl_history";
+          RENPY_PATH_TO_SAVES   = "/home/paul/.local/share/renpy";
+          NPM_CONFIG_USERCONFIG = "/home/paul/.config/npm/npmrc";
         };
 
       shells = with pkgs; [ zsh ];
