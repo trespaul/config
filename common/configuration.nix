@@ -106,37 +106,17 @@
 
   environment =
     { variables =
-        let
-          makePluginPath =
-            format:
-              ( lib.strings.makeSearchPath format
-                [ "$HOME/.nix-profile/lib"
-                  "/run/current-system/sw/lib"
-                  "/etc/profiles/per-user/$USER/lib"
-                ]
-              )
-              + ":$HOME/.${format}";
-        in
-          { EDITOR = "hx";
-            PAGER = "bat";
+        { EDITOR = "hx";
+          PAGER = "bat";
 
-            # user paths, not ideal but doesn't work in home.nix?
-            ANDROID_HOME       = "/home/paul/.local/share/android";
-            GNUPGHOME          = "/home/paul/.local/share/gnupg";
-            IPYTHONDIR         = "/home/paul/.config/ipython";
-            JUPYTER_CONFIG_DIR = "/home/paul/.config/jupyter";
-            PYTHONSTARTUP      = "/home/paul/.config/pythonrc";
-            PARALLEL_HOME      = "/home/paul/.config/parallel";
-            #ZDOTDIR            = "/home/paul/.config/zsh";
-
-            # audio plugin paths
-            DSSI_PATH   = makePluginPath "dssi";
-            LADSPA_PATH = makePluginPath "ladspa";
-            LV2_PATH    = makePluginPath "lv2";
-            LXVST_PATH  = makePluginPath "lxvst";
-            VST_PATH    = makePluginPath "vst";
-            VST3_PATH   = makePluginPath "vst3";
-          };
+          # user paths, not ideal here but doesn't work in home.nix?
+          ANDROID_HOME       = "/home/paul/.local/share/android";
+          GNUPGHOME          = "/home/paul/.local/share/gnupg";
+          IPYTHONDIR         = "/home/paul/.config/ipython";
+          JUPYTER_CONFIG_DIR = "/home/paul/.config/jupyter";
+          PYTHONSTARTUP      = "/home/paul/.config/pythonrc";
+          PARALLEL_HOME      = "/home/paul/.config/parallel";
+        };
 
       shells = with pkgs; [ zsh ];
 
