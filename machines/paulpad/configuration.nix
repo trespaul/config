@@ -17,14 +17,7 @@
 
   networking.hostName = "paulpad";
 
-  musnix =
-    { enable = true;
-      rtcqs.enable = true;
-      kernel =
-        { realtime = true;
-          packages = pkgs.linuxPackages-rt_latest;
-        };
-    };
+  musnix.enable = true;
 
   services =
     {
