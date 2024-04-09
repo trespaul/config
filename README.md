@@ -1,6 +1,6 @@
 # my nixos config flake
 
-Deploy using [`deploy-rs`](https://github.com/serokell/deploy-rs) or
+Deploy on remote using [`deploy-rs`](https://github.com/serokell/deploy-rs) or
 
 ```sh
 nixos-rebuild \
