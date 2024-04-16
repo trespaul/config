@@ -255,6 +255,15 @@
         { enable = true;
           enableZshIntegration = true;
           enableBashIntegration = true;
+          settings =
+            { manager =
+                { sort_by = "natural";
+                  sort_dir_first = true;
+                  linemode = "mtime";
+                  show_hidden = true;
+                  show_symlink = true;
+                };
+            };
         };
 
       zsh =
