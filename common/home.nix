@@ -142,6 +142,7 @@
               editor =
                 { bufferline = "multiple";
                   auto-format = false;
+                  auto-pairs = false;
                   cursor-shape.insert = "bar";
                   file-picker.hidden = false;
                   soft-wrap = { enable = true; wrap-indicator = ""; };
