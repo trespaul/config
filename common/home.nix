@@ -20,6 +20,7 @@
           "s" = "kitten ssh";
           "wget" = "wget --hsts-file=.local/share/wget-hsts";
           "fd" = "fd --hidden";
+          "rp" = "rippkgs";
           "sortl" = # sort lines: sort witin and throughout lines
             ''tr " " "\n" | sort | paste -s -d " " '';
           "sortli" = # sort lines independently: each line sort separately
@@ -34,7 +35,7 @@
           # networking tools
           dnsutils ldns netscanner nmap sshfs
           # nix related
-          nix-output-monitor
+          nix-output-monitor rippkgs
           # system tools
           clinfo glxinfo iftop iotop lsof ltrace strace ethtool lm_sensors
           pciutils usbutils
