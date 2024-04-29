@@ -236,11 +236,6 @@
           # templates = {};
         };
 
-      texlive =
-        { enable = true;
-          # packageSet = pkgs.texliveMedium;
-        };
-
       rbw =
         { enable = true;
           settings =

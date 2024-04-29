@@ -24,7 +24,7 @@
           discord fractal newsflash signal-desktop telegram-desktop
           tor-browser-bundle-bin transmission_4-gtk tuba wike
           # document cli utils
-          ocrmypdf
+          ocrmypdf texliveFull librsvg
           # document apps
           dialect foliate libreoffice-fresh scantailor zotero gnome-decoder
           gnome-solanum
