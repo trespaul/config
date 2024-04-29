@@ -11,7 +11,7 @@
           blender darktable eyedropper gimp inkscape-with-extensions kdenlive
           scrcpy
           # dev etc.
-          android-tools boxes google-cloud-sdk
+          android-tools boxes flyctl gleam google-cloud-sdk
           # LSPs
           haskell-language-server ltex-ls marksman nil
           nodePackages.bash-language-server
