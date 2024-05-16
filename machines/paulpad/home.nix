@@ -6,7 +6,7 @@
         [
           # audio production
           ardour audacity bespokesynth calf cardinal haskellPackages.tidal
-          musescore supercollider supercolliderPlugins.sc3-plugins vital
+          musescore supercollider-with-sc3-plugins vital
           # graphics & video apps
           blender darktable eyedropper gimp inkscape-with-extensions kdenlive
           scrcpy
