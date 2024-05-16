@@ -124,6 +124,7 @@
               hide_window_decorations         yes
               tab_bar_style                   powerline
               tab_powerline_style             slanted
+              allow_remote_control            yes
             '';
           shellIntegration =
             { enableBashIntegration = true;
