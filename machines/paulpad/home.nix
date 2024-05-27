@@ -13,8 +13,8 @@
           # dev etc.
           android-tools boxes flyctl gleam google-cloud-sdk
           # LSPs
-          haskell-language-server ltex-ls marksman nil
-          nodePackages.bash-language-server
+          haskell-language-server ltex-ls markdown-oxide
+          marksman nil nodePackages.bash-language-server
           nodePackages.typescript-language-server vscode-langservers-extracted
           yaml-language-server
           # pentesting
