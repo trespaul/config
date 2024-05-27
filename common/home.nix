@@ -195,6 +195,20 @@
                     roots = [];
                     grammar = "markdown";
                   }
+                  { name = "roc";
+                    scope = "source.roc";
+                    injection-regex = "roc";
+                    file-types = ["roc"];
+                    shebangs = ["roc"];
+                    roots = [];
+                    comment-token = "#";
+                    language-servers = ["roc-ls"];
+                    indent = { tab-width = 2; unit = "  "; };
+                    auto-format = true;
+                    formatter =
+                      { command = "roc"; args = [ "format" "--stdin" "--stdout"]; };
+                    auto-pairs = { "(" = ")"; "{" = "}"; "[" = "]"; "\"" = "\""; };
+                  }
                 ];
               language-server =
                 { ltex-ls =
@@ -205,7 +219,17 @@
                           completionEnabled = true;
                         };
                     };
+                  roc-ls =
+                    { command = "roc_language_server"; };
                 };
+              grammar =
+                [ { name = "roc";
+                    source =
+                      { git = "https://github.com/faldor20/tree-sitter-roc.git";
+                        rev = "df46a85abda9f948d38f5d4e3684cec49c42fef2";
+                      };
+                  }
+                ];
             };
           themes."gruvbox_transparent" =
             { inherits = "gruvbox_dark_hard";
