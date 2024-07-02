@@ -45,10 +45,10 @@
           # internet utils
           bitwarden tailscale warp magic-wormhole
           # desktop environment
-          gnomeExtensions.gsconnect gnome.gnome-tweaks gnome-themes-extra
-          smile gnomeExtensions.smile-complementary-extension
+          gnomeExtensions.gsconnect gnome.gnome-tweaks gnome.gpaste
+          gnome-themes-extra smile gnomeExtensions.smile-complementary-extension
           # document cli utils
-          hunspell ghostscript pdftk poppler_utils jbig2dec jbig2enc libtiff
+          hunspell ghostscript pdftk poppler_utils jbig2dec jbig2enc libtiff_t
           # fonts
           brill fira-code-nerdfont inter iosevka noto-fonts-cjk-sans public-sans
           ubuntu_font_family
