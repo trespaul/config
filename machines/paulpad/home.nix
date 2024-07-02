@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, roc, ... }:
 
 {
   home =
@@ -11,7 +11,8 @@
           blender darktable eyedropper gimp inkscape-with-extensions kdenlive
           scrcpy
           # dev etc.
-          android-tools boxes flyctl gleam google-cloud-sdk
+          android-tools arduino-ide boxes cargo flyctl gleam google-cloud-sdk
+          roc.packages.${system}.full
           # LSPs
           haskell-language-server ltex-ls markdown-oxide
           marksman nil nodePackages.bash-language-server
