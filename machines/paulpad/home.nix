@@ -38,5 +38,14 @@
 
   programs =
     { obs-studio.enable = true;
+      ncspot =
+        { enable = true;
+          # use_nerdfont = true;
+          # notify = true;
+          # credentials =
+          #   { username = "21wt6kx2cpvurgqvkgwk34jsy";
+          #     password_cmd = "cat ${config.age.secrets.spotify.path}";
+          #   };
+        };
     };
 }
