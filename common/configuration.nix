@@ -150,7 +150,7 @@
 
   networking.firewall =
     { enable = true;
-      trustedInterfaces = [ "tailscale0" ];
+      trustedInterfaces = [ "tailscale0" "virbr0" "vnet2" ];
     };
 
 }
