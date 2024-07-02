@@ -89,7 +89,7 @@
       users.paul =
         { isNormalUser = true;
           description = "Paul Joubert";
-          extraGroups = [ "networkmanager" "wheel" "audio" ];
+          extraGroups = [ "networkmanager" "wheel" "audio" "dialout" ];
           shell = pkgs.zsh;
           linger = true;
         };

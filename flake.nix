@@ -18,9 +18,13 @@
         { url = "github:serokell/deploy-rs";
           inputs.nixpkgs.follows = "nixpkgs";
         };
+      roc =
+        { url = "github:roc-lang/roc";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-  outputs = { self, nixpkgs, agenix, home-manager, musnix, deploy-rs, ... }:
+  outputs = { self, nixpkgs, agenix, home-manager, musnix, deploy-rs, roc, ... }:
     { nixosConfigurations =
         let
           mkConfig = { hostname, extraModules ? [] }:
@@ -34,6 +38,7 @@
                     { home-manager =
                         { useGlobalPkgs = true;
                           useUserPackages = true;
+                          extraSpecialArgs = { inherit roc; };
                           users.paul.imports =
                             [ ./common/home.nix
                               ./machines/${hostname}/home.nix
