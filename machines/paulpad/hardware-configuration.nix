@@ -5,11 +5,17 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
-  boot.initrd.luks.devices."luks-e1477bc2-1cca-469b-81ae-760226db7445".device = "/dev/disk/by-uuid/e1477bc2-1cca-469b-81ae-760226db7445";
+  boot =
+    { initrd =
+        { kernelModules = [ ];
+          availableKernelModules =
+            [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
+          luks.devices."luks-e1477bc2-1cca-469b-81ae-760226db7445".device =
+            "/dev/disk/by-uuid/e1477bc2-1cca-469b-81ae-760226db7445";
+        };
+      kernelModules = [ "kvm-intel" ];
+      extraModulePackages = [ ];
+  };
 
   fileSystems =
     { "/" =
@@ -32,5 +38,6 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
