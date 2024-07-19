@@ -15,10 +15,10 @@
     {
       openssh =
         { enable = true;
-          # settings =
-          #   { PasswordAuthentication = false;
-          #     KbdInteractiveAuthentication = false;
-          #   };
+          settings =
+            { PasswordAuthentication = false;
+              KbdInteractiveAuthentication = false;
+            };
         };
 
       syncthing =
