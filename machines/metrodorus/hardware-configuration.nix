@@ -11,7 +11,7 @@
           availableKernelModules =
             [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
           luks.devices."luks-610e95b4-a88a-4da3-b7ab-692e1cf2b4e0".device =
-            "/dev/disk/by-uuid/luks-610e95b4-a88a-4da3-b7ab-692e1cf2b4e0";
+            "/dev/disk/by-uuid/610e95b4-a88a-4da3-b7ab-692e1cf2b4e0";
         };
       kernelModules = [ "kvm-intel" ];
       extraModulePackages = [ ];
