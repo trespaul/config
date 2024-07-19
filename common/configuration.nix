@@ -92,6 +92,11 @@
           extraGroups = [ "networkmanager" "wheel" "audio" "dialout" ];
           shell = pkgs.zsh;
           linger = true;
+          openssh.authorizedKeys.keys =
+            [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHyBG5QyF1rZ9M7gm+cPVSpsWyGPgLQNKIrAn/EKmgEv paul@paulpad"
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHEFnpRtXK1ZW/yfbIx2cKMRCpQGX3r96J9LamQbLmwV paul@polyaenus"
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFXoAsnGMn7WqPeVZ2KYeghyl4Fb6Ho9nHTxVU9jGBj4 paul@metrodorus"
+            ];
         };
     };
 
