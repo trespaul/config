@@ -45,7 +45,7 @@
           # internet utils
           bitwarden tailscale warp magic-wormhole
           # desktop environment
-          gnomeExtensions.gsconnect gnome.gnome-tweaks gnome.gpaste
+          gnomeExtensions.gsconnect gnome-tweaks gpaste
           gnome-themes-extra smile gnomeExtensions.smile-complementary-extension
           # document cli utils
           hunspell ghostscript pdftk poppler_utils jbig2dec jbig2enc libtiff_t
