@@ -56,6 +56,8 @@
               };
             "polyaenus" = mkConfig
               { hostname = "polyaenus"; };
+            "metrodorus" = mkConfig
+              { hostname = "metrodorus"; };
           };
 
       deploy =
