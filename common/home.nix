@@ -30,7 +30,7 @@
       packages = with pkgs;
         [ # misc cli
           bat fd file gawk glow gnupg gnused gnutar hyperfine libnotify
-          libsecret p7zip parallel pinentry-gnome3 renameutils slides
+          libsecret p7zip parallel pinentry-gnome3 psmisc renameutils slides
           unar unzip watchexec which xdg-ninja xz yq-go zip zstd
           # networking tools
           dnsutils ldns netscanner nmap sshfs
