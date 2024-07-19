@@ -46,15 +46,17 @@
                     "LUIFU3Y-QGAT64E-BVKWJ4D-JU72BY7-3ZMCO3N-J2HCB5V-TJUU6CF-IIXZRAU";
                   "android".id =
                     "4RGYVLA-KNPUDSU-BHRUXCO-KFUR64C-5AGTQXQ-RVMX2O5-Z2AD7FI-PAN4GA3";
+                  "metrodorus".id =
+                    "GMZ4RFG-GZ72KB4-UYQ72FZ-JU55O4Z-V3WJFHW-Q2OZTO6-FMG3UQL-SFFQJQA";
                 };
               folders =
                 { "Notes" =
                     { path = "/home/paul/Syncs/Notes";
-                      devices = [ "paulpad" "android" ];
+                      devices = [ "paulpad" "android" "metrodorus" ];
                     };
                   "Zotero storage" =
                     { path = "/home/paul/Syncs/Zotero";
-                      devices = [ "paulpad" "android" ];
+                      devices = [ "paulpad" "android" "metrodorus" ];
                     };
                 };
             };

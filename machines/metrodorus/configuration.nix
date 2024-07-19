@@ -39,11 +39,11 @@
                 };
               folders =
                 { "Notes" =
-                    { path = "/home/paul/Notes";
+                    { path = "/home/paul/Syncs/Notes";
                       devices = [ "paulpad" "android" "polyaenus" ];
                     };
                   "Zotero storage" =
-                    { path = "/home/paul/Zotero/storage";
+                    { path = "/home/paul/Syncs/Zotero";
                       devices = [ "paulpad" "android" "polyaenus" ];
                     };
                 };

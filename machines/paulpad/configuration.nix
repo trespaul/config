@@ -34,15 +34,17 @@
                     "4RGYVLA-KNPUDSU-BHRUXCO-KFUR64C-5AGTQXQ-RVMX2O5-Z2AD7FI-PAN4GA3";
                   "polyaenus".id =
                     "TIHGOJZ-KCJJ6H4-AVZE5QB-KEXTDDS-NZHVWBK-AGWYM3O-PZH7KNO-FTIJDAK";
+                  "metrodorus".id =
+                    "GMZ4RFG-GZ72KB4-UYQ72FZ-JU55O4Z-V3WJFHW-Q2OZTO6-FMG3UQL-SFFQJQA";
                 };
               folders =
                 { "Notes" =
                     { path = "/home/paul/Notes";
-                      devices = [ "android" "polyaenus" ];
+                      devices = [ "android" "polyaenus" "metrodorus" ];
                     };
                   "Zotero storage" =
                     { path = "/home/paul/Zotero/storage";
-                      devices = [ "android" "polyaenus" ];
+                      devices = [ "android" "polyaenus" "metrodorus" ];
                     };
                 };
             };
