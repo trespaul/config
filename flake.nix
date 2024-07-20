@@ -75,8 +75,9 @@
                     };
                 };
             in
-              { paulpad   = mkNode "paulpad";
-                polyaenus = mkNode "polyaenus";
+              { paulpad    = mkNode "paulpad";
+                polyaenus  = mkNode "polyaenus";
+                metrodorus = mkNode "metrodorus";
               };
         };
 
