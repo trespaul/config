@@ -75,9 +75,9 @@
                     };
                 };
             in
-              { paulpad    = mkNode "paulpad";
-                polyaenus  = mkNode "polyaenus";
-                metrodorus = mkNode "metrodorus";
+              { paulpad    = mkNode "paulpad";    # thinkpad
+                polyaenus  = mkNode "polyaenus";  # hp laptop
+                metrodorus = mkNode "metrodorus"; # desktop
               };
         };
 
