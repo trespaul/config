@@ -13,7 +13,11 @@
         };
       firewall =
         { allowedTCPPorts =
-            [ 80 443 # http(s)
+            [ 80 443      # http(s)
+              22000       # syncthing
+            ];
+          allowedUDPPorts =
+            [ 22000 21027 # syncthing
             ];
         };
     };

@@ -62,8 +62,11 @@
     };
 
   networking.firewall =
-    { allowedTCPPorts = [];
-      allowedTCPPortRanges = [ ];  
-      allowedUDPPortRanges = [ ];
-    };  
+    { allowedTCPPorts =
+        [ 22000       # syncthing
+        ];
+      allowedUDPPorts =
+        [ 22000 21027 # syncthing
+        ];
+    };
 }

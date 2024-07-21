@@ -54,12 +54,17 @@
   programs.steam.enable = true; # doesn't work as user program
 
   networking.firewall =
-    { allowedTCPPorts = [];
+    { allowedTCPPorts =
+        [ 22000       # syncthing
+        ];
+      allowedUDPPorts =
+        [ 22000 21027 # syncthing
+        ];
       allowedTCPPortRanges =
         [  { from = 1714; to = 1764; } # KDE Connect
         ];  
       allowedUDPPortRanges =
         [  { from = 1714; to = 1764; } # KDE Connect
         ];
-    };  
+    };
 }
