@@ -66,7 +66,7 @@
             let
               mkNode = hostname:
                 { hostname = hostname;
-                  # interactiveSudo = true;
+                  interactiveSudo = true;
                   profiles.system =
                     { user = "root";
                       path =
