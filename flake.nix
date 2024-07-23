@@ -58,6 +58,8 @@
               { hostname = "polyaenus"; };
             "metrodorus" = mkConfig
               { hostname = "metrodorus"; };
+            "leontion" = mkConfig
+              { hostname = "leontion"; };
           };
 
       deploy =
@@ -78,6 +80,7 @@
               { paulpad    = mkNode "paulpad";    # thinkpad
                 polyaenus  = mkNode "polyaenus";  # hp laptop
                 metrodorus = mkNode "metrodorus"; # desktop
+                leontion   = mkNode "leontion";   # mecer laptop
               };
         };
 
