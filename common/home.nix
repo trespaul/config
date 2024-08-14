@@ -237,9 +237,9 @@
             };
           themes."gruvbox_transparent" =
             { inherits = "gruvbox_dark_hard";
-              "ui.background" = "transparent";
+              "ui.background" = { };
             };
-      };
+        };
 
       git =
         { enable = true;
@@ -551,4 +551,3 @@
     };
 
 }
-
