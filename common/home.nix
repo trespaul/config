@@ -505,6 +505,7 @@
               "org.gnome.Nautilus.desktop"
               "firefox.desktop"
               "discord.desktop"
+              "beeper.desktop"
             ];
         };
 
