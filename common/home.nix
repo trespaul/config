@@ -21,6 +21,7 @@
           "wget" = "wget --hsts-file=.local/share/wget-hsts";
           "fd" = "fd --hidden";
           "rp" = "rippkgs";
+          "adb" = "HOME=\"$XDG_DATA_HOME\"/android adb";
           "sortl" = # sort lines: sort witin and throughout lines
             ''tr " " "\n" | sort | paste -s -d " " '';
           "sortli" = # sort lines independently: each line sort separately
