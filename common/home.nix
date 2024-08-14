@@ -12,6 +12,7 @@
           "la" = "eza -la";
           "lt" = "eza -laT";
           "x" = "xdg-open";
+          "y" = "yazi";
           "qmv" = "qmv --format destination-only";
           "ffmpeg" = "ffmpeg -hide_banner";
           "ffprobe" = "ffprobe -hide_banner";
