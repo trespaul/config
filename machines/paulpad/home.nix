@@ -27,8 +27,8 @@
           # document cli utils
           ocrmypdf texliveFull librsvg
           # document apps
-          dialect foliate libreoffice-fresh scantailor zotero gnome-decoder
-          gnome-solanum
+          dialect errands foliate libreoffice-fresh scantailor zotero
+          gnome-decoder gnome-solanum
             # obsidian
           # games
           vitetris
