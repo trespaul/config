@@ -106,6 +106,12 @@
     { zsh.enable = true; # necessary for defaultUserShell
       virt-manager.enable = true;
       gnupg.agent.enable = true;
+      npm.npmrc =
+        ''
+          prefix=$\{XDG_DATA_HOME}/npm
+          cache=$\{XDG_CACHE_HOME}/npm
+          init-module=$\{XDG_CONFIG_HOME}/npm/config/npm-init.js
+        '';
     };
 
   virtualisation.libvirtd.enable = true;
@@ -122,6 +128,7 @@
 
           # user paths, not ideal here but doesn't work in home.nix?
           ANDROID_HOME          = "/home/paul/.local/share/android";
+          ANDROID_USER_HOME     = "/home/paul/.local/share/android";
           GNUPGHOME             = "/home/paul/.local/share/gnupg";
           IPYTHONDIR            = "/home/paul/.config/ipython";
           JUPYTER_CONFIG_DIR    = "/home/paul/.config/jupyter";
@@ -133,6 +140,7 @@
           NODE_REPL_HISTORY     = "/home/paul/.local/share/node_repl_history";
           RENPY_PATH_TO_SAVES   = "/home/paul/.local/share/renpy";
           NPM_CONFIG_USERCONFIG = "/home/paul/.config/npm/npmrc";
+          FLY_CONFIG_DIR        = "/home/paul/.local/state/fly";
         };
 
       shells = with pkgs; [ zsh ];
