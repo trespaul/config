@@ -22,7 +22,7 @@
           aircrack-ng bettercap crunch dsniff hashcat hcxdumptool hcxtools iw
           macchanger tcpdump wifite2 wireshark
           # internet apps
-          discord fractal newsflash signal-desktop telegram-desktop
+          beeper discord fractal newsflash signal-desktop telegram-desktop
           tor-browser-bundle-bin transmission_4-gtk tuba wike
           # document cli utils
           ocrmypdf texliveFull librsvg
