@@ -22,6 +22,7 @@
     { loader =
         { systemd-boot =
             { enable = true;
+              editor = false;
               configurationLimit = 5;
             };
           efi.canTouchEfiVariables = true;
@@ -33,6 +34,11 @@
 
   networking =
     { networkmanager.enable = true;
+    };
+
+  powerManagement =
+    { enable = true;
+      powertop.enable = true;
     };
 
   systemd.services =
@@ -47,6 +53,33 @@
 
   services =
     {
+      thermald.enable = true;
+
+      tlp =
+        { enable = true;
+          settings =
+            { TLP_DEFAULT_MODE = "AC";
+              CPU_BOOST_ON_AC = 1;
+              CPU_BOOST_ON_BAT = 0;
+              CPU_SCALING_GOVERNOR_ON_AC = "performance";
+              CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+              CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+              CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+              START_CHARGE_THRESH_BAT0 = 60;
+              STOP_CHARGE_THRESH_BAT0 = 80;
+              NATACPI_ENABLE = 1;
+              TPACPI_ENABLE = 1;
+              TPSMAPI_ENABLE = 1;
+            };
+        };
+
+      power-profiles-daemon.enable = false;
+
+      system76-scheduler =
+        { enable = true;
+          settings.cfsProfiles.enable = true;
+        };
+
       xserver =
         { enable = true;
           displayManager.gdm.enable = true;
