@@ -490,6 +490,7 @@
           "org/gnome/desktop/peripherals/touchpad" =
             { speed = 0.3;
               tap-to-click = true;
+              two-finger-scrolling-enabled = true;
             };
           "org/gnome/desktop/peripherals/keyboard" =
             { numlock-state = true;
