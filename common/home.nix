@@ -308,7 +308,7 @@
           syntaxHighlighting.enable = true;
           oh-my-zsh =
             { enable = true;
-              plugins = [ "git" "python" "man" "bundler" "dotenv" ];
+              plugins = [ "git" "man" "dotenv" "sudo" ];
               theme = "awesomepanda";
             };
         };
