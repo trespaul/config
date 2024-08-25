@@ -511,6 +511,7 @@
               "org.gnome.Nautilus.desktop"
               "firefox.desktop"
               "discord.desktop"
+              "zotero.desktop"
               "beeper.desktop"
             ];
         };
