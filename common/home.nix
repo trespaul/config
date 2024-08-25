@@ -219,7 +219,12 @@
                     { command = "ltex-ls";
                       config.ltex =
                         { language = "en-ZA";
-                          additionalRules.enablePickyRules = true;
+                          enabledRules."en-ZA" = [ "CREATIVE_WRITING" "TEXT_ANALYSIS" ];
+                          disabledRules."en-ZA" = [ "EN_QUOTES" ];
+                          additionalRules =
+                            { enablePickyRules = true;
+                              motherTongue = "en-ZA";
+                            };
                           completionEnabled = true;
                         };
                     };
