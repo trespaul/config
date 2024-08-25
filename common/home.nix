@@ -22,7 +22,7 @@
           "wget" = "wget --hsts-file=.local/share/wget-hsts";
           "fd" = "fd --hidden";
           "rp" = "rippkgs";
-          "adb" = "HOME=\"$XDG_DATA_HOME\"/android adb";
+          "adb" = "HOME=${config.xdg.dataHome}/android adb";
           "sortl" = # sort lines: sort witin and throughout lines
             ''tr " " "\n" | sort | paste -s -d " " '';
           "sortli" = # sort lines independently: each line sort separately
@@ -544,9 +544,9 @@
 
           "npm/npmrc".text =
             ''
-              prefix=''${XDG_DATA_HOME}/npm
-              cache=''${XDG_CACHE_HOME}/npm
-              init-module=''${XDG_CONFIG_HOME}/npm/config/npm-init.js
+              prefix=${config.xdg.dataHome}/npm
+              cache=${config.xdg.cacheHome}/npm
+              init-module=${config.xdg.configHome}/npm/config/npm-init.js
             '';
         };
     };
