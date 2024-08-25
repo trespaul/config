@@ -446,33 +446,6 @@
             };
         };
 
-      firefox =
-        { enable = true;
-          profiles.default.userChrome =
-            ''
-              vbox#titlebar {
-                display: none;
-              }
-
-              /* auto-hide when fullscreen */
-              #main-window[inFullscreen] #sidebar-box,
-              #main-window[inFullscreen] #sidebar-splitter {
-                display: none !important;
-                width: 0px !important;
-              }
-
-              /* hide tree style tabs sidebar title */
-              #sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
-                display: none;
-              }
-
-              /* reduce minimum width of sidebar */
-              #sidebar-box {
-                min-width: 30px !important;
-              }
-            '';
-        };
-
     };
 
   # services = { };
@@ -509,7 +482,7 @@
           "org/gnome/shell".favorite-apps =
             [ "kitty.desktop"
               "org.gnome.Nautilus.desktop"
-              "firefox.desktop"
+              "dev.zen.Zen.desktop"
               "discord.desktop"
               "zotero.desktop"
               "beeper.desktop"
