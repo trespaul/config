@@ -1,4 +1,4 @@
-{ config, pkgs, roc, zen-browser, ... }:
+{ config, pkgs, roc, ... }:
 
 {
   home =
@@ -24,7 +24,6 @@
           # internet apps
           beeper discord fractal newsflash signal-desktop telegram-desktop
           tor-browser-bundle-bin transmission_4-gtk tuba wike
-          zen-browser.packages."${system}".default
           # document cli utils
           ocrmypdf texliveFull librsvg
           # document apps

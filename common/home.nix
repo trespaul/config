@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, zen-browser, nix-search, ... }:
 
 {
   home =
@@ -22,6 +22,7 @@
           "wget" = "wget --hsts-file=.local/share/wget-hsts";
           "fd" = "fd --hidden";
           "rp" = "rippkgs";
+          "ns" = "nix-search";
           "adb" = "HOME=${config.xdg.dataHome}/android adb";
           "sortl" = # sort lines: sort witin and throughout lines
             ''tr " " "\n" | sort | paste -s -d " " '';
@@ -37,13 +38,14 @@
           # networking tools
           dnsutils ldns netscanner nmap sshfs
           # nix related
-          nix-output-monitor rippkgs
+          nix-output-monitor rippkgs nix-search.packages.${system}.default
           # system tools
           clinfo glxinfo iftop iotop lsof ltrace strace ethtool lm_sensors
           pciutils usbutils
           # media utils
           eartag ffmpeg helvum vlc
             # pwvucontrol
+          zen-browser.packages.${system}.default
           # internet utils
           bitwarden tailscale warp magic-wormhole
           # desktop environment
@@ -482,7 +484,7 @@
           "org/gnome/shell".favorite-apps =
             [ "kitty.desktop"
               "org.gnome.Nautilus.desktop"
-              "dev.zen.Zen.desktop"
+              "zen.desktop"
               "discord.desktop"
               "zotero.desktop"
               "beeper.desktop"
