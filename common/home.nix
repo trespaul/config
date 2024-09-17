@@ -24,7 +24,7 @@
           "rp" = "rippkgs";
           "ns" = "nix-search";
           "adb" = "HOME=${config.xdg.dataHome}/android adb";
-          "sortl" = # sort lines: sort witin and throughout lines
+          "sortl" = # sort lines: sort within and throughout lines
             ''tr " " "\n" | sort | paste -s -d " " '';
           "sortli" = # sort lines independently: each line sort separately
             ''split -l 1 --filter 'tr " " "\n" | sort | paste -s -d " "' '';
@@ -43,8 +43,8 @@
           clinfo glxinfo iftop iotop lsof ltrace strace ethtool lm_sensors
           pciutils usbutils
           # media utils
-          eartag ffmpeg helvum vlc
-            # pwvucontrol
+          eartag ffmpeg helvum pwvucontrol vlc
+          # browser
           zen-browser.packages.${system}.default
           # internet utils
           bitwarden tailscale warp magic-wormhole
@@ -61,7 +61,6 @@
       # sessionVariables = # doesn't work here??
       #   { ANDROID_HOME       = "${config.xdg.dataHome}/android";
       #     GNUPGHOME          = "${config.xdg.dataHome}/gnupg";
-      #     #IPFS_PATH          = "${config.xdg.dataHome}/ipfs";
       #     IPYTHONDIR         = "${config.xdg.configHome}/ipython";
       #     JUPYTER_CONFIG_DIR = "${config.xdg.configHome}/jupyter";
       #     PYTHONSTARTUP      = "${config.xdg.configHome}/pythonrc";
