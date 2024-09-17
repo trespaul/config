@@ -125,7 +125,7 @@
         { isNormalUser = true;
           description = "Paul Joubert";
           extraGroups = [ "networkmanager" "wheel" "audio" "dialout" ];
-          shell = pkgs.zsh;
+          shell = pkgs.nushell;
           linger = true;
           openssh.authorizedKeys.keys =
             [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHyBG5QyF1rZ9M7gm+cPVSpsWyGPgLQNKIrAn/EKmgEv paul@paulpad"
@@ -176,7 +176,7 @@
           FLY_CONFIG_DIR        = "/home/paul/.local/state/fly";
         };
 
-      shells = with pkgs; [ zsh ];
+      shells = with pkgs; [ zsh nushell ];
 
       systemPackages = with pkgs;
         [ curl

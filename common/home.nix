@@ -32,7 +32,7 @@
 
       packages = with pkgs;
         [ # misc cli
-          bat fd file gawk glow gnupg gnused gnutar hyperfine libnotify
+          bat fd file gawk glow gnupg gnused gnutar hyperfine jc libnotify
           libsecret p7zip parallel pinentry-gnome3 psmisc renameutils slides
           unar unzip watchexec which xdg-ninja xz yq-go zip zstd
           # networking tools
@@ -98,6 +98,7 @@
         { enable = true;
           enableBashIntegration = true;
           enableZshIntegration = true;
+          # enableNushellIntegration = true;
           git = true;
           icons = true;
           extraOptions = [ "--group-directories-first" ];
@@ -288,6 +289,7 @@
         { enable = true;
           enableZshIntegration = true;
           enableBashIntegration = true;
+          enableNushellIntegration = true;
           settings =
             { manager =
                 { sort_by = "natural";
@@ -322,10 +324,39 @@
           initExtra = ''PS1="\n\[\033[1;32m\]➜  \W \[\033[0m\]"'';
         };
 
+      nushell =
+        { enable = true;
+          configFile.text =
+            ''
+              $env.config = {
+                table: {
+                  mode: light
+                }
+                show_banner: false
+              }
+            '';
+          shellAliases = # not taken from home.shellAliases?
+            { "l" = "eza -l";
+              "la" = "eza -la";
+              "lt" = "eza -laT";
+              "qmv" = "qmv --format destination-only";
+              "ffmpeg" = "ffmpeg -hide_banner";
+              "ffprobe" = "ffprobe -hide_banner";
+              "ip" = "ip -c";
+              "s" = "kitten ssh";
+              "wget" = "wget --hsts-file=.local/share/wget-hsts";
+              "fd" = "fd --hidden";
+              "rp" = "rippkgs";
+              "ns" = "nix-search";
+              "adb" = "HOME=${config.xdg.dataHome}/android adb";
+            };
+        };
+
       zoxide =
         { enable = true;
           enableBashIntegration = true;
           enableZshIntegration = true;
+          enableNushellIntegration = true;
         };
 
       fzf =
@@ -352,6 +383,7 @@
         { enable = true;
           enableBashIntegration = true;
           enableZshIntegration = true;
+          enableNushellIntegration = true;
           settings =
             { format =
                 "[█](color_orange)$shell$username$hostname[█🭛](bg:color_yellow fg:color_orange)$directory[█🭛](fg:color_yellow bg:color_aqua)$git_branch$git_status[█🭛](fg:color_aqua bg:color_blue)$rust$nodejs$haskell$python[█🭛](fg:color_blue bg:color_bg3)$docker_context[█🭛](fg:color_bg3 bg:color_bg1)$time[█🭛](fg:color_bg1)$line_break$character";
@@ -392,8 +424,9 @@
                 };
               shell =
                 { disabled = false;
-                  zsh_indicator = "";
-                  bash_indicator = "";
+                  zsh_indicator = "zsh";
+                  bash_indicator = "bash";
+                  nu_indicator = "";
                   style = "bg:color_orange";
                   format = "[$indicator]($style)";
                 };
