@@ -188,14 +188,6 @@
         ];
     };
 
-  system.autoUpgrade =
-    { enable = true;
-      flake = "github:trespaul/config";
-      allowReboot = true;
-      flags = [ "--update-input" "nixpkgs" "-L" ];
-      dates = "02:00";
-    };
-
   networking.firewall =
     { enable = true;
       trustedInterfaces = [ "tailscale0" "virbr0" "vnet2" ];
