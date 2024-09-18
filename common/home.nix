@@ -328,10 +328,18 @@
           configFile.text =
             ''
               $env.config = {
+                ls: {
+                  clickable_links: true
+                }
                 table: {
                   mode: light
+                  index_mode: auto
+                }
+                filesize: {
+                  metric: true
                 }
                 show_banner: false
+                use_kitty_protocol: true
               }
             '';
           shellAliases = # not taken from home.shellAliases?
