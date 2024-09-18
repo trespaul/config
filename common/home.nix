@@ -359,31 +359,30 @@
             };
         };
 
+      atuin =
+        { enable = true;
+          enableBashIntegration = true;
+          enableZshIntegration = true;
+          enableNushellIntegration = true;
+          flags = [ "--disable-up-arrow" ];
+          settings =
+            { enter_accept = true;
+              dotfiles.enabled = false;
+              sync.records = true;
+              update_check = false;
+              style = "compact";
+              inline_height = 15;
+              show_help = false;
+              show_tabs = false;
+              invert = true;
+            };
+        };
+
       zoxide =
         { enable = true;
           enableBashIntegration = true;
           enableZshIntegration = true;
           enableNushellIntegration = true;
-        };
-
-      fzf =
-        { enable = true;
-          enableBashIntegration = true;
-          enableZshIntegration = true;
-          colors = # gruvbox dark
-            { fg      = "#ebdbb2";
-              bg      = "#1D2021";
-              hl      = "#fabd2f";
-              "fg+"   = "#ebdbb2";
-              "bg+"   = "#3c3836";
-              "hl+"   = "#fabd2f";
-              info    = "#83a598";
-              prompt  = "#bdae93";
-              spinner = "#fabd2f";
-              pointer = "#83a598";
-              marker  = "#fe8019";
-              header  = "#665c54";
-            };
         };
 
       broot =
