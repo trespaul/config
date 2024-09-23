@@ -111,15 +111,18 @@
 
       kitty =
         { enable = true;
-          theme = "Gruvbox Dark";
+          themeFile = "gruvbox-dark-hard";
           settings =
             { font_family =      "Iosevka Light Extended";
               bold_font =        "Iosevka Semibold Extended";
               italic_font =      "Iosevka Light Extended Italic";
               bold_italic_font = "Iosevka Semibold Extended Italic";
+              "font_features Iosevka-Light-Extended" =           "+dlig +PURS";
+              "font_features Iosevka-Semibold-Extended" =        "+dlig +PURS";
+              "font_features Iosevka-Light-Extended-Italic" =    "+dlig +PURS";
+              "font_features Iosevka-Semibold-Extended-Italic" = "+dlig +PURS";
               font_size = 12;
               narrow_symbols = "U+279C-U+27BF";
-              background = "#1D2021";
               cursor_shape = "beam";
               cursor_blink_interval = "0";
               strip_trailing_spaces = "smart";
@@ -131,13 +134,6 @@
               allow_remote_control = true;
               enable_audio_bell = false;
             };
-          extraConfig =
-            ''
-              font_features Iosevka-Light-Extended           +dlig +PURS
-              font_features Iosevka-Semibold-Extended        +dlig +PURS
-              font_features Iosevka-Light-Extended-Italic    +dlig +PURS
-              font_features Iosevka-Semibold-Extended-Italic +dlig +PURS
-            '';
           shellIntegration =
             { enableBashIntegration = true;
               enableZshIntegration = true;
