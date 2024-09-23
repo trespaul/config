@@ -24,6 +24,12 @@
           "rp" = "rippkgs";
           "ns" = "nix-search";
           "adb" = "HOME=${config.xdg.dataHome}/android adb";
+          "g" = "git";
+          "gst" = "git status";
+          "ga" = "git add";
+          "gaa" = "git add --all";
+          "gc" = "git commit --verbose";
+          "gp" = "git push";
           "sortl" = # sort lines: sort within and throughout lines
             ''tr " " "\n" | sort | paste -s -d " " '';
           "sortli" = # sort lines independently: each line sort separately
@@ -356,6 +362,12 @@
               "rp" = "rippkgs";
               "ns" = "nix-search";
               "adb" = "HOME=${config.xdg.dataHome}/android adb";
+              "g" = "git";
+              "gst" = "git status";
+              "ga" = "git add";
+              "gaa" = "git add --all";
+              "gc" = "git commit --verbose";
+              "gp" = "git push";
             };
         };
 
