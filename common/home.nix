@@ -25,6 +25,9 @@
           "ns" = "nix-search";
           "adb" = "HOME=${config.xdg.dataHome}/android adb";
           "g" = "git";
+          "gd" = "git diff";
+          "gds" = "git diff --staged";
+          "gl" = "git log";
           "gst" = "git status";
           "ga" = "git add";
           "gaa" = "git add --all";
