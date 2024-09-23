@@ -330,9 +330,6 @@
           configFile.text =
             ''
               $env.config = {
-                ls: {
-                  clickable_links: true
-                }
                 table: {
                   mode: light
                   index_mode: auto
@@ -340,9 +337,16 @@
                 filesize: {
                   metric: true
                 }
+                datetime_format: {
+                  normal: "%a %Y-%m-%d %H:%M:%S %z"
+                  table:  "%a %Y-%m-%d %H:%M:%S"
+                }
+                highlight_resolved_externals: true
                 show_banner: false
                 use_kitty_protocol: true
               }
+              $env.GNUPGHOME = "${config.xdg.dataHome}/gnupg"
+              $env.EDITOR = "hx"
             '';
           shellAliases = # not taken from home.shellAliases?
             { "l" = "eza -l";
