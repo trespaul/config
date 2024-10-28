@@ -20,7 +20,7 @@
         };
       roc =
         { url = "github:roc-lang/roc";
-          inputs.nixpkgs.follows = "nixpkgs";
+          # inputs.nixpkgs.follows = "nixpkgs";
         };
       zen-browser =
         { url = "github:omarcresp/zen-browser-flake";
