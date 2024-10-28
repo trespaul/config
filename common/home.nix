@@ -61,7 +61,7 @@
           gnomeExtensions.gsconnect gnome-tweaks gpaste
           gnome-themes-extra smile gnomeExtensions.smile-complementary-extension
           # document cli utils
-          hunspell ghostscript pdftk poppler_utils jbig2dec jbig2enc libtiff_t
+          hunspell ghostscript pdftk poppler_utils jbig2dec jbig2enc libtiff
           # fonts
           brill fira-code-nerdfont inter iosevka noto-fonts-cjk-sans public-sans
           ubuntu_font_family
