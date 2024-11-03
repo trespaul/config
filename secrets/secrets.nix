@@ -12,4 +12,5 @@ let
 in
   {
     "spotify.age".publicKeys = all;
+    "cloudflare-tunnel.age".publicKeys = all;
   }
