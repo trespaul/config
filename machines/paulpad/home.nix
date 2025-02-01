@@ -12,7 +12,6 @@
           scrcpy
           # dev etc.
           android-tools arduino-ide boxes cargo flyctl gleam google-cloud-sdk
-          roc.packages.${system}.full
           # LSPs
           haskell-language-server ltex-ls markdown-oxide
           marksman nil nodePackages.bash-language-server
