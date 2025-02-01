@@ -1,8 +1,6 @@
 { inputs, lib, config, pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
-
   boot =
     { extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
       kernelModules = [ "v4l2loopback" ];
