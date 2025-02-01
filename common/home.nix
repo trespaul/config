@@ -113,6 +113,15 @@
           extraOptions = [ "--group-directories-first" ];
         };
 
+      firefox =
+        { policies =
+            {
+              AppAutoUpdate = false;
+              DisableAppUpdate = true;
+              ManualAppUpdateOnly = true;
+            };
+        };
+
       ghostty =
         { enable = true;
           settings =
@@ -123,6 +132,7 @@
               window-decoration = false;
             };
         };
+
       kitty =
         { enable = true;
           themeFile = "gruvbox-dark-hard";
