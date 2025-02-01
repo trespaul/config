@@ -1,4 +1,4 @@
-{ config, pkgs, roc, ... }:
+{ config, pkgs, ... }:
 
 {
   home =
