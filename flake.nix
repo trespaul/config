@@ -32,7 +32,7 @@
               zen-browser, nix-search, ... }:
     { nixosConfigurations =
         let
-          mkConfig = { hostname, extraModules ? [] }:
+          mkConfig = { hostname, extraModules ? [], extraHomeModules ? [] }:
             nixpkgs.lib.nixosSystem
               { system = "x86_64-linux";
                 modules =
@@ -49,8 +49,7 @@
                             [ ./common/home.nix
                               ./machines/${hostname}/home.nix
                               agenix.homeManagerModules.default
-                              ./secrets/secrets.module.nix
-                            ];
+                            ] ++ extraHomeModules;
                         };
                     }
                   ] ++ extraModules;
@@ -61,7 +60,9 @@
                 extraModules = [ musnix.nixosModules.musnix ];
               };
             "polyaenus" = mkConfig
-              { hostname = "polyaenus"; };
+              { hostname = "polyaenus";
+                extraModules = [ ./machines/polyaenus/secrets.module.nix ];
+              };
             "metrodorus" = mkConfig
               { hostname = "metrodorus"; };
             "leontion" = mkConfig
