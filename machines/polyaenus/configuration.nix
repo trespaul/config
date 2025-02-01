@@ -3,19 +3,16 @@
 {
   networking =
     { hostName = "polyaenus";
-      hosts =
-        { "100.127.18.104" =
-            [      "polyaenus.internal"
-              "ntfy.polyaenus.internal"
-            ];
-        };
       firewall =
         { allowedTCPPorts =
             [ 80 443      # http(s)
               22000       # syncthing
+              1234        # spotifyd zeroconf
+
             ];
           allowedUDPPorts =
             [ 22000 21027 # syncthing
+              5353        # spotifyd zeroconf
             ];
         };
     };
@@ -72,38 +69,6 @@
               "--exit-node-allow-lan-access"
               "--ssh"
             ];
-          permitCertUid = "caddy";
-        };
-
-      dnsmasq =
-        { enable = true;
-          # settings = {};
-        };
-
-      caddy =
-        { enable = true;
-          globalConfig = ''auto_https disable_redirects'';
-          virtualHosts =
-            { "polyaenus.internal".extraConfig =
-                ''
-                  respond "OK"
-                  tls internal
-                '';
-              "ntfy.polyaenus.internal".extraConfig =
-                ''
-                  reverse_proxy 127.0.0.1:2586
-                  tls internal
-                '';
-            };
-        };
-
-      ntfy-sh =
-        { enable = true;
-          settings =
-            { base-url = "http://ntfy.polyaenus.internal";
-              behind-proxy = true;
-              listen-http = ":2586";
-            };
         };
 
       transmission =
@@ -120,11 +85,37 @@
               encryption = 1;
             };
         };
+
+      cloudflared =
+        { enable = true;
+          tunnels =
+            { "d93b31cb-ab3b-420a-ace5-7d752ef90089" =
+                { credentialsFile = config.age.secrets.cloudflare-tunnel.path;
+                  default = "http_status:404";
+                  ingress =
+                    { "anmari.trespaul.com" = "http://127.0.0.1:8080";
+                    };
+                };
+            };
+        };
+
     };
 
-  environment =
-    { systemPackages = with pkgs;
-        [ nssTools # for caddy
-        ];
-    };
+  virtualisation.oci-containers.containers =
+    let
+      volumesDir = "/home/paul/container_volumes";
+    in
+      { anmari-cms =
+          { image = "directus/directus:11.2.1";
+            autoStart = true;
+            ports = [ "8080:8055" ];
+            volumes =
+              [ "${volumesDir}/anmari-cms/database:/directus/database"
+                "${volumesDir}/anmari-cms/uploads:/directus/uploads"
+                "${volumesDir}/anmari-cms/extensions:/directus/extensions"
+              ];
+            environmentFiles = [ config.age.secrets.anmari-cms.path ];
+          };
+      };
+
 }
