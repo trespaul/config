@@ -18,7 +18,7 @@
           "ffprobe" = "ffprobe -hide_banner";
           "ip" = "ip -c";
           "sudo" = "sudo -v; sudo ";
-          "s" = "kitten ssh";
+          "s" = "ssh";
           "wget" = "wget --hsts-file=.local/share/wget-hsts";
           "fd" = "fd --hidden";
           "rp" = "rippkgs";
@@ -112,6 +112,16 @@
           extraOptions = [ "--group-directories-first" ];
         };
 
+      ghostty =
+        { enable = true;
+          settings =
+            { theme = "GruvboxDarkHard";
+              font-family = "Iosevka Extended";
+              cursor-style = "bar";
+              cursor-style-blink = false;
+              window-decoration = false;
+            };
+        };
       kitty =
         { enable = true;
           themeFile = "gruvbox-dark-hard";
@@ -441,7 +451,7 @@
                 { style = "bold fg:color_bg0 bg:color_yellow";
                   format = "[ $path ]($style)";
                   truncation_length = 3;
-                  truncation_symbol = "…/";
+                  truncation_symbol = "… /";
                   substitutions =
                     { "Documents" = "󰈙 ";
                       "Downloads" = " ";
@@ -543,7 +553,7 @@
               "caps:swapescape"
             ];
           "org/gnome/shell".favorite-apps =
-            [ "kitty.desktop"
+            [ "com.mitchellh.ghostty.desktop"
               "org.gnome.Nautilus.desktop"
               "zen.desktop"
               "discord.desktop"
