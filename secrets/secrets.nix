@@ -12,5 +12,6 @@ let
 in
   {
     "spotify.age".publicKeys = all;
-    "cloudflare-tunnel.age".publicKeys = all;
+    "cloudflare-tunnel.age".publicKeys = [ polyaenus ];
+    "container_anmari-cms_config.age".publicKeys = [ paulpad polyaenus ];
   }
