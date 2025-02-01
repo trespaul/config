@@ -38,6 +38,7 @@
                 modules =
                   [ ./common/configuration.nix
                     ./machines/${hostname}/configuration.nix
+                    ./machines/${hostname}/hardware-configuration.nix
                     agenix.nixosModules.default
                     home-manager.nixosModules.home-manager
                     { home-manager =

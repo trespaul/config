@@ -1,8 +1,6 @@
 { inputs, lib, config, pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
-
   boot =
     { initrd.secrets =
         { "/crypto_keyfile.bin" = null;
