@@ -148,7 +148,17 @@
         '';
     };
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation =
+    { libvirtd.enable = true;
+      containers.enable = true;
+      oci-containers.backend = "podman";
+      podman =
+        { enable = true;
+          dockerCompat = true;
+          defaultNetwork.settings.dns_enabled = true;
+        };
+    };
+
 
   nixpkgs.config =
     { allowUnfree = true;
