@@ -90,6 +90,8 @@
             };
         };
 
+      pulseaudio.enable = false;
+      
       pipewire =
         { enable = true;
           wireplumber.enable = true;
@@ -108,8 +110,7 @@
   security.rtkit.enable = true;
 
   hardware =
-    { pulseaudio.enable = false;
-      graphics =
+    { graphics =
         { enable = true;
           extraPackages = with pkgs;
             [ intel-media-driver
