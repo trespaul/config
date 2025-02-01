@@ -99,6 +99,7 @@
           settings =
             { color_theme = "gruvbox_dark";
               theme_background = false;
+              base_10_sizes = true;
             };
         };
 
