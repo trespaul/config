@@ -18,10 +18,6 @@
         { url = "github:serokell/deploy-rs";
           inputs.nixpkgs.follows = "nixpkgs";
         };
-      roc =
-        { url = "github:roc-lang/roc";
-          # inputs.nixpkgs.follows = "nixpkgs";
-        };
       zen-browser =
         { url = "github:omarcresp/zen-browser-flake";
           inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +29,7 @@
     };
 
   outputs = { self, nixpkgs, agenix, home-manager, musnix, deploy-rs,
-              roc, zen-browser, nix-search, ... }:
+              zen-browser, nix-search, ... }:
     { nixosConfigurations =
         let
           mkConfig = { hostname, extraModules ? [] }:
@@ -47,7 +43,7 @@
                     { home-manager =
                         { useGlobalPkgs = true;
                           useUserPackages = true;
-                          extraSpecialArgs = { inherit roc zen-browser nix-search; };
+                          extraSpecialArgs = { inherit zen-browser nix-search; };
                           users.paul.imports =
                             [ ./common/home.nix
                               ./machines/${hostname}/home.nix
