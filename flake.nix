@@ -22,14 +22,10 @@
         { url = "github:omarcresp/zen-browser-flake";
           inputs.nixpkgs.follows = "nixpkgs";
         };
-      nix-search =
-        { url = "github:diamondburned/nix-search";
-          inputs.nixpkgs.follows = "nixpkgs";
-        };
     };
 
   outputs = { self, nixpkgs, agenix, home-manager, musnix, deploy-rs,
-              zen-browser, nix-search, ... }:
+              zen-browser, ... }:
     { nixosConfigurations =
         let
           mkConfig = { hostname, extraModules ? [], extraHomeModules ? [] }:
@@ -44,7 +40,7 @@
                     { home-manager =
                         { useGlobalPkgs = true;
                           useUserPackages = true;
-                          extraSpecialArgs = { inherit zen-browser nix-search; };
+                          extraSpecialArgs = { inherit zen-browser; };
                           users.paul.imports =
                             [ ./common/home.nix
                               ./machines/${hostname}/home.nix
