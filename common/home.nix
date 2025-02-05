@@ -47,7 +47,7 @@
           # networking tools
           dnsutils ldns netscanner nmap sshfs
           # nix related
-          nix-output-monitor rippkgs nix-search.packages.${system}.default
+          nix-output-monitor rippkgs nix-search
           # system tools
           clinfo glxinfo iftop iotop lsof ltrace strace ethtool lm_sensors
           pciutils usbutils
