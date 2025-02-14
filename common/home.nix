@@ -363,7 +363,7 @@
                   index_mode: auto
                 }
                 filesize: {
-                  metric: true
+                  unit: metric
                 }
                 datetime_format: {
                   normal: "%a %Y-%m-%d %H:%M:%S %z"
