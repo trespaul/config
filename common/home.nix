@@ -584,7 +584,7 @@
           "org/gnome/shell".favorite-apps =
             [ "com.mitchellh.ghostty.desktop"
               "org.gnome.Nautilus.desktop"
-              "zen.desktop"
+              "zen-browser.desktop"
               "discord.desktop"
               "zotero.desktop"
               "beeper.desktop"
