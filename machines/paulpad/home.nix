@@ -10,8 +10,6 @@
           # graphics & video apps
           darktable eyedropper gimp hugin inkscape-with-extensions kdenlive
           scrcpy
-          # dev etc.
-          android-tools arduino-ide boxes cargo flyctl gleam google-cloud-sdk
           # LSPs
           haskell-language-server ltex-ls markdown-oxide
           marksman nil nodePackages.bash-language-server
