@@ -450,7 +450,7 @@
           enableNushellIntegration = true;
           settings =
             { format =
-                "[█](color_orange)$shell$username$hostname[█🭛](bg:color_yellow fg:color_orange)$directory[█🭛](fg:color_yellow bg:color_aqua)$git_branch$git_status[█🭛](fg:color_aqua bg:color_blue)$rust$nodejs$haskell$python[█🭛](fg:color_blue bg:color_bg3)$docker_context[█🭛](fg:color_bg3 bg:color_bg1)$time[█🭛](fg:color_bg1)$line_break$character";
+                "[█](color_orange)$shell$username$hostname[█🭛](bg:color_yellow fg:color_orange)$directory[█🭛](fg:color_yellow bg:color_aqua)$git_branch$git_status[█🭛](fg:color_aqua bg:color_blue)$rust$nodejs$haskell$python[█🭛](fg:color_blue bg:color_bg3)$docker_context[█🭛](fg:color_bg3 bg:color_bg1)$time[█🭛](fg:color_bg1)$nix_shell$line_break$character";
               palette = "gruvbox_dark";
               palettes.gruvbox_dark =
                 { color_fg0    = "#fbf1c7";
@@ -466,7 +466,10 @@
                   color_yellow = "#d79921";
                 };
               os.disabled = true;
-              hostname.style = "bg:color_orange";
+              hostname =
+                { style = "bg:color_orange";
+                  format = "[$ssh_symbol$hostname]($style)";
+                };
               line_break.disabled = false;
               username =
                 { style_user = "bg:color_orange fg:color_fg0";
