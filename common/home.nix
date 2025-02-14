@@ -18,7 +18,7 @@
           "ffprobe" = "ffprobe -hide_banner";
           "ip" = "ip -c";
           "s" = "ssh";
-          "wget" = "wget --hsts-file=.local/share/wget-hsts";
+          "wget" = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
           "fd" = "fd --hidden";
           "rp" = "rippkgs";
           "ns" = "nix-search";
