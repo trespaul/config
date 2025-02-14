@@ -127,9 +127,11 @@
           settings =
             { theme = "GruvboxDarkHard";
               font-family = "Iosevka Extended";
+              font-feature = "+NWID";
               cursor-style = "bar";
               cursor-style-blink = false;
-              window-decoration = false;
+              window-decoration = "none";
+              gtk-titlebar = false;
             };
         };
 
