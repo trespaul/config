@@ -466,7 +466,7 @@
                 { style = "bold fg:color_bg0 bg:color_yellow";
                   format = "[ $path ]($style)";
                   truncation_length = 3;
-                  truncation_symbol = "… /";
+                  truncation_symbol = "…/";
                   substitutions =
                     { "Documents" = "󰈙 ";
                       "Downloads" = " ";
