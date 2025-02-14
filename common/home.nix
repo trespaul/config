@@ -291,6 +291,9 @@
             };
         };
 
+      gh.enable = true;
+      gh-dash.enable = true;
+
       pandoc =
         { enable = true;
           # citationStyles = [];
