@@ -125,7 +125,7 @@
       users.paul =
         { isNormalUser = true;
           description = "Paul Joubert";
-          extraGroups = [ "networkmanager" "wheel" "audio" "dialout" ];
+          extraGroups = [ "networkmanager" "wheel" "audio" "dialout" "adbusers" ];
           shell = pkgs.nushell;
           linger = true;
           openssh.authorizedKeys.keys =

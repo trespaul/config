@@ -49,7 +49,10 @@
         };
     };
 
-  programs.steam.enable = true; # doesn't work as user program
+  programs =
+    { steam.enable = true; # doesn't work as user program
+      adb.enable = true;
+    };
 
   networking.firewall =
     { allowedTCPPorts =
