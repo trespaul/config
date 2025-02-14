@@ -2,8 +2,8 @@
 
   inputs =
     { nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-      agenix =
-        { url = "github:ryantm/agenix";
+      ragenix =
+        { url = "github:yaxitech/ragenix";
           inputs.darwin.follows = "";
         };
       home-manager =
@@ -24,7 +24,7 @@
         };
     };
 
-  outputs = { self, nixpkgs, agenix, home-manager, musnix, deploy-rs,
+  outputs = { self, nixpkgs, ragenix, home-manager, musnix, deploy-rs,
               zen-browser, ... }:
     { nixosConfigurations =
         let
@@ -35,7 +35,7 @@
                   [ ./common/configuration.nix
                     ./machines/${hostname}/configuration.nix
                     ./machines/${hostname}/hardware-configuration.nix
-                    agenix.nixosModules.default
+                    ragenix.nixosModules.default
                     home-manager.nixosModules.home-manager
                     { home-manager =
                         { useGlobalPkgs = true;
@@ -44,7 +44,7 @@
                           users.paul.imports =
                             [ ./common/home.nix
                               ./machines/${hostname}/home.nix
-                              agenix.homeManagerModules.default
+                              ragenix.homeManagerModules.default
                             ] ++ extraHomeModules;
                         };
                     }
