@@ -354,6 +354,27 @@
         { enable = true;
           extraConfig =
             ''
+              $env.GNUPGHOME = "${config.xdg.dataHome}/gnupg"
+              $env.EDITOR = "hx"
+
+              let carapace_completer = { |spans: list<string>|
+                carapace $spans.0 nushell ...$spans
+                | from json
+                | if ($in | default [] | where value == $"($spans | last)ERR" | is-empty) { $in } else { null }
+              }
+
+              let multiple_completers = { |spans|
+                # alias completions fix
+                let expanded_alias = (scope aliases | where name == $spans.0 | get -i 0 | get -i expansion)
+                let spans = (if $expanded_alias != null  {
+                  $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1)
+                } else { $spans })
+
+                match $spans.0 {
+                  _ => $carapace_completer
+                } | do $in $spans
+              }
+
               $env.config = {
                 table: {
                   mode: light
@@ -366,12 +387,18 @@
                   normal: "%a %Y-%m-%d %H:%M:%S %z"
                   table:  "%a %Y-%m-%d %H:%M:%S"
                 }
+                completions: {
+                  case_sensitive: false
+                  algorithm: "fuzzy"
+                  external: {
+                    enable: true
+                    completer: $multiple_completers
+                  }
+                }
                 highlight_resolved_externals: true
                 show_banner: false
                 use_kitty_protocol: true
               }
-              $env.GNUPGHOME = "${config.xdg.dataHome}/gnupg"
-              $env.EDITOR = "hx"
             '';
           shellAliases = config.home.shellAliases;
         };
@@ -406,6 +433,11 @@
         { enable = true;
           enableBashIntegration = true;
           enableZshIntegration = true;
+          enableNushellIntegration = true;
+        };
+
+      carapace =
+        { enable = true;
           enableNushellIntegration = true;
         };
 
