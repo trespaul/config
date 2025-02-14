@@ -183,6 +183,8 @@
                   file-picker.hidden = false;
                   soft-wrap = { enable = true; wrap-indicator = ""; };
                   lsp = { display-inlay-hints = true; display-messages = true; };
+                  end-of-line-diagnostics = "hint";
+                  inline-diagnostics.cursor-line = "warning";
                   indent-guides =
                     { render = true;
                       character = "┊";
