@@ -17,13 +17,12 @@
           "ffmpeg" = "ffmpeg -hide_banner";
           "ffprobe" = "ffprobe -hide_banner";
           "ip" = "ip -c";
-          "sudo" = "sudo -v; sudo ";
           "s" = "ssh";
           "wget" = "wget --hsts-file=.local/share/wget-hsts";
           "fd" = "fd --hidden";
           "rp" = "rippkgs";
           "ns" = "nix-search";
-          "adb" = "HOME=${config.xdg.dataHome}/android adb";
+          "adb" = "env HOME=${config.xdg.dataHome}/android adb";
           "g" = "git";
           "gd" = "git diff";
           "gds" = "git diff --staged";
@@ -35,8 +34,6 @@
           "gp" = "git push";
           "sortl" = # sort lines: sort within and throughout lines
             ''tr " " "\n" | sort | paste -s -d " " '';
-          "sortli" = # sort lines independently: each line sort separately
-            ''split -l 1 --filter 'tr " " "\n" | sort | paste -s -d " "' '';
         };
 
       packages = with pkgs;
@@ -355,7 +352,7 @@
 
       nushell =
         { enable = true;
-          configFile.text =
+          extraConfig =
             ''
               $env.config = {
                 table: {
@@ -376,27 +373,7 @@
               $env.GNUPGHOME = "${config.xdg.dataHome}/gnupg"
               $env.EDITOR = "hx"
             '';
-          shellAliases = # not taken from home.shellAliases?
-            { "l" = "eza -l";
-              "la" = "eza -la";
-              "lt" = "eza -laT";
-              "qmv" = "qmv --format destination-only";
-              "ffmpeg" = "ffmpeg -hide_banner";
-              "ffprobe" = "ffprobe -hide_banner";
-              "ip" = "ip -c";
-              "s" = "kitten ssh";
-              "wget" = "wget --hsts-file=.local/share/wget-hsts";
-              "fd" = "fd --hidden";
-              "rp" = "rippkgs";
-              "ns" = "nix-search";
-              "adb" = "HOME=${config.xdg.dataHome}/android adb";
-              "g" = "git";
-              "gst" = "git status";
-              "ga" = "git add";
-              "gaa" = "git add --all";
-              "gc" = "git commit --verbose";
-              "gp" = "git push";
-            };
+          shellAliases = config.home.shellAliases;
         };
 
       atuin =
