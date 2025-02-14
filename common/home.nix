@@ -1,4 +1,4 @@
-{ config, pkgs, zen-browser, nix-search, ... }:
+{ config, pkgs, zen-browser, ... }:
 
 {
   home =
