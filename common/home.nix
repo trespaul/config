@@ -52,7 +52,7 @@
           clinfo glxinfo iftop iotop lsof ltrace strace ethtool lm_sensors
           pciutils usbutils
           # media utils
-          eartag ffmpeg helvum pwvucontrol vlc
+          ffmpeg helvum pwvucontrol vlc
           # browser
           zen-browser.packages.${system}.default
           # internet utils
