@@ -12,6 +12,7 @@
             [ "xhci_pci" "usb_storage" "sd_mod" "sdhci_acpi" "rtsx_usb_sdmmc" ];
           luks.devices."luks-741ee4af-bd7b-4836-a4e8-ffdd20de1a53".device =
             "/dev/disk/by-uuid/741ee4af-bd7b-4836-a4e8-ffdd20de1a53";
+          secrets."/crypto_keyfile.bin" = null;
         };
       kernelModules = [ ];
       extraModulePackages = [ ];
