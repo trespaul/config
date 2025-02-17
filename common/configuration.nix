@@ -80,30 +80,11 @@
           settings.cfsProfiles.enable = true;
         };
 
-      xserver =
-        { enable = true;
-          displayManager.gdm.enable = true;
-          desktopManager.gnome.enable = true;
-          xkb =
-            { layout = "za";
-              variant = "";
-            };
+      xserver.xkb =
+        { layout = "za";
+          variant = "";
         };
 
-      pulseaudio.enable = false;
-      
-      pipewire =
-        { enable = true;
-          wireplumber.enable = true;
-          alsa.enable = true;
-          alsa.support32Bit = true;
-          pulse.enable = true;
-          jack.enable = true;
-        };
-
-      printing.enable = true;
-      pcscd.enable = true; # for gpg pinentry
-      tailscale.enable = true;
     };
 
   # for audio
@@ -139,7 +120,6 @@
   programs =
     { zsh.enable = true; # necessary for defaultUserShell
       virt-manager.enable = true;
-      gnupg.agent.enable = true;
       npm.npmrc =
         ''
           prefix=$\{XDG_DATA_HOME}/npm

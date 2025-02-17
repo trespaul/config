@@ -19,6 +19,28 @@
 
   services =
     {
+      pulseaudio.enable = false;
+      
+      pipewire =
+        { enable = true;
+          wireplumber.enable = true;
+          alsa.enable = true;
+          alsa.support32Bit = true;
+          pulse.enable = true;
+          jack.enable = true;
+        };
+
+      printing.enable = true;
+      pcscd.enable = true; # for gpg pinentry
+
+      xserver =
+        { enable = true;
+          displayManager.gdm.enable = true;
+          desktopManager.gnome.enable = true;
+        };
+
+      tailscale.enable = true;
+
       syncthing =
         { enable = true;
           user = "paul";
@@ -52,6 +74,7 @@
   programs =
     { steam.enable = true; # doesn't work as user program
       adb.enable = true;
+      gnupg.agent.enable = true;
     };
 
   networking.firewall =

@@ -1,4 +1,4 @@
-{ config, pkgs, zen-browser, ... }:
+{ config, pkgs, ... }:
 
 {
   home =
@@ -38,30 +38,15 @@
 
       packages = with pkgs;
         [ # misc cli
-          bat fd file gawk glow gnupg gnused gnutar hyperfine jc libnotify
-          libsecret p7zip parallel pinentry-gnome3 psmisc renameutils slides
-          unar unzip watchexec which xdg-ninja xz yq-go zip zstd
+          bat fd file gawk gnupg gnused gnutar jc libnotify libsecret psmisc
+          renameutils unar watchexec which xz zip zstd
           # networking tools
-          dnsutils ldns netscanner nmap sshfs
-          # nix related
-          nix-output-monitor rippkgs nix-search
+          dnsutils ldns sshfs
           # system tools
           clinfo glxinfo iftop iotop lsof ltrace strace ethtool lm_sensors
           pciutils usbutils
-          # media utils
-          ffmpeg helvum pwvucontrol vlc
-          # browser
-          zen-browser.packages.${system}.default
           # internet utils
-          bitwarden tailscale warp magic-wormhole
-          # desktop environment
-          gnomeExtensions.gsconnect gnome-tweaks gpaste
-          gnome-themes-extra smile gnomeExtensions.smile-complementary-extension
-          # document cli utils
-          hunspell ghostscript pdftk poppler_utils jbig2dec jbig2enc libtiff
-          # fonts
-          brill inter iosevka noto-fonts-cjk-sans public-sans
-          ubuntu_font_family
+          magic-wormhole
         ];
 
       # sessionVariables = # doesn't work here??
@@ -76,12 +61,6 @@
 
   programs =
     { home-manager.enable = true;
-
-      gitui.enable = true;
-      jq.enable = true;
-      ripgrep.enable = true;
-      tealdeer.enable = true;
-      yt-dlp.enable = true;
 
       bat =
         { enable = true;
@@ -107,63 +86,6 @@
           git = true;
           icons = "auto";
           extraOptions = [ "--group-directories-first" ];
-        };
-
-      firefox =
-        { policies =
-            {
-              AppAutoUpdate = false;
-              DisableAppUpdate = true;
-              ManualAppUpdateOnly = true;
-            };
-        };
-
-      ghostty =
-        { enable = true;
-          settings =
-            { theme = "GruvboxDarkHard";
-              font-family = "Iosevka Extended";
-              font-feature = "+NWID";
-              cursor-style = "bar";
-              cursor-style-blink = false;
-              window-decoration = "none";
-              gtk-titlebar = false;
-            };
-        };
-
-      kitty =
-        { enable = true;
-          themeFile = "gruvbox-dark-hard";
-          settings =
-            { font_family =      "Iosevka Light Extended";
-              bold_font =        "Iosevka Semibold Extended";
-              italic_font =      "Iosevka Light Extended Italic";
-              bold_italic_font = "Iosevka Semibold Extended Italic";
-              "font_features Iosevka-Light-Extended" =           "+dlig +PURS";
-              "font_features Iosevka-Semibold-Extended" =        "+dlig +PURS";
-              "font_features Iosevka-Light-Extended-Italic" =    "+dlig +PURS";
-              "font_features Iosevka-Semibold-Extended-Italic" = "+dlig +PURS";
-              font_size = 12;
-              narrow_symbols = "U+279C-U+27BF";
-              cursor_shape = "beam";
-              cursor_blink_interval = "0";
-              strip_trailing_spaces = "smart";
-              scrollback_fill_enlarged_window = true;
-              touch_scroll_multiplier = "3.0";
-              hide_window_decorations = true;
-              tab_bar_style = "powerline";
-              tab_powerline_style = "slanted";
-              allow_remote_control = true;
-              enable_audio_bell = false;
-            };
-          shellIntegration =
-            { enableBashIntegration = true;
-              enableZshIntegration = true;
-            };
-          keybindings =
-            { "kitty_mod+t" = "new_tab_with_cwd";
-              "kitty_mod+enter" = "launch --cwd=current";
-            };
         };
 
       helix =
@@ -291,44 +213,6 @@
             };
         };
 
-      gh.enable = true;
-      gh-dash.enable = true;
-
-      pandoc =
-        { enable = true;
-          # citationStyles = [];
-          # defaults = {};
-          # templates = {};
-        };
-
-      rbw =
-        { enable = true;
-          settings =
-            { email = "paul@trespaul.com";
-              pinentry = pkgs.pinentry-gnome3;
-              lock_timeout = 600;
-              base_url = "https://vault.bitwarden.com/";
-              identity_url = "https://identity.bitwarden.com/";
-              notifications_url = "https://notifications.bitwarden.com/";
-            };
-        };
-
-      yazi =
-        { enable = true;
-          enableZshIntegration = true;
-          enableBashIntegration = true;
-          enableNushellIntegration = true;
-          settings =
-            { manager =
-                { sort_by = "natural";
-                  sort_dir_first = true;
-                  linemode = "mtime";
-                  show_hidden = true;
-                  show_symlink = true;
-                };
-            };
-        };
-
       zsh =
         { enable = true;
           dotDir = ".config/zsh";
@@ -425,13 +309,6 @@
         };
 
       zoxide =
-        { enable = true;
-          enableBashIntegration = true;
-          enableZshIntegration = true;
-          enableNushellIntegration = true;
-        };
-
-      broot =
         { enable = true;
           enableBashIntegration = true;
           enableZshIntegration = true;
@@ -546,49 +423,6 @@
                   vimcmd_visual_symbol = "[](bold fg:color_yellow)";
                 };
             };
-        };
-
-    };
-
-  # services = { };
-
-  dconf =
-    { enable = true;
-      settings =
-        { "org/gnome/desktop/interface" =
-            { color-scheme = "prefer-dark";
-              clock-show-weekday = true;
-              gtk-theme = "Adwaita-dark";
-              monospace-font-name = "Iosevka Light Expanded 11";
-              show-battery-percentage = true;
-            };
-          "org/gnome/desktop/peripherals/touchpad" =
-            { speed = 0.3;
-              tap-to-click = true;
-              two-finger-scrolling-enabled = true;
-            };
-          "org/gnome/desktop/peripherals/keyboard" =
-            { numlock-state = true;
-            };
-          "org/gnome/desktop/peripherals/mouse" =
-            { natural-scroll = false;
-              speed = 0.3;
-            };
-          "org/gnome/desktop/sound".event-sounds = false;
-          "org/gnome/desktop/input-sources".xkb-options =
-            [ "terminate:ctrl_alt_bksp"
-              "compose:ralt"
-              "lv3:rwin_switch"
-              "caps:swapescape"
-            ];
-          "org/gnome/shell".favorite-apps =
-            [ "com.mitchellh.ghostty.desktop"
-              "org.gnome.Nautilus.desktop"
-              "zen-browser.desktop"
-              "discord.desktop"
-              "zotero.desktop"
-              "beeper.desktop"
-            ];
         };
 
     };
