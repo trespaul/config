@@ -1,6 +1,24 @@
 { inputs, lib, config, pkgs, ... }:
 
 {
+  networking =
+    { hostName = "paulpad";
+      firewall =
+        { allowedTCPPorts =
+            [ 22000       # syncthing
+            ];
+          allowedUDPPorts =
+            [ 22000 21027 # syncthing
+            ];
+          allowedTCPPortRanges =
+            [  { from = 1714; to = 1764; } # KDE Connect
+            ];  
+          allowedUDPPortRanges =
+            [  { from = 1714; to = 1764; } # KDE Connect
+            ];
+        };
+    };
+
   boot =
     { extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
       kernelModules = [ "v4l2loopback" ];
@@ -9,8 +27,6 @@
           options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
         '';
     };
-
-  networking.hostName = "paulpad";
 
   musnix.enable = true;
 
@@ -72,20 +88,5 @@
     { steam.enable = true; # doesn't work as user program
       adb.enable = true;
       gnupg.agent.enable = true;
-    };
-
-  networking.firewall =
-    { allowedTCPPorts =
-        [ 22000       # syncthing
-        ];
-      allowedUDPPorts =
-        [ 22000 21027 # syncthing
-        ];
-      allowedTCPPortRanges =
-        [  { from = 1714; to = 1764; } # KDE Connect
-        ];  
-      allowedUDPPortRanges =
-        [  { from = 1714; to = 1764; } # KDE Connect
-        ];
     };
 }

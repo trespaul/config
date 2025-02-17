@@ -29,6 +29,10 @@
 
   networking =
     { networkmanager.enable = true;
+      firewall =
+        { enable = true;
+          trustedInterfaces = [ "tailscale0" "virbr0" "vnet2" ];
+        };
     };
 
   powerManagement =
@@ -173,10 +177,5 @@
           deploy-rs
         ];
     };
-
-  networking.firewall =
-    { enable = true;
-      trustedInterfaces = [ "tailscale0" "virbr0" "vnet2" ];
-    };
-
 }
+
