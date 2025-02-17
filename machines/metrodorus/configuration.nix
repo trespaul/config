@@ -1,10 +1,17 @@
 { inputs, lib, config, pkgs, ... }:
 
 {
+  networking =
+    { hostName = "metrodorus";
+      firewall =
+        { allowedTCPPorts =
+            [ 22000       # syncthing
+            ];
+          allowedUDPPorts =
+            [ 22000 21027 # syncthing
+            ];
         };
     };
-
-  networking.hostName = "metrodorus";
 
   services =
     {
@@ -54,14 +61,5 @@
               "--ssh"
             ];
         };
-    };
-
-  networking.firewall =
-    { allowedTCPPorts =
-        [ 22000       # syncthing
-        ];
-      allowedUDPPorts =
-        [ 22000 21027 # syncthing
-        ];
     };
 }
