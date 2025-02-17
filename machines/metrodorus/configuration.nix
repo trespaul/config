@@ -1,12 +1,6 @@
 { inputs, lib, config, pkgs, ... }:
 
 {
-  boot =
-    { initrd.secrets =
-        { "/crypto_keyfile.bin" = null;
-        };
-    };
-
   networking.hostName = "metrodorus";
 
   services =
