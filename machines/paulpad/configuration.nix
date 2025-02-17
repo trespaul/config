@@ -8,9 +8,6 @@
         ''
           options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
         '';
-      initrd.secrets =
-        { "/crypto_keyfile.bin" = null;
-        };
     };
 
   networking.hostName = "paulpad";

@@ -18,18 +18,13 @@
         };
     };
 
-  boot =
-    { loader =
-        { systemd-boot =
-            { enable = true;
-              editor = false;
-              configurationLimit = 5;
-            };
-          efi.canTouchEfiVariables = true;
+  boot.loader =
+    { systemd-boot =
+        { enable = true;
+          editor = false;
+          configurationLimit = 5;
         };
-      initrd.secrets =
-        { "/crypto_keyfile.bin" = null;
-        };
+      efi.canTouchEfiVariables = true;
     };
 
   networking =
@@ -185,4 +180,3 @@
     };
 
 }
-

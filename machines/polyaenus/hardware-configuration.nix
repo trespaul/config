@@ -12,6 +12,7 @@
             [ "ahci" "xhci_pci" "usb_storage" "sd_mod" "sr_mod" ];
           luks.devices."luks-9f520233-8251-4136-a4e7-9c9a67ffd93f".device =
             "/dev/disk/by-uuid/9f520233-8251-4136-a4e7-9c9a67ffd93f";
+          secrets."/crypto_keyfile.bin" = null;
         };
       kernelModules = [ "kvm-intel" ];
       extraModulePackages = [ ];
