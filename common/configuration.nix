@@ -29,6 +29,7 @@
 
   networking =
     { networkmanager.enable = true;
+      nftables.enable = true;
       firewall =
         { enable = true;
           trustedInterfaces = [ "tailscale0" "virbr0" "vnet2" ];
