@@ -23,6 +23,11 @@
             };
         };
 
+      logind =
+        { lidSwitch = "suspend";
+          lidSwitchExternalPower = "lock";
+        };
+
       tailscale =
         { enable = true;
           useRoutingFeatures = "both";
