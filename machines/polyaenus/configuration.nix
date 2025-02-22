@@ -71,6 +71,7 @@
           settings =
             { PasswordAuthentication = false;
               KbdInteractiveAuthentication = false;
+              PermitRootLogin = "yes";
             };
         };
 

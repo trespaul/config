@@ -75,17 +75,14 @@
             let
               mkNode = hostname:
                 { hostname = hostname;
-                  interactiveSudo = true;
-                  profiles.system =
-                    { user = "root";
-                      path =
-                        deploy-rs.lib.x86_64-linux.activate.nixos
-                          self.nixosConfigurations.${hostname};
-                    };
+                  sshUser = "root";
+                  fastConnection = true;
+                  profiles.system.path =
+                    deploy-rs.lib.x86_64-linux.activate.nixos
+                      self.nixosConfigurations.${hostname};
                 };
             in
-              { paulpad    = mkNode "paulpad";
-                polyaenus  = mkNode "polyaenus";
+              { polyaenus  = mkNode "polyaenus";
                 metrodorus = mkNode "metrodorus";
                 leontion   = mkNode "leontion";
                 hermarchus = mkNode "hermarchus";

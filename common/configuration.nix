@@ -103,18 +103,22 @@
 
   users =
     { defaultUserShell = pkgs.zsh;
-      users.paul =
-        { isNormalUser = true;
-          description = "Paul Joubert";
-          extraGroups = [ "networkmanager" "wheel" "audio" "dialout" "adbusers" ];
-          shell = pkgs.nushell;
-          linger = true;
-          openssh.authorizedKeys.keys =
-            [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHyBG5QyF1rZ9M7gm+cPVSpsWyGPgLQNKIrAn/EKmgEv paul@paulpad"
-              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHEFnpRtXK1ZW/yfbIx2cKMRCpQGX3r96J9LamQbLmwV paul@polyaenus"
-              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFXoAsnGMn7WqPeVZ2KYeghyl4Fb6Ho9nHTxVU9jGBj4 paul@metrodorus"
-            ];
-        };
+      users =
+        let 
+          authorizedKeys =
+            [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHyBG5QyF1rZ9M7gm+cPVSpsWyGPgLQNKIrAn/EKmgEv paul@paulpad" ];
+        in
+          { root.openssh.authorizedKeys.keys = authorizedKeys;
+            paul =
+              { isNormalUser = true;
+                description = "Paul Joubert";
+                extraGroups =
+                  [ "networkmanager" "wheel" "audio" "dialout" "adbusers" ];
+                shell = pkgs.nushell;
+                linger = true;
+                openssh.authorizedKeys.keys = authorizedKeys;
+              };
+          };
     };
 
   programs =
