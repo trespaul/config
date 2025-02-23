@@ -20,6 +20,6 @@ let
   all = [ paulpad polyaenus metrodorus leontion hermarchus dionysius ];
 in
   {
-    "encrypted/cloudflare-tunnel.age".publicKeys = [ polyaenus ];
-    "encrypted/container_anmari-cms_config.age".publicKeys = [ polyaenus paulpad ];
+    "encrypted/cloudflare-tunnel.age".publicKeys = [ paulpad polyaenus ];
+    "encrypted/container_anmari-cms_config.age".publicKeys = [ paulpad polyaenus ];
   }
