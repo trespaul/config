@@ -35,7 +35,6 @@
           authKeyFile = config.age.secrets.tailscale-authkey.path;
           extraUpFlags =
             [ "--advertise-exit-node"
-              "--exit-node-allow-lan-access"
               "--ssh"
             ];
         };
