@@ -10,8 +10,6 @@
         { kernelModules = [ ];
           availableKernelModules =
             [ "ehci_pci" "ata_piix" "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
-          luks.devices."luks-2c70f851-15b6-42ea-84e8-6692e2abe680".device =
-            "/dev/disk/by-uuid/2c70f851-15b6-42ea-84e8-6692e2abe680";
         };
       kernelModules = [ "kvm-intel" ];
       extraModulePackages = [ ];
@@ -19,11 +17,11 @@
 
   fileSystems =
     { "/" =
-        { device = "/dev/disk/by-uuid/6a928690-b8fb-434d-9b7b-7863601ce56f";
+        { device = "/dev/disk/by-uuid/1c572ba7-d1ea-48ee-a475-e02a6f2eb8d8";
           fsType = "ext4";
         };
       "/boot" =
-        { device = "/dev/disk/by-uuid/03B7-3C8A";
+        { device = "/dev/disk/by-uuid/8F66-01A1";
           fsType = "vfat";
           options = [ "fmask=0077" "dmask=0077" ];
         };
