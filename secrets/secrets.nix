@@ -9,7 +9,7 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFXoAsnGMn7WqPeVZ2KYeghyl4Fb6Ho9nHTxVU9jGBj4";
 
   leontion =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEhucnrXXBvpgafmk1eJ+DUaTRnNldiAdxm1d7+Xzclv";
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFnVNMlBL1kPCO9YZjB43y0il6j+ywawQVTvc1qV/P";
 
   hermarchus =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF6le6hCVJGJE9ScupP6jq8ab2BntFBFoUQGUvgpYXL2";
