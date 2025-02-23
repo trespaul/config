@@ -10,9 +10,6 @@
         { kernelModules = [ ];
           availableKernelModules =
             [ "xhci_pci" "usb_storage" "sd_mod" "sdhci_acpi" "rtsx_usb_sdmmc" ];
-          luks.devices."luks-741ee4af-bd7b-4836-a4e8-ffdd20de1a53".device =
-            "/dev/disk/by-uuid/741ee4af-bd7b-4836-a4e8-ffdd20de1a53";
-          secrets."/crypto_keyfile.bin" = null;
         };
       kernelModules = [ ];
       extraModulePackages = [ ];
@@ -20,12 +17,13 @@
 
   fileSystems =
     { "/" =
-        { device = "/dev/disk/by-uuid/8f095a7c-e302-45fd-9067-e8794f490fa5";
+        { device = "/dev/disk/by-uuid/5f39b966-a6ae-4ee5-ae5a-1ae8622245b5";
           fsType = "ext4";
         };
       "/boot" =
-        { device = "/dev/disk/by-uuid/E80D-46E9";
+        { device = "/dev/disk/by-uuid/02E4-CE84";
           fsType = "vfat";
+          options = [ "fmask=0077" "dmask=0077" ];
         };
     };
 
