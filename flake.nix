@@ -33,6 +33,7 @@
               { system = "x86_64-linux";
                 modules =
                   [ ./common/configuration.nix
+                    ./common/secrets.module.nix
                     ./machines/${hostname}/configuration.nix
                     ./machines/${hostname}/hardware-configuration.nix
                     ragenix.nixosModules.default
