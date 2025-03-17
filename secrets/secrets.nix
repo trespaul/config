@@ -21,6 +21,7 @@ let
 in
   {
     "encrypted/cloudflare-tunnel.age".publicKeys = [ paulpad polyaenus ];
+    "encrypted/cloudflare-cert.age".publicKeys = [ paulpad polyaenus ];
     "encrypted/container_anmari-cms_config.age".publicKeys = [ paulpad polyaenus ];
     "encrypted/tailscale-authkey.age".publicKeys = all;
   }
