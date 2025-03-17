@@ -42,7 +42,7 @@
           # document cli utils
           ocrmypdf texliveFull librsvg
           # document apps
-          dialect errands foliate libreoffice-fresh scantailor zotero
+          dialect foliate libreoffice-fresh scantailor zotero
           gnome-decoder gnome-solanum
           # fonts
           brill inter iosevka noto-fonts-cjk-sans public-sans ubuntu_font_family
