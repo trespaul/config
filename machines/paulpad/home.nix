@@ -27,6 +27,8 @@
           # graphics & video apps
           darktable eyedropper gimp hugin inkscape-with-extensions kdenlive
           scrcpy
+          # dev
+          kubectl
           # LSPs
           haskell-language-server ltex-ls markdown-oxide
           marksman nil nodePackages.bash-language-server
