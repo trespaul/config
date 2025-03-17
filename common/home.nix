@@ -32,8 +32,7 @@
           "gaa" = "git add --all";
           "gc" = "git commit --verbose";
           "gp" = "git push";
-          "sortl" = # sort lines: sort within and throughout lines
-            ''tr " " "\n" | sort | paste -s -d " " '';
+          "k" = "kubecolor";
         };
 
       packages = with pkgs;
