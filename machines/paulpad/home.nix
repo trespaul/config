@@ -118,6 +118,22 @@
             };
         };
 
+      kubecolor =
+        { enable = true;
+          enableAlias = true;
+        };
+
+      k9s =
+        { enable = true;
+          settings.k9s =
+            { liveViewAutoRefresh = true;
+              ui =
+                { headless = true;
+                  reactive = true;
+                };
+            };
+        };
+
     };
 
   dconf =
