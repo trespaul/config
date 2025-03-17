@@ -103,27 +103,10 @@
                   lsp = { display-inlay-hints = true; display-messages = true; };
                   end-of-line-diagnostics = "hint";
                   inline-diagnostics.cursor-line = "warning";
-                  indent-guides =
-                    { render = true;
-                      character = "┊";
-                    };
-                  statusline =
-                    { mode = { normal = "N"; insert = "I"; select = "S"; };
-                      right =
-                        [ "version-control" "diagnostics" "selections"
-                          "position" "file-encoding"
-                        ];
-                    };
+                  indent-guides = { render = true; character = "┊"; };
                 };
                 keys.normal =
-                  { "esc"   = ["collapse_selection" "keep_primary_selection"];
-                    "A-ret" =
-                      ''
-                        :pipe-to kitten @ send-text --match-tab 'title:^tidal' --stdin ':{\n' \
-                              && kitten @ send-text --match-tab 'title:^tidal'         ':}\n'
-                      '';
-
-                  };
+                  { "esc"   = ["collapse_selection" "keep_primary_selection"]; };
             };
           languages =
             { language =
