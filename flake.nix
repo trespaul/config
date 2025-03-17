@@ -37,7 +37,6 @@
               { system = "x86_64-linux";
                 modules =
                   [ ./common/configuration.nix
-                    ./common/secrets.module.nix
                     ./machines/${hostname}/configuration.nix
                     ./machines/${hostname}/hardware-configuration.nix
                     ragenix.nixosModules.default
@@ -67,25 +66,41 @@
               { hostname = "polyaenus";
                 extraModules =
                   [ ./machines/polyaenus/secrets.module.nix
+                    ./modules/headless/headless.nix
+                    ./modules/headless/secrets.module.nix
                     ./modules/k3s/k3s.nix
                     ./modules/k3s/k3s.secrets.nix
                   ];
               };
             "metrodorus" = mkConfig
-              { hostname = "metrodorus"; };
+              { hostname = "metrodorus";
+                extraModules =
+                  [ ./modules/headless/headless.nix
+                    ./modules/headless/secrets.module.nix
+                  ];
+              };
             "leontion" = mkConfig
-              { hostname = "leontion"; };
+              { hostname = "leontion";
+                extraModules =
+                  [ ./modules/headless/headless.nix
+                    ./modules/headless/secrets.module.nix
+                  ];
+              };
             "hermarchus" = mkConfig
               { hostname = "hermarchus";
                 extraModules =
-                  [ ./modules/k3s/k3s.nix
+                  [ ./modules/headless/headless.nix
+                    ./modules/headless/secrets.module.nix
+                    ./modules/k3s/k3s.nix
                     ./modules/k3s/k3s.secrets.nix
                   ];
               };
             "dionysius" = mkConfig
               { hostname = "dionysius";
                 extraModules =
-                  [ ./modules/k3s/k3s.nix
+                  [ ./modules/headless/headless.nix
+                    ./modules/headless/secrets.module.nix
+                    ./modules/k3s/k3s.nix
                     ./modules/k3s/k3s.secrets.nix
                   ];
               };

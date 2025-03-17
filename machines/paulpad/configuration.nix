@@ -4,13 +4,7 @@
   networking =
     { hostName = "paulpad";
       firewall =
-        { allowedTCPPorts =
-            [ 22000       # syncthing
-            ];
-          allowedUDPPorts =
-            [ 22000 21027 # syncthing
-            ];
-          allowedTCPPortRanges =
+        { allowedTCPPortRanges =
             [  { from = 1714; to = 1764; } # KDE Connect
             ];  
           allowedUDPPortRanges =
