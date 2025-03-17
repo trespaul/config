@@ -136,6 +136,7 @@
 
       cloudflared =
         { enable = true;
+          certificateFile = config.age.secrets.cloudflare-cert.path;
           tunnels =
             { "d93b31cb-ab3b-420a-ace5-7d752ef90089" =
                 { credentialsFile = config.age.secrets.cloudflare-tunnel.path;
