@@ -24,4 +24,5 @@ in
     "encrypted/cloudflare-cert.age".publicKeys = [ paulpad polyaenus ];
     "encrypted/container_anmari-cms_config.age".publicKeys = [ paulpad polyaenus ];
     "encrypted/tailscale-authkey.age".publicKeys = all;
+    "encrypted/k3s_token.age".publicKeys = all;
   }
