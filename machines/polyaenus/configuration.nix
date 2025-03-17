@@ -8,7 +8,6 @@
             [ 80 443      # http(s)
               22000       # syncthing
               1234        # spotifyd zeroconf
-
             ];
           allowedUDPPorts =
             [ 22000 21027 # syncthing

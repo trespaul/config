@@ -65,16 +65,30 @@
               };
             "polyaenus" = mkConfig
               { hostname = "polyaenus";
-                extraModules = [ ./machines/polyaenus/secrets.module.nix ];
+                extraModules =
+                  [ ./machines/polyaenus/secrets.module.nix
+                    ./modules/k3s/k3s.nix
+                    ./modules/k3s/k3s.secrets.nix
+                  ];
               };
             "metrodorus" = mkConfig
               { hostname = "metrodorus"; };
             "leontion" = mkConfig
               { hostname = "leontion"; };
             "hermarchus" = mkConfig
-              { hostname = "hermarchus"; };
+              { hostname = "hermarchus";
+                extraModules =
+                  [ ./modules/k3s/k3s.nix
+                    ./modules/k3s/k3s.secrets.nix
+                  ];
+              };
             "dionysius" = mkConfig
-              { hostname = "dionysius"; };
+              { hostname = "dionysius";
+                extraModules =
+                  [ ./modules/k3s/k3s.nix
+                    ./modules/k3s/k3s.secrets.nix
+                  ];
+              };
           };
 
       deploy =
