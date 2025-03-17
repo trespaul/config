@@ -20,13 +20,13 @@
       nftables =
         { ruleset = # internet sharing
             ''
-              table ip nat {
+              table ip host-nat {
                 chain POSTROUTING {
                   type nat hook postrouting priority 100;
                   oifname "wlp2s0" counter masquerade
                 }
               }
-              table ip filter {
+              table ip host-filter {
                 chain INPUT {
                   iifname "enp3s0" counter accept
                 }
