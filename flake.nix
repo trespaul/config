@@ -2,6 +2,10 @@
 
   inputs =
     { nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+      lix-module =
+        { url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
       ragenix =
         { url = "github:yaxitech/ragenix";
           inputs.darwin.follows = "";
@@ -24,8 +28,8 @@
         };
     };
 
-  outputs = { self, nixpkgs, ragenix, home-manager, musnix, deploy-rs,
-              zen-browser, ... }:
+  outputs = { self, nixpkgs, lix-module, ragenix, home-manager, musnix,
+              deploy-rs, zen-browser, ... }:
     { nixosConfigurations =
         let
           mkConfig = { hostname, extraModules ? [], extraHomeModules ? [] }:
@@ -54,7 +58,10 @@
         in
           { "paulpad" = mkConfig
               { hostname = "paulpad";
-                extraModules = [ musnix.nixosModules.musnix ];
+                extraModules =
+                  [ lix-module.nixosModules.default
+                    musnix.nixosModules.musnix
+                  ];
               };
             "polyaenus" = mkConfig
               { hostname = "polyaenus";
