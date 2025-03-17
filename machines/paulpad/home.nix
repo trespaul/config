@@ -58,7 +58,6 @@
       ripgrep.enable = true;
       tealdeer.enable = true;
       yt-dlp.enable = true;
-      k9s.enable = true;
       gh.enable = true;
       gh-dash.enable = true;
       pandoc.enable = true;
