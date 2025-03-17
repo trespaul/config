@@ -11,7 +11,7 @@
           # nix related
           nix-output-monitor rippkgs nix-search
           # media utils
-          ffmpeg helvum pwvucontrol vlc
+          amberol celluloid ffmpeg helvum pwvucontrol
           # desktop environment
           gnomeExtensions.gsconnect gnome-tweaks gpaste gnome-themes-extra smile
           gnomeExtensions.smile-complementary-extension
