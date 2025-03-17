@@ -55,6 +55,7 @@
           configDir = "/home/paul/.config/syncthing";
           overrideDevices = true;
           overrideFolders = true;
+          openDefaultPorts = true;
           settings =
             { devices =
                 { "android".id =

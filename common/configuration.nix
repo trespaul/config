@@ -33,12 +33,6 @@
       firewall =
         { enable = true;
           trustedInterfaces = [ "tailscale0" "virbr0" "vnet2" ];
-          allowedTCPPorts =
-            [ 22000       # syncthing
-            ];
-          allowedUDPPorts =
-            [ 22000 21027 # syncthing
-            ];
         };
     };
 
