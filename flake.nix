@@ -66,42 +66,34 @@
               { hostname = "polyaenus";
                 extraModules =
                   [ ./machines/polyaenus/secrets.module.nix
-                    ./modules/headless/headless.nix
-                    ./modules/headless/secrets.module.nix
-                    ./modules/k3s/k3s.nix
-                    ./modules/k3s/k3s.secrets.nix
+                    ./modules/headless.nix
+                    ./modules/k3s.nix
                   ];
               };
             "metrodorus" = mkConfig
               { hostname = "metrodorus";
                 extraModules =
-                  [ ./modules/headless/headless.nix
-                    ./modules/headless/secrets.module.nix
+                  [ ./modules/headless.nix
                   ];
               };
             "leontion" = mkConfig
               { hostname = "leontion";
                 extraModules =
-                  [ ./modules/headless/headless.nix
-                    ./modules/headless/secrets.module.nix
+                  [ ./modules/headless.nix
                   ];
               };
             "hermarchus" = mkConfig
               { hostname = "hermarchus";
                 extraModules =
-                  [ ./modules/headless/headless.nix
-                    ./modules/headless/secrets.module.nix
-                    ./modules/k3s/k3s.nix
-                    ./modules/k3s/k3s.secrets.nix
+                  [ ./modules/headless.nix
+                    ./modules/k3s.nix
                   ];
               };
             "dionysius" = mkConfig
               { hostname = "dionysius";
                 extraModules =
-                  [ ./modules/headless/headless.nix
-                    ./modules/headless/secrets.module.nix
-                    ./modules/k3s/k3s.nix
-                    ./modules/k3s/k3s.secrets.nix
+                  [ ./modules/headless.nix
+                    ./modules/k3s.nix
                   ];
               };
           };
