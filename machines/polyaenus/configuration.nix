@@ -6,12 +6,10 @@
       firewall =
         { allowedTCPPorts =
             [ 80 443      # http(s)
-              22000       # syncthing
               1234        # spotifyd zeroconf
             ];
           allowedUDPPorts =
-            [ 22000 21027 # syncthing
-              5353        # spotifyd zeroconf
+            [ 5353        # spotifyd zeroconf
             ];
         };
       interfaces."enp3s0" = # internet sharing
@@ -65,18 +63,7 @@
             };
         };
 
-      openssh =
         { enable = true;
-          settings =
-            { PasswordAuthentication = false;
-              KbdInteractiveAuthentication = false;
-              PermitRootLogin = "yes";
-            };
-        };
-
-      logind =
-        { lidSwitch = "suspend";
-          lidSwitchExternalPower = "lock";
         };
 
       syncthing =
@@ -106,16 +93,6 @@
                     };
                 };
             };
-        };
-
-      tailscale =
-        { enable = true;
-          useRoutingFeatures = "both";
-          authKeyFile = config.age.secrets.tailscale-authkey.path;
-          extraUpFlags =
-            [ "--advertise-exit-node"
-              "--ssh"
-            ];
         };
 
       transmission =
