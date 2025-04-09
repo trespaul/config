@@ -47,7 +47,6 @@
                           extraSpecialArgs = { inherit zen-browser; };
                           users.paul.imports =
                             [ ./common/home.nix
-                              ./machines/${hostname}/home.nix
                               ragenix.homeManagerModules.default
                             ] ++ extraHomeModules;
                         };
@@ -61,6 +60,7 @@
                   [ lix-module.nixosModules.default
                     musnix.nixosModules.musnix
                   ];
+                extraHomeModules = [ ./machines/paulpad/home.nix ];
               };
             "polyaenus" = mkConfig
               { hostname = "polyaenus";
@@ -69,6 +69,7 @@
                     ./modules/headless.nix
                     ./modules/k3s.nix
                   ];
+                extraHomeModules = [ ./machines/polyaenus/home.nix ];
               };
             "metrodorus" = mkConfig
               { hostname = "metrodorus";
