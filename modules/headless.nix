@@ -1,7 +1,9 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   services =
     {
+      auto-cpufreq.settings.charger.governor = lib.mkDefault "powersave";
+
       openssh =
         { enable = true;
           settings =
