@@ -18,13 +18,17 @@
         };
     };
 
-  boot.loader =
-    { systemd-boot =
-        { enable = true;
-          editor = false;
-          configurationLimit = 5;
+  boot =
+    { loader =
+        { systemd-boot =
+            { enable = true;
+              editor = false;
+              configurationLimit = 5;
+            };
+          efi.canTouchEfiVariables = true;
         };
-      efi.canTouchEfiVariables = true;
+      initrd.systemd.enable = true;
+      tmp.useTmpfs = true;
     };
 
   networking =
@@ -42,7 +46,9 @@
     };
 
   systemd.services =
-    { NetworkManager-wait-online.enable = false; };
+    { NetworkManager-wait-online.enable = false;
+      nix-daemon.environment.TMPDIR = "/var/tmp"; # don't use tmpfs
+    };
 
   time.timeZone = "Africa/Johannesburg";
 
@@ -185,4 +191,3 @@
         ];
     };
 }
-
