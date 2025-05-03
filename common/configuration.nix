@@ -62,26 +62,22 @@
   services =
     {
       thermald.enable = true;
+      throttled.enable = lib.mkDefault true;
+      dbus.implementation = "broker";
+      power-profiles-daemon.enable = false;
 
-      tlp =
+      auto-cpufreq =
         { enable = true;
           settings =
-            { TLP_DEFAULT_MODE = "AC";
-              CPU_BOOST_ON_AC = 1;
-              CPU_BOOST_ON_BAT = 0;
-              CPU_SCALING_GOVERNOR_ON_AC = "performance";
-              CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-              CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-              CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-              START_CHARGE_THRESH_BAT0 = 60;
-              STOP_CHARGE_THRESH_BAT0 = 80;
-              NATACPI_ENABLE = 1;
-              TPACPI_ENABLE = 1;
-              TPSMAPI_ENABLE = 1;
+            { charger.governor = "performance";
+              battery =
+                { governor = "powersave";
+                  enable_thresholds = true;
+                  start_threshold = 60;
+                  stop_threshold = 80;
+                };
             };
         };
-
-      power-profiles-daemon.enable = false;
 
       system76-scheduler =
         { enable = true;
@@ -107,6 +103,7 @@
               intel-compute-runtime
             ];
         };
+      bluetooth.enable = true;
     };
 
   users =
