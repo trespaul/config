@@ -118,7 +118,9 @@
               { isNormalUser = true;
                 description = "Paul Joubert";
                 extraGroups =
-                  [ "networkmanager" "wheel" "audio" "dialout" "adbusers" ];
+                  [ "networkmanager" "wheel" "audio" "dialout"
+                    "adbusers" "wireshark"
+                  ];
                 shell = pkgs.nushell;
                 linger = true;
                 openssh.authorizedKeys.keys = authorizedKeys;
