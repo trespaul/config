@@ -10,8 +10,10 @@
         { kernelModules = [ ];
           availableKernelModules =
             [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-          luks.devices."luks-e1477bc2-1cca-469b-81ae-760226db7445".device =
-            "/dev/disk/by-uuid/e1477bc2-1cca-469b-81ae-760226db7445";
+          luks.devices."luks-e1477bc2-1cca-469b-81ae-760226db7445" =
+            { device = "/dev/disk/by-uuid/e1477bc2-1cca-469b-81ae-760226db7445";
+              allowDiscards = true;
+            };
           secrets."/crypto_keyfile.bin" = null;
         };
       kernelModules = [ "kvm-intel" ];
