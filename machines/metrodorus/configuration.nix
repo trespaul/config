@@ -22,11 +22,21 @@
         };
 
       jellyfin.enable = true;
+
+      transmission =
+        { enable = true;
+          package = pkgs.transmission_4;
+          openRPCPort = true;
           settings =
+            { incomplete-dir-enabled = true;
+              rpc-bind-address = "0.0.0.0";
+              rpc-whitelist-enabled = false;
+              rpc-host-whitelist-enabled = false;
             };
         };
     };
 
+  systemd.services.transmission.serviceConfig.BindPaths = [ "/mnt/Media" ];
 
   environment.systemPackages = with pkgs;
     [ jellyfin jellyfin-web jellyfin-ffmpeg ];
