@@ -9,25 +9,27 @@
           # networking tools
           netscanner nmap
           # nix related
-          nix-output-monitor rippkgs nix-search
+          nix-output-monitor rippkgs nix-search nvd
           # media utils
-          amberol celluloid ffmpeg helvum pwvucontrol
+          amberol celluloid ffmpeg helvum pwvucontrol showtime
           # desktop environment
           gnomeExtensions.gsconnect gnome-tweaks gpaste gnome-themes-extra smile
           gnomeExtensions.smile-complementary-extension
+          gnome-decoder gnome-solanum
           # document cli utils
-          hunspell ghostscript pdftk poppler_utils jbig2dec jbig2enc libtiff
-          # browser
+          hunspell ghostscript pdftk poppler_utils jbig2dec jbig2enc librsvg
+          libtiff ocrmypdf texliveFull
+          # internet
+          beeper bitwarden fractal fragments newsflash signal-desktop-bin
+          vesktop telegram-desktop transmission_4-gtk thunderbird tuba warp wike
           zen-browser.packages.${system}.default
-          # internet utils
-          bitwarden warp
           # audio production
           ardour audacity bespokesynth calf cardinal haskellPackages.tidal
           musescore supercollider-with-sc3-plugins vital
           # graphics & video apps
           darktable eyedropper gimp hugin inkscape-with-extensions scrcpy
           # dev
-          kubectl
+          kubectl kubectl-cnpg
           # LSPs
           haskell-language-server ltex-ls markdown-oxide
           marksman nil nodePackages.bash-language-server
@@ -36,14 +38,8 @@
           # pentesting
           aircrack-ng bettercap hashcat hcxdumptool hcxtools iw macchanger
           tcpdump wireshark
-          # internet apps
-          beeper discord fractal newsflash signal-desktop telegram-desktop
-          transmission_4-gtk tuba wike
-          # document cli utils
-          ocrmypdf texliveFull librsvg
           # document apps
-          dialect foliate libreoffice-fresh scantailor zotero
-          gnome-decoder gnome-solanum
+          dialect errands foliate libreoffice-fresh papers scantailor zotero
           # fonts
           brill inter iosevka noto-fonts-cjk-sans public-sans ubuntu_font_family
         ];
@@ -88,13 +84,6 @@
                   show_symlink = true;
                 };
             };
-        };
-
-      broot =
-        { enable = true;
-          enableBashIntegration = true;
-          enableZshIntegration = true;
-          enableNushellIntegration = true;
         };
 
       firefox =
