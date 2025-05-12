@@ -29,6 +29,11 @@
         { device = "/dev/disk/by-uuid/F096-4EE6";
           fsType = "vfat";
         };
+      "/mnt/Future" =
+        { device = "/dev/disk/by-uuid/75c29c38-e000-49b6-95a3-3d2def9841ff";
+          fsType = "ext4";
+          options = [ "x-gvfs-show" ];
+        };
     };
 
   swapDevices =
@@ -36,6 +41,12 @@
         size = 16*1024;
       }
     ];
+
+  environment.etc.crypttab.text =
+    let
+      uuid = "cf11b689-fd00-4b01-a774-2c198132d05f";
+    in
+      "luks-${uuid} UUID=${uuid} /future.key";
 
   networking.useDHCP = lib.mkDefault true;
 
