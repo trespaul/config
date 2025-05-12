@@ -9,6 +9,14 @@
         { enable = true;
           interval = "weekly";
         };
+
+      beesd.filesystems.Storage =
+        { spec = "LABEL=Storage";
+          hashTableSizeMB = 2048;
+          verbosity = "warning";
+          extraOptions = [ "--loadavg-target" "5.0" ];
+        };
+
       caddy =
         { enable = true;
           globalConfig = "skip_install_trust";
