@@ -8,6 +8,7 @@
         };
       ragenix =
         { url = "github:yaxitech/ragenix";
+          inputs.nixpkgs.follows = "nixpkgs";
           inputs.darwin.follows = "";
         };
       home-manager =
