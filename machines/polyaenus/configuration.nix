@@ -37,6 +37,8 @@
 
   services =
     {
+      throttled.enable = false;
+
       kea.dhcp4 = # internet sharing
         { enable = true;
           settings =
