@@ -82,6 +82,7 @@
               { hostname = "leontion";
                 extraModules =
                   [ ./modules/headless.nix
+                    ./modules/k3s.nix
                   ];
               };
             "hermarchus" = mkConfig
