@@ -67,8 +67,6 @@
       extraLocaleSettings.LC_TIME = "en_GB.UTF-8";
     };
 
-  age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-
   services =
     {
       thermald.enable = true;

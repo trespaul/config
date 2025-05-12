@@ -88,4 +88,8 @@
           usbmon.enable = true;
         };
     };
+
+  age =
+    { identityPaths = [ "/home/paul/.ssh/id_ed25519" ];
+    };
 }

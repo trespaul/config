@@ -29,8 +29,11 @@
 
     };
 
-  age.secrets.tailscale-authkey =
-    { file = ../secrets/encrypted/tailscale-authkey.age;
-      mode = "400";
+  age =
+    { identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      secrets.tailscale-authkey =
+        { file = ../secrets/encrypted/tailscale-authkey.age;
+          mode = "400";
+        };
     };
 }
