@@ -48,6 +48,12 @@
         { enable = true;
           trustedInterfaces = [ "tailscale0" "virbr0" "vnet2" ];
         };
+      hosts =
+        { "100.127.18.104" = # polyaenus
+            [ "ha.local" ];
+          "100.121.98.126" = # metrodorus
+            [ "jf.local" ];
+        };
     };
 
   powerManagement =
