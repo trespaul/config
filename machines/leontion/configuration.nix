@@ -2,4 +2,5 @@
 
 {
   networking.hostName = "leontion";
+  services.throttled.enable = false;
 }
