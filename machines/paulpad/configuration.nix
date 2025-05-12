@@ -24,6 +24,13 @@
 
   musnix.enable = true;
 
+  i18n.inputMethod =
+    { enable = true;
+      type = "ibus";
+      ibus.engines = with pkgs.ibus-engines;
+        [ pinyin table table-chinese table-others ];
+    };
+
   services =
     {
       pulseaudio.enable = false;
