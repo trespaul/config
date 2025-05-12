@@ -158,9 +158,10 @@
             [ "com.mitchellh.ghostty.desktop"
               "org.gnome.Nautilus.desktop"
               "zen-browser.desktop"
-              "discord.desktop"
+              "thunderbird.desktop"
+              "vesktop.desktop"
               "zotero.desktop"
-              "beeper.desktop"
+              "beepertexts.desktop"
             ];
         };
     };
