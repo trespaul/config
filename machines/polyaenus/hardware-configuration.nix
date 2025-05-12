@@ -16,6 +16,7 @@
         };
       kernelModules = [ "kvm-intel" ];
       extraModulePackages = [ ];
+      kernelParams = [ "acpi_backlight=native" ];
     };
 
   fileSystems =
