@@ -65,7 +65,15 @@
             };
         };
 
+      caddy =
         { enable = true;
+          globalConfig = "skip_install_trust";
+          virtualHosts =
+            { "ha.local".extraConfig =
+                ''
+                  reverse_proxy http://localhost:8123
+                  tls internal
+                '';
             };
         };
 
@@ -94,6 +102,18 @@
                   ingress =
                     { "anmari.trespaul.com" = "http://127.0.0.1:8080";
                     };
+                };
+            };
+        };
+
+      home-assistant =
+        { enable = true;
+          extraComponents = [ "esphome" "isal" "spotify" ];
+          config =
+            { default_config = {};
+              http =
+                { trusted_proxies = [ "::1" ];
+                  use_x_forwarded_for = true;
                 };
             };
         };
