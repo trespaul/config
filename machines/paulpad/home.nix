@@ -159,7 +159,7 @@
           "org/gnome/shell".favorite-apps =
             [ "com.mitchellh.ghostty.desktop"
               "org.gnome.Nautilus.desktop"
-              "zen-browser.desktop"
+              "zen.desktop"
               "thunderbird.desktop"
               "vesktop.desktop"
               "zotero.desktop"
