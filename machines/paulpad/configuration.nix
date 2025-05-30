@@ -31,6 +31,9 @@
 
   services =
     {
+      desktopManager.gnome.enable = true;
+      displayManager.gdm.enable = true;
+
       pulseaudio.enable = false;
       
       pipewire =
@@ -44,12 +47,6 @@
 
       printing.enable = true;
       pcscd.enable = true; # for gpg pinentry
-
-      xserver =
-        { enable = true;
-          displayManager.gdm.enable = true;
-          desktopManager.gnome.enable = true;
-        };
 
       tailscale.enable = true;
 
