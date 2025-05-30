@@ -24,7 +24,7 @@
           inputs.nixpkgs.follows = "nixpkgs";
         };
       zen-browser =
-        { url = "github:omarcresp/zen-browser-flake";
+        { url = "github:tc-001/zen-browser-flake";
           inputs.nixpkgs.follows = "nixpkgs";
         };
     };
