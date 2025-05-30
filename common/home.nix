@@ -182,6 +182,7 @@
         { enable = true;
           userName = "Paul Joubert";
           userEmail = "paul@trespaul.com";
+          extraConfig.core.whitespace = "error";
           delta =
             { enable = true;
               options =
