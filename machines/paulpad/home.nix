@@ -132,7 +132,9 @@
             { color-scheme = "prefer-dark";
               clock-show-weekday = true;
               gtk-theme = "Adwaita-dark";
-              monospace-font-name = "Iosevka Light Expanded 11";
+              font-name = "Adwaita Sans 11";
+              document-font-name = "Adwaita Sans 11";
+              monospace-font-name = "Adwaita Mono 11";
               show-battery-percentage = true;
             };
           "org/gnome/desktop/peripherals/touchpad" =
