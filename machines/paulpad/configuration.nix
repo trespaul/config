@@ -50,8 +50,6 @@
 
       tailscale.enable = true;
 
-            };
-        };
     };
 
   programs =
