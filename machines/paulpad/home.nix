@@ -21,7 +21,7 @@
           libtiff ocrmypdf texliveFull
           # internet
           beeper bitwarden fractal fragments newsflash signal-desktop-bin
-          vesktop telegram-desktop transmission_4-gtk thunderbird tuba warp wike
+          vesktop telegram-desktop transmission_4-gtk tuba warp wike
           zen-browser.packages.${system}.default
           # audio production
           ardour audacity bespokesynth calf cardinal haskellPackages.tidal
