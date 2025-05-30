@@ -69,7 +69,7 @@
         { enable = true;
           globalConfig = "skip_install_trust";
           virtualHosts =
-            { "ha.local".extraConfig =
+            { "ha.lan".extraConfig =
                 ''
                   reverse_proxy http://localhost:8123
                   tls internal

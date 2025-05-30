@@ -50,9 +50,9 @@
         };
       hosts =
         { "100.127.18.104" = # polyaenus
-            [ "ha.local" ];
+            [ "ha.lan" ];
           "100.121.98.126" = # metrodorus
-            [ "jf.local" ];
+            [ "jf.lan" ];
         };
     };
 
