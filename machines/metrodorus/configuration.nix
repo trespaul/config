@@ -50,7 +50,8 @@
         };
     };
 
-  systemd.services.transmission.serviceConfig.BindPaths = [ "/mnt/Media" ];
+  systemd.services.transmission.serviceConfig.BindPaths =
+    [ "/mnt/Media" "/mnt/Storage" ];
 
   environment.systemPackages = with pkgs;
     [ jellyfin jellyfin-web jellyfin-ffmpeg ];
