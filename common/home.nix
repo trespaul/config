@@ -119,8 +119,8 @@
                     grammar = "haskell";
                   }
                   { name = "markdown";
-                    language-servers = ["ltex-ls" "marksman" "markdown-oxide"];
                     file-types = ["md"];
+                    language-servers = ["ltex-ls-plus" "marksman" "markdown-oxide"];
                     scope = "text.markdown";
                     roots = [];
                   }

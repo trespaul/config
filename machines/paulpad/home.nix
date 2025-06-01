@@ -31,7 +31,7 @@
           # dev
           kubectl kubectl-cnpg
           # LSPs
-          haskell-language-server ltex-ls markdown-oxide
+          haskell-language-server ltex-ls-plus markdown-oxide
           marksman nil nodePackages.bash-language-server
           nodePackages.typescript-language-server vscode-langservers-extracted
           yaml-language-server
