@@ -17,6 +17,12 @@
           extraOptions = [ "--loadavg-target" "5.0" ];
         };
 
+      borgbackup.repos.files =
+        { path = "/mnt/Storage/Borg/Files";
+          authorizedKeys =
+            [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOj4DSjX238kjfhhKjTk6e+ckMqaevQ1oGAn+zlEY9D3 borg@paulpad" ];
+        };
+
       caddy =
         { enable = true;
           globalConfig = "skip_install_trust";
