@@ -50,6 +50,22 @@
 
       tailscale.enable = true;
 
+      borgbackup.jobs.files =
+        { paths =
+            [ "/mnt/Future/Documents"
+              "/mnt/Future/Media"
+              "/mnt/Future/My Media"
+              "/mnt/Future/Projects"
+            ];
+          repo = "borg@metrodorus:/mnt/Storage/Borg/Files";
+          encryption =
+            { mode = "repokey-blake2";
+              passCommand = "cat ${config.age.secrets.borg_passphrase.path}";
+            };
+          environment.BORG_RSH = "ssh -i /etc/ssh/ssh_host_ed25519_key";
+          startAt = "daily";
+          extraArgs = [ "--verbose" ];
+        };
     };
 
   programs =
@@ -64,5 +80,6 @@
 
   age =
     { identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      secrets.borg_passphrase.file = ../../secrets/encrypted/borg_passphrase.age;
     };
 }
