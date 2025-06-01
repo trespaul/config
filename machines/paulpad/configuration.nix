@@ -78,6 +78,8 @@
         };
     };
 
+  hardware.sane.enable = true;
+
   age =
     { identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
       secrets.borg_passphrase.file = ../../secrets/encrypted/borg_passphrase.age;
