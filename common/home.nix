@@ -105,7 +105,9 @@
                   indent-guides = { render = true; character = "┊"; };
                 };
                 keys.normal =
-                  { "esc"   = ["collapse_selection" "keep_primary_selection"]; };
+                  { "esc"   = ["collapse_selection" "keep_primary_selection"];
+                    "D"     = ["select_mode" "goto_line_end" "delete_selection"];
+                  };
             };
           languages =
             { language =
@@ -119,17 +121,10 @@
                     grammar = "haskell";
                   }
                   { name = "markdown";
-                    file-types = ["md"];
                     language-servers = ["ltex-ls-plus" "marksman" "markdown-oxide"];
+                    file-types = ["md" "mdx"];
                     scope = "text.markdown";
                     roots = [];
-                  }
-                  { name = "mdx";
-                    language-servers = ["marksman"];
-                    file-types = ["mdx"];
-                    scope = "source.mdx";
-                    roots = [];
-                    grammar = "markdown";
                   }
                   { name = "roc";
                     scope = "source.roc";
@@ -147,8 +142,8 @@
                   }
                 ];
               language-server =
-                { ltex-ls =
-                    { command = "ltex-ls";
+                { ltex-ls-plus =
+                    { command = "ltex-ls-plus";
                       config.ltex =
                         { language = "en-ZA";
                           enabledRules."en-ZA" = [ "CREATIVE_WRITING" "TEXT_ANALYSIS" ];
