@@ -21,7 +21,7 @@
         { enable = true;
           globalConfig = "skip_install_trust";
           virtualHosts =
-            { "jf.lan".extraConfig =
+            { "jf.local".extraConfig =
                 ''
                   reverse_proxy http://localhost:8096
                   tls internal
