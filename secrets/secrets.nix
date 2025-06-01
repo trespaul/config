@@ -1,6 +1,9 @@
 let
-  paulpad =
+  paul =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHyBG5QyF1rZ9M7gm+cPVSpsWyGPgLQNKIrAn/EKmgEv";
+
+  paulpad =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOj4DSjX238kjfhhKjTk6e+ckMqaevQ1oGAn+zlEY9D3";
 
   polyaenus =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHEFnpRtXK1ZW/yfbIx2cKMRCpQGX3r96J9LamQbLmwV";
@@ -17,12 +20,12 @@ let
   dionysius =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIACqFS1APLey6k/gRe/HOmyt87BqhpwJazHFiZmDKqJb";
 
-  all = [ paulpad polyaenus metrodorus leontion hermarchus dionysius ];
+  all = [ paul paulpad polyaenus metrodorus leontion hermarchus dionysius ];
 in
   {
-    "encrypted/cloudflare-tunnel.age".publicKeys = [ paulpad polyaenus ];
-    "encrypted/cloudflare-cert.age".publicKeys = [ paulpad polyaenus ];
-    "encrypted/container_anmari-cms_config.age".publicKeys = [ paulpad polyaenus ];
+    "encrypted/cloudflare-tunnel.age".publicKeys = [ paul polyaenus ];
+    "encrypted/cloudflare-cert.age".publicKeys = [ paul polyaenus ];
+    "encrypted/container_anmari-cms_config.age".publicKeys = [ paul polyaenus ];
     "encrypted/tailscale-authkey.age".publicKeys = all;
     "encrypted/k3s_token.age".publicKeys = all;
   }
