@@ -20,8 +20,8 @@
           hunspell ghostscript pdftk poppler_utils jbig2dec jbig2enc librsvg
           libtiff ocrmypdf texliveFull
           # internet
-          beeper bitwarden fractal fragments newsflash signal-desktop-bin
-          vesktop telegram-desktop transmission_4-gtk tuba warp wike
+          beeper bitwarden fractal fragments gnome-connections newsflash
+          signal-desktop-bin telegram-desktop tuba vesktop warp wike
           zen-browser.packages.${system}.default
           # audio production
           ardour audacity bespokesynth calf cardinal haskellPackages.tidal
