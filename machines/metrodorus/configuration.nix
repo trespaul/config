@@ -1,7 +1,10 @@
 { inputs, lib, config, pkgs, ... }:
 
 {
-  networking.hostName = "metrodorus";
+  networking =
+    { hostName = "metrodorus";
+      interfaces.enp2s0.wakeOnLan.enable = true;
+    };
 
   services =
     {
