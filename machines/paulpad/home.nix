@@ -25,7 +25,7 @@
           zen-browser.packages.${system}.default
           # audio production
           ardour audacity bespokesynth calf cardinal haskellPackages.tidal
-          musescore supercollider-with-sc3-plugins vital
+          lsp-plugins musescore plugdata supercollider-with-sc3-plugins vital
           # graphics & video apps
           darktable eyedropper gimp hugin inkscape-with-extensions scrcpy
           # dev
