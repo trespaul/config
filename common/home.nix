@@ -177,19 +177,18 @@
         { enable = true;
           userName = "Paul Joubert";
           userEmail = "paul@trespaul.com";
-          extraConfig.core.whitespace = "error";
-          delta =
-            { enable = true;
-              options =
-                { features.decorations = true;
-                  line-numbers = true;
-                };
+          extraConfig =
+            { core.whitespace = "error";
+              merge.conflictStyle = "diff3";
             };
+          difftastic.enable = true;
           signing =
             { key = "8547C047479405D1AF8BA47C394493769D46A76C";
               signByDefault = true;
             };
         };
+
+      mergiraf.enable = true;
 
       zsh =
         { enable = true;
