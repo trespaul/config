@@ -1,4 +1,4 @@
-{ config, pkgs, zen-browser, winapps, ... }:
+{ config, pkgs, zen-browser, ... }:
 
 {
   home =
@@ -40,8 +40,6 @@
           tcpdump wireshark
           # document apps
           dialect errands foliate libreoffice-fresh papers scantailor zotero
-          winapps.packages."${system}".winapps
-          winapps.packages."${system}".winapps-launcher
           # fonts
           brill inter iosevka noto-fonts-cjk-sans public-sans ubuntu_font_family
         ];
@@ -168,50 +166,5 @@
               "beepertexts.desktop"
             ];
         };
-    };
-
-  xdg.configFile =
-    { "winapps/winapps.conf".text =
-        ''
-          RDP_USER="MyWindowsUser"
-          RDP_PASS="MyWindowsPassword"
-          WAFLAVOR="podman"
-          REMOVABLE_MEDIA="/run/media"
-          # MULTIMON="false"
-          # FREERDP_COMMAND=""
-        '';
-      "winapps/compose.yaml".text =
-        ''
-          name: "winapps"
-          volumes:
-            data:
-          services:
-            windows:
-              image: ghcr.io/dockur/windows:latest
-              container_name: WinApps
-              environment:
-                VERSION: "11"
-                RAM_SIZE: "4G"
-                CPU_CORES: "4"
-                DISK_SIZE: "15G"
-                USERNAME: "MyWindowsUser"
-                PASSWORD: "MyWindowsPassword"
-                HOME: "''${HOME}"
-              ports:
-                - 8006:8006
-                - 3389:3389/tcp
-                - 3389:3389/udp
-              cap_add:
-                - NET_ADMIN
-              stop_grace_period: 120s
-              restart: on-failure
-              volumes:
-                - data:/storage
-                - ''${HOME}:/shared
-                - ./oem:/oem
-              devices:
-                - /dev/kvm
-                - /dev/net/tun
-        '';
     };
 }

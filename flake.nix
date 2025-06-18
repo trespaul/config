@@ -27,14 +27,10 @@
         { url = "github:tc-001/zen-browser-flake";
           inputs.nixpkgs.follows = "nixpkgs";
         };
-      winapps =
-        { url = "github:winapps-org/winapps";
-          inputs.nixpkgs.follows = "nixpkgs";
-        };
     };
 
   outputs = { self, nixpkgs, lix-module, ragenix, home-manager, musnix,
-              deploy-rs, zen-browser, winapps, ... }:
+              deploy-rs, zen-browser, ... }:
     { nixosConfigurations =
         let
           mkConfig = { hostname, extraModules ? [], extraHomeModules ? [] }:
@@ -49,7 +45,7 @@
                     { home-manager =
                         { useGlobalPkgs = true;
                           useUserPackages = true;
-                          extraSpecialArgs = { inherit zen-browser winapps; };
+                          extraSpecialArgs = { inherit zen-browser; };
                           users.paul.imports =
                             [ ./common/home.nix
                               ragenix.homeManagerModules.default
