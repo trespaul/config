@@ -38,6 +38,7 @@
   services =
     {
       throttled.enable = false;
+      actual.enable = true;
 
       kea.dhcp4 = # internet sharing
         { enable = true;
@@ -72,6 +73,11 @@
             { "ha.local".extraConfig =
                 ''
                   reverse_proxy http://localhost:8123
+                  tls internal
+                '';
+              "actual.local".extraConfig =
+                ''
+                  reverse_proxy http://localhost:3000
                   tls internal
                 '';
             };
