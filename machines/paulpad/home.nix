@@ -21,7 +21,7 @@
           libtiff ocrmypdf texliveFull
           # internet
           signal-desktop-bin telegram-desktop tuba vesktop warp wike
-          beeper bitwarden fractal fragments gnome-connections newsflash packet
+          bitwarden fractal fragments gnome-connections newsflash packet
           zen-browser.packages.${system}.default
           # audio production
           ardour audacity bespokesynth calf cardinal haskellPackages.tidal
@@ -163,7 +163,6 @@
               "thunderbird.desktop"
               "vesktop.desktop"
               "zotero.desktop"
-              "beepertexts.desktop"
             ];
         };
     };
