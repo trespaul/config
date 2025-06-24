@@ -47,6 +47,7 @@
       firewall =
         { enable = true;
           trustedInterfaces = [ "tailscale0" "virbr0" "vnet2" ];
+          interfaces."podman*".allowedUDPPorts = [ 53 ];
         };
       hosts =
         { "100.127.18.104" = # polyaenus
