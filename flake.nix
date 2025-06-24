@@ -66,8 +66,7 @@
             "polyaenus" = mkConfig
               { hostname = "polyaenus";
                 extraModules =
-                  [ ./machines/polyaenus/secrets.module.nix
-                    ./modules/headless.nix
+                  [ ./modules/headless.nix
                     ./modules/k3s.nix
                   ];
                 extraHomeModules = [ ./machines/polyaenus/home.nix ];
