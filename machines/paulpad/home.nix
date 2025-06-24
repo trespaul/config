@@ -7,7 +7,7 @@
           # misc cli
           parallel pinentry-gnome3 slides xdg-ninja yq-go
           # networking tools
-          netscanner nmap
+          mosh netscanner nmap
           # nix related
           nix-output-monitor rippkgs nix-search nvd
           # media utils
