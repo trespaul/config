@@ -36,6 +36,7 @@
     {
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
+      flatpak.enable = true;
 
       pulseaudio.enable = false;
       
