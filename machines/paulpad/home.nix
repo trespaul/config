@@ -76,7 +76,7 @@
           enableBashIntegration = true;
           enableNushellIntegration = true;
           settings =
-            { manager =
+            { mgr =
                 { sort_by = "natural";
                   sort_dir_first = true;
                   linemode = "mtime";
