@@ -1,5 +1,7 @@
 { config, lib, ... }:
 {
+  programs.mosh.enable = true;
+
   services =
     {
       auto-cpufreq.settings.charger.governor = lib.mkDefault "powersave";
