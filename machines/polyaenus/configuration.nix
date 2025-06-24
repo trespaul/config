@@ -83,21 +83,6 @@
             };
         };
 
-      transmission =
-        { enable = true;
-          openRPCPort = true;
-          settings =
-            { download-dir = "/home/paul/Downloads";
-              incomplete-dir = "/home/paul/Downloads/incomplete";
-              rpc-enabled = true;
-              rpc-bind-address = "0.0.0.0";
-              rpc-whitelist-enabled = true;
-              rpc-whitelist = "127.0.0.1,100.*.*.*";
-              rpc-host-whitelist-enabled = false;
-              encryption = 1;
-            };
-        };
-
       cloudflared =
         { enable = true;
           certificateFile = config.age.secrets.cloudflare-cert.path;
