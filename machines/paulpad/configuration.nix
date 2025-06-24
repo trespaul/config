@@ -10,6 +10,9 @@
           allowedUDPPortRanges =
             [  { from = 1714; to = 1764; } # KDE Connect
             ];
+          allowedTCPPorts =
+            [ 9300 # Quick Share (Packet)
+            ];
         };
     };
 
