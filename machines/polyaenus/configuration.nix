@@ -143,4 +143,12 @@
           };
       };
 
+  age.secrets =
+    { cloudflare-tunnel.file =
+        ../../secrets/encrypted/cloudflare-tunnel.age;
+      cloudflare-cert.file =
+        ../../secrets/encrypted/cloudflare-cert.age;
+      anmari-cms.file =
+        ../../secrets/encrypted/container_anmari-cms_config.age;
+    };
 }
