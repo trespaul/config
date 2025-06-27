@@ -34,10 +34,25 @@
         };
     };
 
+  # for headless pipewire
+  systemd.user.services.wireplumber.wantedBy = [ "default.target" ];
+
   services =
     {
       throttled.enable = false;
       actual.enable = true;
+
+      pipewire =
+        { enable = true;
+          wireplumber.enable = true;
+          alsa.enable = true;
+          alsa.support32Bit = true;
+          pulse.enable = true;
+          jack.enable = true;
+
+          # for headless pipewire
+          socketActivation = false;
+        };
 
       kea.dhcp4 = # internet sharing
         { enable = true;
