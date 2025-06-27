@@ -5,8 +5,7 @@
     { hostName = "polyaenus";
       firewall =
         { allowedTCPPorts =
-            [ 80 443      # http(s)
-              1234        # spotifyd zeroconf
+            [ 1234        # spotifyd zeroconf
             ];
           allowedUDPPorts =
             [ 5353        # spotifyd zeroconf
