@@ -21,7 +21,6 @@
           "wget" = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
           "fd" = "fd --hidden";
           "rp" = "rippkgs";
-          "ns" = "nix-search";
           "adb" = "env HOME=${config.xdg.dataHome}/android adb";
           "g" = "git";
           "gd" = "git diff";
