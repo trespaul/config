@@ -205,6 +205,10 @@
           wget
           bat
           deploy-rs
+          libheif
+          libheif.out
         ];
+
+      pathsToLink = [ "share/thumbnailers" ];
     };
 }
