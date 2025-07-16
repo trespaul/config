@@ -9,7 +9,7 @@
           # networking tools
           mosh netscanner nmap
           # nix related
-          nix-output-monitor rippkgs nix-search nvd
+          nh nix-output-monitor
           # media utils
           amberol celluloid ffmpeg helvum pwvucontrol showtime
           # desktop environment
