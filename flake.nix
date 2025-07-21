@@ -68,6 +68,7 @@
                 extraModules =
                   [ ./modules/headless.nix
                     ./modules/k3s.nix
+                    ./modules/acme.nix
                   ];
                 extraHomeModules = [ ./machines/polyaenus/home.nix ];
               };
@@ -75,6 +76,7 @@
               { hostname = "metrodorus";
                 extraModules =
                   [ ./modules/headless.nix
+                    ./modules/acme.nix
                   ];
               };
             "leontion" = mkConfig

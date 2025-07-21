@@ -28,14 +28,15 @@
 
       caddy =
         { enable = true;
-          globalConfig = "skip_install_trust";
           virtualHosts =
-            { "jf.local".extraConfig =
-                ''
-                  reverse_proxy http://localhost:8096
-                  tls internal
-                '';
-            };
+            let
+              certs = "/var/lib/acme/metrodorus.in.trespaul.com";
+            in
+              { "jelly.metrodorus.in.trespaul.com".extraConfig = ''
+                    reverse_proxy http://localhost:8096
+                    tls ${certs}/cert.pem ${certs}/key.pem
+                  '';
+              };
         };
 
       jellyfin.enable = true;
