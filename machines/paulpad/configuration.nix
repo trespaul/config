@@ -30,6 +30,16 @@
       type = "ibus";
       ibus.engines = with pkgs.ibus-engines;
         [ pinyin ];
+
+  hardware =
+    { graphics =
+        { enable = true;
+          extraPackages = with pkgs;
+            [ intel-media-driver
+              vpl-gpu-rt
+            ];
+        };
+      sane.enable = true;
     };
 
   environment.systemPackages = with pkgs; [ ragenix ];
@@ -83,8 +93,6 @@
           usbmon.enable = true;
         };
     };
-
-  hardware.sane.enable = true;
 
   age =
     { identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
