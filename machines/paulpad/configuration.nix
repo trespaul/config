@@ -32,6 +32,8 @@
         [ pinyin ];
     };
 
+  environment.systemPackages = with pkgs; [ ragenix ];
+
   services =
     {
       desktopManager.gnome.enable = true;
