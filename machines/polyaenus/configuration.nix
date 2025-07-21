@@ -123,6 +123,11 @@
             };
         };
 
+      miniflux =
+        { enable = true;
+          config.LISTEN_ADDR = "0.0.0.0:8081";
+          adminCredentialsFile = config.age.secrets.miniflux-admin.path;
+        };
     };
 
   virtualisation.oci-containers.containers =
@@ -149,5 +154,7 @@
         ../../secrets/encrypted/cloudflare-cert.age;
       anmari-cms.file =
         ../../secrets/encrypted/container_anmari-cms_config.age;
+      miniflux-admin.file =
+        ../../secrets/encrypted/miniflux-admin.age;
     };
 }
