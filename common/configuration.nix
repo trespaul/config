@@ -51,9 +51,12 @@
         };
       hosts =
         { "100.127.18.104" = # polyaenus
-            [ "ha.local" ];
+            [ "home.in.trespaul.com"
+              "actual.in.trespaul.com"
+              "miniflux.in.trespaul.com"
+            ];
           "100.121.98.126" = # metrodorus
-            [ "jf.local" ];
+            [ "jelly.in.trespaul.com" ];
         };
     };
 

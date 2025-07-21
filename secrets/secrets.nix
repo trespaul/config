@@ -26,6 +26,7 @@ in
     "encrypted/borg_passphrase.age".publicKeys = [ paul paulpad ];
     "encrypted/cloudflare-tunnel.age".publicKeys = [ paul polyaenus ];
     "encrypted/cloudflare-cert.age".publicKeys = [ paul polyaenus ];
+    "encrypted/cloudflare-dns-api-env.age".publicKeys = [ paul polyaenus metrodorus ];
     "encrypted/container_anmari-cms_config.age".publicKeys = [ paul polyaenus ];
     "encrypted/miniflux-admin.age".publicKeys = [ paul polyaenus ];
     "encrypted/tailscale-authkey.age".publicKeys = all;

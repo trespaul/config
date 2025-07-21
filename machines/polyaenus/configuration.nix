@@ -82,19 +82,23 @@
 
       caddy =
         { enable = true;
-          globalConfig = "skip_install_trust";
           virtualHosts =
-            { "ha.local".extraConfig =
-                ''
-                  reverse_proxy http://localhost:8123
-                  tls internal
-                '';
-              "actual.local".extraConfig =
-                ''
-                  reverse_proxy http://localhost:3000
-                  tls internal
-                '';
-            };
+            let
+              certs = "/var/lib/acme/polyaenus.in.trespaul.com";
+            in
+              { "home.polyaenus.in.trespaul.com".extraConfig = ''
+                    reverse_proxy http://localhost:8123
+                    tls ${certs}/cert.pem ${certs}/key.pem
+                  '';
+                "actual.polyaenus.in.trespaul.com".extraConfig = ''
+                    reverse_proxy http://localhost:3000
+                    tls ${certs}/cert.pem ${certs}/key.pem
+                  '';
+                "miniflux.polyaenus.in.trespaul.com".extraConfig = ''
+                    reverse_proxy http://localhost:8081
+                    tls ${certs}/cert.pem ${certs}/key.pem
+                  '';
+              };
         };
 
       cloudflared =
