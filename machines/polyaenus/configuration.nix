@@ -139,7 +139,7 @@
       volumesDir = "/home/paul/container_volumes";
     in
       { anmari-cms =
-          { image = "directus/directus:11.9.0";
+          { image = "directus/directus:latest";
             autoStart = true;
             ports = [ "8080:8055" ];
             volumes =
