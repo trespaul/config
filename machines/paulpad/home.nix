@@ -123,6 +123,20 @@
             };
         };
 
+      jujutsu =
+        { enable = true;
+          settings =
+            { user =
+                { name = "Paul Joubert";
+                  email = "paul@trespaul.com";
+                };
+              signing =
+                { backend = "gpg";
+                  key = "8547C047479405D1AF8BA47C394493769D46A76C";
+                };
+              git.sign-on-push = true;
+            };
+        };
     };
 
   dconf =
