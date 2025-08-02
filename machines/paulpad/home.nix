@@ -39,7 +39,8 @@
           aircrack-ng bettercap hashcat hcxdumptool hcxtools iw macchanger
           tcpdump wireshark
           # document apps
-          dialect errands foliate libreoffice-fresh papers scantailor zotero
+          dialect errands foliate libreoffice-fresh papers planify scantailor
+          zotero
           # fonts
           brill inter iosevka noto-fonts-cjk-sans public-sans ubuntu_font_family
         ];
