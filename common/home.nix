@@ -189,22 +189,6 @@
 
       mergiraf.enable = true;
 
-      zsh =
-        { enable = true;
-          dotDir = ".config/zsh";
-          autosuggestion.enable = true;
-          enableCompletion = true;
-          completionInit = "autoload -U compinit && compinit -d ${config.xdg.cacheHome}/zsh/zcompdump-\"$ZSH_VERSION\"";
-          enableVteIntegration = true;
-          history.path = "${config.xdg.stateHome}/zsh/history";
-          syntaxHighlighting.enable = true;
-          oh-my-zsh =
-            { enable = true;
-              plugins = [ "git" "man" "dotenv" "sudo" ];
-              theme = "awesomepanda";
-            };
-        };
-
       bash =
         { enable = true;
           enableCompletion = true;
