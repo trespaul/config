@@ -119,7 +119,6 @@
             [ intel-media-driver
               #intel-ocl
               intel-compute-runtime
-              intel-media-sdk
               intel-vaapi-driver
               libva-vdpau-driver
             ];
