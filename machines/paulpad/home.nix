@@ -33,14 +33,14 @@
           # LSPs
           haskell-language-server ltex-ls-plus markdown-oxide
           marksman nil nodePackages.bash-language-server
-          nodePackages.typescript-language-server vscode-langservers-extracted
-          yaml-language-server
+          nodePackages.typescript-language-server tinymist
+          vscode-langservers-extracted yaml-language-server
           # pentesting
           aircrack-ng bettercap hashcat hcxdumptool hcxtools iw macchanger
           tcpdump wireshark
           # document apps
           dialect errands foliate libreoffice-fresh papers planify scantailor
-          zotero
+          typst zotero
           # fonts
           brill inter iosevka noto-fonts-cjk-sans public-sans ubuntu_font_family
         ];
