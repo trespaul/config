@@ -38,7 +38,7 @@
               deploy-rs, zen-browser, ... }:
     { nixosConfigurations =
         let
-          mkConfig = { hostname, extraModules ? [], extraHomeModules ? [] }:
+          mkConfig = hostname: { extraModules ? [], extraHomeModules ? [] }:
             nixpkgs.lib.nixosSystem
               { system = "x86_64-linux";
                 modules =
@@ -54,78 +54,66 @@
                           users.paul.imports =
                             [ ./common/home.nix
                               ragenix.homeManagerModules.default
-                            ] ++ extraHomeModules;
+                            ] ++
+                            ( let path = ./machines/${hostname}/home.nix;
+                              in ( if builtins.pathExists path then [ path ] else [] )
+                            );
                         };
                     }
                   ] ++ extraModules;
               };
         in
-          { "paulpad" = mkConfig
-              { hostname = "paulpad";
-                extraModules =
-                  [ lix-module.nixosModules.default
-                    musnix.nixosModules.musnix
-                  ];
-                extraHomeModules = [ ./machines/paulpad/home.nix ];
-              };
-            "polyaenus" = mkConfig
-              { hostname = "polyaenus";
-                extraModules =
-                  [ ./modules/headless.nix
-                    ./modules/k3s.nix
-                    ./modules/acme.nix
-                  ];
-                extraHomeModules = [ ./machines/polyaenus/home.nix ];
-              };
-            "metrodorus" = mkConfig
-              { hostname = "metrodorus";
-                extraModules =
-                  [ ./modules/headless.nix
-                    ./modules/acme.nix
-                  ];
-              };
-            "leontion" = mkConfig
-              { hostname = "leontion";
-                extraModules =
-                  [ ./modules/headless.nix
-                    ./modules/k3s.nix
-                  ];
-              };
-            "hermarchus" = mkConfig
-              { hostname = "hermarchus";
-                extraModules =
-                  [ ./modules/headless.nix
-                    ./modules/k3s.nix
-                  ];
-              };
-            "dionysius" = mkConfig
-              { hostname = "dionysius";
-                extraModules =
-                  [ ./modules/headless.nix
-                    ./modules/k3s.nix
-                  ];
-              };
-          };
+          builtins.mapAttrs mkConfig
+            { paulpad.extraModules =
+                [ lix-module.nixosModules.default
+                  musnix.nixosModules.musnix
+                ];
+              polyaenus.extraModules =
+                [ ./modules/headless.nix
+                  ./modules/k3s.nix
+                  ./modules/acme.nix
+                ];
+              metrodorus.extraModules =
+                [ ./modules/headless.nix
+                  ./modules/acme.nix
+                ];
+              leontion.extraModules =
+                [ ./modules/headless.nix
+                  ./modules/k3s.nix
+                ];
+              hermarchus.extraModules =
+                [ ./modules/headless.nix
+                  ./modules/k3s.nix
+                ];
+              dionysius.extraModules =
+                [ ./modules/headless.nix
+                  ./modules/k3s.nix
+                ];
+            };
 
       deploy =
         { remoteBuild = true;
           nodes =
             let
               mkNode = hostname:
-                { hostname = hostname;
-                  sshUser = "root";
-                  fastConnection = true;
-                  profiles.system.path =
-                    deploy-rs.lib.x86_64-linux.activate.nixos
-                      self.nixosConfigurations.${hostname};
+                { name = hostname;
+                  value =
+                    { inherit hostname;
+                      sshUser = "root";
+                      fastConnection = true;
+                      profiles.system.path =
+                        deploy-rs.lib.x86_64-linux.activate.nixos
+                          self.nixosConfigurations.${hostname};
+                    };
                 };
             in
-              { polyaenus  = mkNode "polyaenus";
-                metrodorus = mkNode "metrodorus";
-                leontion   = mkNode "leontion";
-                hermarchus = mkNode "hermarchus";
-                dionysius  = mkNode "dionysius";
-              };
+              builtins.listToAttrs <| builtins.map mkNode
+                [ "polyaenus"
+                  "metrodorus"
+                  "leontion"
+                  "hermarchus"
+                  "dionysius"
+                ];
         };
 
       checks =
