@@ -5,7 +5,12 @@
 
   nix =
     { settings =
-        { experimental-features = [ "nix-command" "flakes" "cgroups" ];
+        { experimental-features =
+            [ "nix-command" "flakes" "cgroups"] ++
+            ( if config.nix.package.pname == "lix"
+              then [ "pipe-operator" ]
+              else [ "pipe-operators" ]
+            );
           trusted-users = [ "paul" ];
           auto-optimise-store = true;
           use-xdg-base-directories = true;
