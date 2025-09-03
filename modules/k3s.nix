@@ -13,6 +13,11 @@ let
             { url = "https://raw.githubusercontent.com/longhorn/longhorn/v1.8.1/deploy/longhorn.yaml";
               sha256 = "1kcdpd1sjm15parxpk611xf6vi2ppcxv019fip611mq9f1kj92kr";
             };
+          # cnpg-operator.source = builtins.fetchurl
+          #   { url = "https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.25/releases/cnpg-1.25.1.yaml";
+          #     sha256 = "0hffc08ph73h05rzlhdp8ics37wylbnv2cih392hfrgg3y043qgc";
+          #   };
+          # secrets.yaml linked by ragenix; see below
         };
     };
   agentConfig =
@@ -52,4 +57,15 @@ in
     age.secrets =
       { k3s_token.file = ../secrets/encrypted/k3s_token.age;
       };
+      # //
+      # ( if isServer
+      #   then
+      #     { k3s_secrets =
+      #         { file = ../../secrets/encrypted/k3s_secrets.age;
+      #           path = "/var/lib/rancher/k3s/server/manifests/secrets.yaml"
+      #           # mode/owner/group...
+      #         };
+      #     }
+      #   else {}
+      # );
   }
