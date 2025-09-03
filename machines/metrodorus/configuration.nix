@@ -75,9 +75,7 @@
       extraPackages = with pkgs;
         [ intel-vaapi-driver
           libva-vdpau-driver
-          # intel-compute-runtime
-          # intel-compute-runtime-legacy1
-          intel-media-sdk
+          intel-compute-runtime
           intel-ocl
         ];
     };
