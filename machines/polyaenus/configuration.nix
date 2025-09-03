@@ -117,7 +117,7 @@
 
       home-assistant =
         { enable = true;
-          extraComponents = [ "esphome" "isal" "spotify" ];
+          extraComponents = [ "esphome" "isal" "spotify" "wake_on_lan" ];
           config =
             { default_config = {};
               http =
