@@ -88,6 +88,7 @@
       throttled.enable = lib.mkDefault true;
       dbus.implementation = "broker";
       power-profiles-daemon.enable = false;
+      fwupd.enable = true;
 
       auto-cpufreq =
         { enable = true;
