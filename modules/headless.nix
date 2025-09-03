@@ -1,6 +1,7 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 {
   programs.mosh.enable = true;
+  environment.systemPackages = with pkgs; [ zellij ];
 
   services =
     {
