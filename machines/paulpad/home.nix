@@ -5,9 +5,9 @@
     { packages = with pkgs;
         [
           # misc cli
-          parallel pinentry-gnome3 slides xdg-ninja yq-go
+          gpg-tui ouch parallel pinentry-gnome3 slides systemctl-tui yq-go
           # networking tools
-          mosh netscanner nmap
+          mdns-scanner mosh netscanner nmap rustscan slumber
           # nix related
           nh nix-output-monitor
           # media utils
@@ -36,8 +36,8 @@
           nodePackages.typescript-language-server tinymist
           vscode-langservers-extracted yaml-language-server
           # pentesting
-          aircrack-ng bettercap hashcat hcxdumptool hcxtools iw macchanger
-          tcpdump wireshark
+          aircrack-ng angryoxide bettercap hashcat hcxdumptool hcxtools iw
+          macchanger tcpdump wireshark
           # document apps
           dialect errands foliate libreoffice-fresh papers planify scantailor
           typst zotero
@@ -57,6 +57,8 @@
       gh.enable = true;
       gh-dash.enable = true;
       pandoc.enable = true;
+      hwatch.enable = true;
+      trippy.enable = true;
 
       ghostty =
         { enable = true;
