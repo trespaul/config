@@ -15,9 +15,9 @@
             };
         };
 
-      logind =
-        { lidSwitch = "suspend";
-          lidSwitchExternalPower = "lock";
+      logind.settings.Login =
+        { HandleLidSwitch = "suspend";
+          HandleLidSwitchExternalPower = "lock";
         };
 
       tailscale =
