@@ -53,6 +53,29 @@
           alsa.support32Bit = true;
           pulse.enable = true;
           jack.enable = true;
+          extraConfig =
+            { pipewire."10-airplay" =
+                { "context.modules" =
+                    [ { name = "libpipewire-module-raop-discover"; } ];
+                };
+              pipewire-pulse."30-network-discover" =
+                { "pulse.cmd" =
+                    [ { cmd = "load-module"; args = "module-zeroconf-discover"; } ];
+                };
+            };
+        };
+
+      avahi =
+        { enable = true;
+          # openFirewall = true;
+          allowInterfaces = [ "tailscale0" "wlp0s20f3" ];
+          nssmdns4 = true;
+          publish =
+            { enable = true;
+              domain = true;
+              userServices = true;
+              workstation = true;
+            };
         };
 
       printing.enable = true;

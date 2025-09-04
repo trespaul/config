@@ -52,6 +52,27 @@
 
           # for headless pipewire
           socketActivation = false;
+
+          # for network sink
+          extraConfig.pipewire-pulse."30-network-publish" =
+            { "pulse.cmd" =
+                [ { cmd = "load-module"; args = "module-native-protocol-tcp"; }
+                  { cmd = "load-module"; args = "module-zeroconf-publish"; }
+                ];
+            };
+        };
+
+      avahi =
+        { enable = true;
+          openFirewall = true;
+          # allowInterfaces = [ "tailscale0" ];
+          nssmdns4 = true;
+          publish =
+            { enable = true;
+              domain = true;
+              userServices = true;
+              workstation = true;
+            };
         };
 
       kea.dhcp4 = # internet sharing
