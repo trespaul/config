@@ -29,7 +29,7 @@
           # graphics & video apps
           darktable eyedropper gimp hugin inkscape-with-extensions scrcpy
           # dev
-          kubectl kubectl-cnpg
+          difftastic kubectl kubectl-cnpg
           # LSPs
           haskell-language-server ltex-ls-plus markdown-oxide
           marksman nil nodePackages.bash-language-server
@@ -138,6 +138,7 @@
                   key = "8547C047479405D1AF8BA47C394493769D46A76C";
                 };
               git.sign-on-push = true;
+              ui.diff-formatter = ["difft" "--color=always" "$left" "$right"];
             };
         };
     };
