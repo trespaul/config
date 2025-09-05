@@ -1,9 +1,11 @@
 { inputs, lib, config, pkgs, ... }:
 
 {
-  networking =
-    { hostName = "metrodorus";
-      interfaces.enp2s0.wakeOnLan.enable = true;
+  networking.interfaces.enp2s0.wakeOnLan.enable = true;
+
+  custom.reverse-proxy =
+    { enable = true;
+      hosts = [ { name = "jelly"; port = "8096"; } ];
     };
 
   services =
@@ -24,19 +26,6 @@
         { path = "/mnt/Storage/Borg/Files";
           authorizedKeys =
             [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOj4DSjX238kjfhhKjTk6e+ckMqaevQ1oGAn+zlEY9D3 borg@paulpad" ];
-        };
-
-      caddy =
-        { enable = true;
-          virtualHosts =
-            let
-              certs = "/var/lib/acme/metrodorus.in.trespaul.com";
-            in
-              { "jelly.metrodorus.in.trespaul.com".extraConfig = ''
-                    reverse_proxy http://localhost:8096
-                    tls ${certs}/cert.pem ${certs}/key.pem
-                  '';
-              };
         };
 
       jellyfin.enable = true;

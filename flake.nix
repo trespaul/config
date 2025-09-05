@@ -2,6 +2,7 @@
 
   inputs =
     { nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+      import-tree.url = "github:vic/import-tree";
       lix =
         { url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
           flake = false;
@@ -14,7 +15,6 @@
       ragenix =
         { url = "github:yaxitech/ragenix";
           inputs.nixpkgs.follows = "nixpkgs";
-          inputs.darwin.follows = "";
         };
       home-manager =
         { url = "github:nix-community/home-manager";
@@ -34,61 +34,50 @@
         };
     };
 
-  outputs = { self, nixpkgs, lix-module, ragenix, home-manager, musnix,
-              deploy-rs, zen-browser, ... }:
+  outputs = inputs@{ self, nixpkgs, deploy-rs, ... }:
     { nixosConfigurations =
         let
-          mkConfig = hostname: { extraModules ? [], extraHomeModules ? [] }:
-            nixpkgs.lib.nixosSystem
-              { system = "x86_64-linux";
-                modules =
-                  [ ./common/configuration.nix
-                    ./machines/${hostname}/configuration.nix
-                    ./machines/${hostname}/hardware-configuration.nix
-                    ragenix.nixosModules.default
-                    home-manager.nixosModules.home-manager
-                    { home-manager =
-                        { useGlobalPkgs = true;
-                          useUserPackages = true;
-                          extraSpecialArgs = { inherit zen-browser; };
-                          users.paul.imports =
-                            [ ./common/home.nix
-                              ragenix.homeManagerModules.default
-                            ] ++
-                            ( let path = ./machines/${hostname}/home.nix;
-                              in ( if builtins.pathExists path then [ path ] else [] )
-                            );
-                        };
-                    }
-                  ] ++ extraModules;
-              };
+          mkConfig = hostname: custom: nixpkgs.lib.nixosSystem
+            { system = "x86_64-linux";
+              modules =
+                [ { networking.hostName = hostname; }
+                  ( inputs.import-tree ./modules )
+                  ( inputs.import-tree ./machines/${hostname} )
+                  { inherit custom; }
+                  inputs.lix-module.nixosModules.default
+                  inputs.ragenix.nixosModules.default
+                  inputs.musnix.nixosModules.musnix
+                  inputs.home-manager.nixosModules.home-manager
+                  { home-manager =
+                      { useGlobalPkgs = true;
+                        useUserPackages = true;
+                        extraSpecialArgs = { inherit (inputs) zen-browser; };
+                        users.paul.imports =
+                          [ inputs.ragenix.homeManagerModules.default ];
+                      };
+                  }
+                ];
+            };
         in
           builtins.mapAttrs mkConfig
-            { paulpad.extraModules =
-                [ lix-module.nixosModules.default
-                  musnix.nixosModules.musnix
-                ];
-              polyaenus.extraModules =
-                [ ./modules/headless.nix
-                  ./modules/k3s.nix
-                  ./modules/acme.nix
-                ];
-              metrodorus.extraModules =
-                [ ./modules/headless.nix
-                  ./modules/acme.nix
-                ];
-              leontion.extraModules =
-                [ ./modules/headless.nix
-                  ./modules/k3s.nix
-                ];
-              hermarchus.extraModules =
-                [ ./modules/headless.nix
-                  ./modules/k3s.nix
-                ];
-              dionysius.extraModules =
-                [ ./modules/headless.nix
-                  ./modules/k3s.nix
-                ];
+            { paulpad =
+                { headless = false;
+                  lix = true;
+                };
+              polyaenus =
+                { internet-sharing.enable = true;
+                  k3s = true;
+                  acme = true;
+                  home.spotifyd = true;
+                };
+              metrodorus =
+                { acme = true; };
+              leontion =
+                { k3s = true; };
+              hermarchus =
+                { k3s = true; };
+              dionysius =
+                { k3s = true; };
             };
 
       deploy =
@@ -116,9 +105,8 @@
                 ];
         };
 
-      checks =
-        builtins.mapAttrs
-          (system: deployLib: deployLib.deployChecks self.deploy)
-          deploy-rs.lib;
+      checks = builtins.mapAttrs
+        ( system: deployLib: deployLib.deployChecks self.deploy )
+        deploy-rs.lib;
     };
 }

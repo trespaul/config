@@ -2,8 +2,7 @@
 
 {
   networking =
-    { hostName = "paulpad";
-      firewall =
+    { firewall =
         { allowedTCPPortRanges =
             [  { from = 1714; to = 1764; } # KDE Connect
             ];  
