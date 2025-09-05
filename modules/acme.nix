@@ -1,22 +1,30 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
-  security.acme =
-    let
-      domain = "${config.networking.hostName}.in.trespaul.com";
-    in
-      { acceptTerms = true;
-        defaults.email = "acme@trespaul.com";
-        certs.${domain} =
-          { group = config.services.caddy.group;
-            domain = domain;
-            extraDomainNames = [ "*.${domain}" ];
-            dnsProvider = "cloudflare";
-            dnsResolver = "1.1.1.1:53";
-            dnsPropagationCheck = true;
-            environmentFile = config.age.secrets.cloudflare-dns-api-env.path;
-          };
-      };
+  options.custom.acme = lib.mkOption
+    { type = lib.types.bool;
+      default = false;
+      description = "enable acme certs under hostname subdomain.";
+    };
 
-  age.secrets.cloudflare-dns-api-env.file =
-    ../secrets/encrypted/cloudflare-dns-api-env.age;
+  config = lib.mkIf config.custom.acme
+    { security.acme =
+        let
+          domain = "${config.networking.hostName}.in.trespaul.com";
+        in
+          { acceptTerms = true;
+            defaults.email = "acme@trespaul.com";
+            certs.${domain} =
+              { group = config.services.caddy.group;
+                domain = domain;
+                extraDomainNames = [ "*.${domain}" ];
+                dnsProvider = "cloudflare";
+                dnsResolver = "1.1.1.1:53";
+                dnsPropagationCheck = true;
+                environmentFile = config.age.secrets.cloudflare-dns-api-env.path;
+              };
+          };
+
+      age.secrets.cloudflare-dns-api-env.file =
+        ../secrets/encrypted/cloudflare-dns-api-env.age;
+    };
 }
