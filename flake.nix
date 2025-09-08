@@ -40,10 +40,15 @@
           mkConfig = hostname: custom: nixpkgs.lib.nixosSystem
             { system = "x86_64-linux";
               modules =
+                # all modules external and internal are imported automatically;
+                # they must be configured in `custom` config (given below in
+                # the machine attrs) or in machine-specific ./machines/….nix
                 [ { networking.hostName = hostname; }
+                  # internal modules:
                   ( inputs.import-tree ./modules )
                   ( inputs.import-tree ./machines/${hostname} )
                   { inherit custom; }
+                  # external:
                   inputs.lix-module.nixosModules.default
                   inputs.ragenix.nixosModules.default
                   inputs.musnix.nixosModules.musnix
@@ -60,6 +65,7 @@
             };
         in
           builtins.mapAttrs mkConfig
+            # { hostname = custom };
             { paulpad =
                 { headless = false;
                   lix = true;
