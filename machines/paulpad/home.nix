@@ -61,7 +61,7 @@
           ghostty =
             { enable = true;
               settings =
-                { theme = "GruvboxDarkHard";
+                { theme = "Gruvbox Dark Hard";
                   font-family = "Iosevka Extended";
                   font-feature = "+NWID";
                   cursor-style = "bar";
