@@ -115,8 +115,12 @@
 
     };
 
-  # for audio
-  security.rtkit.enable = true;
+  security =
+    { sudo-rs.enable = true;
+
+      # for audio
+      rtkit.enable = true;
+    };
 
   hardware =
     { graphics =
