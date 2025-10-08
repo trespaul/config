@@ -102,7 +102,6 @@
 
   programs =
     { steam.enable = true; # doesn't work as user program
-      adb.enable = true;
       gnupg.agent.enable = true;
       wireshark =
         { enable = true;
