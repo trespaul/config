@@ -59,15 +59,17 @@
                 { headless = false; };
               polyaenus =
                 { internet-sharing.enable = true;
-                  k3s = true;
-                  acme = true;
+                  # k3s = true;
                   home.spotifyd = true;
-                  repo-watcher = true;
                 };
               metrodorus =
                 { acme = true; };
               leontion =
-                { k3s = true; };
+                {
+                  # k3s = true;
+                  repo-watcher = true;
+                  acme = true;
+                };
               hermarchus =
                 { k3s = true; };
               dionysius =
