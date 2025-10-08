@@ -55,10 +55,10 @@
           interfaces."podman*".allowedUDPPorts = [ 53 ];
         };
       hosts =
-        { "100.127.18.104" = # polyaenus
-            [ "home.polyaenus.in.trespaul.com"
-              "actual.polyaenus.in.trespaul.com"
-              "miniflux.polyaenus.in.trespaul.com"
+        { "100.77.247.56" = # leontion
+            [ "miniflux.leontion.in.trespaul.com"
+              # "home.leontion.in.trespaul.com"
+              # "actual.leontion.in.trespaul.com"
             ];
           "100.121.98.126" = # metrodorus
             [ "jelly.metrodorus.in.trespaul.com" ];
