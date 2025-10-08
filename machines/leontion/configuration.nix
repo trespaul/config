@@ -49,7 +49,7 @@
 
       home-assistant =
         { enable = true;
-          extraComponents = [ "esphome" "isal" "spotify" "wake_on_lan" ];
+          extraComponents = [ "esphome" "isal" "spotify" "wake_on_lan" "ibeacon" "apple_tv" "google_translate" "met" "radio_browser" "shopping_list" "zeroconf" ];
           config =
             { default_config = {};
               http =
