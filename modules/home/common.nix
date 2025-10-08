@@ -138,6 +138,9 @@
                           { command = "roc"; args = [ "format" "--stdin" "--stdout"]; };
                         auto-pairs = { "(" = ")"; "{" = "}"; "[" = "]"; "\"" = "\""; };
                       }
+                      { name = "typst";
+                        language-servers = [ "tinymist" "ltex-ls-plus" ];
+                      }
                     ];
                   language-server =
                     { ltex-ls-plus =
