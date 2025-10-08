@@ -60,7 +60,6 @@
               polyaenus =
                 { internet-sharing.enable = true;
                   # k3s = true;
-                  home.spotifyd = true;
                 };
               metrodorus =
                 { acme = true; };
@@ -69,6 +68,7 @@
                   # k3s = true;
                   repo-watcher = true;
                   acme = true;
+                  headless-pipewire.enable = true;
                 };
               hermarchus =
                 { k3s = true; };
