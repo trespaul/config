@@ -206,7 +206,7 @@
 
           nushell =
             { enable = true;
-              extraConfig =
+              extraConfig = # nu
                 ''
                   $env.GNUPGHOME = "${config.xdg.dataHome}/gnupg"
                   $env.EDITOR = "hx"
