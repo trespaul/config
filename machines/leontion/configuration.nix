@@ -7,7 +7,7 @@
     { enable = true;
       hosts =
         [ { name = "miniflux"; port = "8081"; }
-          # { name = "home";     port = "8123"; }
+          { name = "home";     port = "8123"; }
         ];
     };
 
@@ -47,17 +47,17 @@
           adminCredentialsFile = config.age.secrets.miniflux-admin.path;
         };
 
-      # home-assistant =
-      #   { enable = true;
-      #     extraComponents = [ "esphome" "isal" "spotify" "wake_on_lan" ];
-      #     config =
-      #       { default_config = {};
-      #         http =
-      #           { trusted_proxies = [ "::1" ];
-      #             use_x_forwarded_for = true;
-      #           };
-      #       };
-      #   };
+      home-assistant =
+        { enable = true;
+          extraComponents = [ "esphome" "isal" "spotify" "wake_on_lan" ];
+          config =
+            { default_config = {};
+              http =
+                { trusted_proxies = [ "::1" ];
+                  use_x_forwarded_for = true;
+                };
+            };
+        };
     };
 
   age.secrets =
