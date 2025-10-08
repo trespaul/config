@@ -57,6 +57,8 @@
           hwatch.enable = true;
           trippy.enable = true;
 
+          nushell.plugins = with pkgs.nushellPlugins; [ polars query ];
+
           ghostty =
             { enable = true;
               settings =
