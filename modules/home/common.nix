@@ -173,17 +173,23 @@
 
           git =
             { enable = true;
-              userName = "Paul Joubert";
-              userEmail = "paul@trespaul.com";
-              extraConfig =
-                { core.whitespace = "error";
+              settings =
+                { user =
+                    { name = "Paul Joubert";
+                      email = "paul@trespaul.com";
+                    };
+                  core.whitespace = "error";
                   merge.conflictStyle = "diff3";
                 };
-              difftastic.enable = true;
               signing =
                 { key = "8547C047479405D1AF8BA47C394493769D46A76C";
                   signByDefault = true;
                 };
+            };
+
+          difftastic =
+            { enable = true;
+              git.enable = true;
             };
 
           mergiraf.enable = true;
