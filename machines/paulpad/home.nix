@@ -3,7 +3,8 @@
     { home =
         { packages = with pkgs;
             [ # misc cli
-              gpg-tui ouch parallel pinentry-gnome3 slides systemctl-tui yq-go
+              android-tools gpg-tui ouch parallel pinentry-gnome3 slides
+              systemctl-tui yq-go
               # networking tools
               mdns-scanner mosh netscanner nmap rustscan slumber
               # nix related
@@ -11,8 +12,8 @@
               # media utils
               amberol celluloid ffmpeg helvum pwvucontrol showtime
               # desktop environment
-              gnomeExtensions.gsconnect gnome-tweaks gnome-themes-extra
-              gnome-decoder gnome-solanum
+              file-roller gnomeExtensions.gsconnect gnome-tweaks
+              gnome-themes-extra gnome-decoder gnome-solanum
               # document cli utils
               hunspell ghostscript pdftk poppler-utils jbig2dec jbig2enc librsvg
               libtiff ocrmypdf texliveFull
@@ -36,7 +37,7 @@
               aircrack-ng angryoxide bettercap hashcat hcxdumptool hcxtools iw
               macchanger tcpdump wireshark
               # document apps
-              dialect errands foliate libreoffice-fresh papers planify
+              dialect errands foliate geary libreoffice-fresh papers planify
               scantailor-advanced typst zotero
               # fonts
               brill inter iosevka noto-fonts-cjk-sans public-sans ubuntu-sans
