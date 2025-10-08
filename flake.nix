@@ -63,6 +63,7 @@
                   k3s = true;
                   acme = true;
                   home.spotifyd = true;
+                  repo-watcher = true;
                 };
               metrodorus =
                 { acme = true; };

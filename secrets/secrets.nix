@@ -29,6 +29,7 @@ in
     "encrypted/cloudflare-dns-api-env.age".publicKeys = [ paul polyaenus metrodorus ];
     "encrypted/container_anmari-cms_config.age".publicKeys = [ paul polyaenus ];
     "encrypted/miniflux-admin.age".publicKeys = [ paul polyaenus ];
+    "encrypted/repo-watcher-env.age".publicKeys = [ paul polyaenus ];
     "encrypted/tailscale-authkey.age".publicKeys = all;
     "encrypted/k3s_token.age".publicKeys = all;
   }
