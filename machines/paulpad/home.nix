@@ -11,16 +11,15 @@
               # media utils
               amberol celluloid ffmpeg helvum pwvucontrol showtime
               # desktop environment
-              gnomeExtensions.gsconnect gnome-tweaks gpaste gnome-themes-extra smile
-              gnomeExtensions.smile-complementary-extension
+              gnomeExtensions.gsconnect gnome-tweaks gnome-themes-extra
               gnome-decoder gnome-solanum
               # document cli utils
-              hunspell ghostscript pdftk poppler_utils jbig2dec jbig2enc librsvg
+              hunspell ghostscript pdftk poppler-utils jbig2dec jbig2enc librsvg
               libtiff ocrmypdf texliveFull
               # internet
               signal-desktop-bin telegram-desktop tuba vesktop warp wike
-              bitwarden fractal fragments gnome-connections newsflash packet
-              zen-browser.packages.${system}.default
+              bitwarden-desktop fractal fragments gnome-connections newsflash
+              packet zen-browser.packages.${stdenv.hostPlatform.system}.default
               # audio production
               ardour audacity bespokesynth calf cardinal haskellPackages.tidal
               lsp-plugins musescore plugdata supercollider-with-sc3-plugins vital
@@ -37,10 +36,10 @@
               aircrack-ng angryoxide bettercap hashcat hcxdumptool hcxtools iw
               macchanger tcpdump wireshark
               # document apps
-              dialect errands foliate libreoffice-fresh papers planify scantailor
-              typst zotero
+              dialect errands foliate libreoffice-fresh papers planify
+              scantailor-advanced typst zotero
               # fonts
-              brill inter iosevka noto-fonts-cjk-sans public-sans ubuntu_font_family
+              brill inter iosevka noto-fonts-cjk-sans public-sans ubuntu-sans
             ];
 
         };
