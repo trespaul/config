@@ -40,7 +40,7 @@
               # networking tools
               dnsutils ldns sshfs
               # system tools
-              clinfo glxinfo iftop iotop lsof ltrace strace ethtool lm_sensors
+              clinfo mesa-demos iftop iotop lsof ltrace strace ethtool lm_sensors
               pciutils usbutils
               # internet utils
               magic-wormhole

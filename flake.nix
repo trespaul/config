@@ -29,8 +29,7 @@
     { nixosConfigurations =
         let
           mkConfig = hostname: custom: nixpkgs.lib.nixosSystem
-            { system = "x86_64-linux";
-              modules =
+            { modules =
                 # all modules external and internal are imported automatically;
                 # they must be configured in `custom` config (given below in
                 # the machine attrs) or in machine-specific ./machines/….nix
