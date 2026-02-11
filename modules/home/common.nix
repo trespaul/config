@@ -179,6 +179,7 @@
               signing =
                 { key = "8547C047479405D1AF8BA47C394493769D46A76C";
                   signByDefault = true;
+                  format = null;
                 };
             };
 
