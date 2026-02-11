@@ -137,7 +137,10 @@
                     { backend = "gpg";
                       key = "8547C047479405D1AF8BA47C394493769D46A76C";
                     };
-                  git.sign-on-push = true;
+                  git =
+                    { sign-on-push = true;
+                      write-change-id-header = true;
+                    };
                   ui =
                     { default-command = "log";
                       diff-formatter = ["difft" "--color=always" "$left" "$right"];
