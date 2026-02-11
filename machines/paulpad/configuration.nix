@@ -20,6 +20,7 @@
       kernelModules = [ "v4l2loopback" ];
       extraModprobeConfig =
         ''options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"'';
+      enableContainers = true;
     };
 
   musnix.enable = true;
