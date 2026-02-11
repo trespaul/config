@@ -147,6 +147,10 @@
                         };
                       roc-ls =
                         { command = "roc_language_server"; };
+                      rust-analyzer.config =
+                        { cargo.features = "all";
+                          check.command = "clippy";
+                        };
                     };
                   grammar =
                     [ { name = "roc";
@@ -184,7 +188,11 @@
               git.enable = true;
             };
 
-          mergiraf.enable = true;
+          mergiraf =
+            { enable = true;
+              enableGitIntegration = true;
+              enableJujutsuIntegration = true;
+            };
 
           bash =
             { enable = true;
