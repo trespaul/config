@@ -66,6 +66,7 @@
               leontion =
                 {
                   # k3s = true;
+                  kanidm.enable = true;
                   repo-watcher = true;
                   acme = true;
                   headless-pipewire.enable = true;

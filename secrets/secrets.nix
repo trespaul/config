@@ -32,4 +32,5 @@ in
     "encrypted/repo-watcher-env.age".publicKeys = [ paul leontion ];
     "encrypted/tailscale-authkey.age".publicKeys = all;
     "encrypted/k3s_token.age".publicKeys = all;
+    "encrypted/kanidm.key.pem.age".publicKeys = [ paul leontion ];
   }

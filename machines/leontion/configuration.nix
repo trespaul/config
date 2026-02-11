@@ -40,7 +40,11 @@
                 { credentialsFile = config.age.secrets.cloudflare-tunnel.path;
                   default = "http_status:404";
                   ingress =
-                    { "anmari.trespaul.com" = "http://127.0.0.1:8080";
+                    { "anmari.trespaul.com" =  "http://127.0.0.1:8080";
+                      "auth.trespaul.com" =
+                        { service = "https://127.0.0.1:8443";
+                          originRequest.originServerName = "kanidm";
+                        };
                     };
                 };
             };

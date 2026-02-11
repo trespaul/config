@@ -125,6 +125,8 @@
       sudo.enable = false;
       run0.enableSudoAlias = true;
 
+      pki.certificateFiles = [ ./r1.crt.pem ];
+
       # for audio
       rtkit.enable = true;
     };
