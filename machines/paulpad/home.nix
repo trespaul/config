@@ -16,7 +16,7 @@
               gnome-themes-extra gnome-decoder gnome-solanum
               # document cli utils
               hunspell ghostscript pdftk poppler-utils jbig2dec jbig2enc librsvg
-              libtiff ocrmypdf texliveFull
+              libtiff ocrmypdf
               # internet
               signal-desktop telegram-desktop tuba vesktop warp wike
               bitwarden-desktop fractal fragments gnome-connections newsflash
