@@ -78,6 +78,7 @@
               enableZshIntegration = true;
               enableBashIntegration = true;
               enableNushellIntegration = true;
+              shellWrapperName = "y";
               settings =
                 { mgr =
                     { sort_by = "natural";

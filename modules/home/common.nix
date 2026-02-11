@@ -10,8 +10,6 @@
             { "l" = "eza -l";
               "la" = "eza -la";
               "lt" = "eza -laT";
-              "x" = "xdg-open";
-              "y" = "yazi";
               "qmv" = "qmv --format destination-only";
               "ffmpeg" = "ffmpeg -hide_banner";
               "ffprobe" = "ffprobe -hide_banner";
@@ -19,17 +17,7 @@
               "s" = "ssh";
               "wget" = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
               "fd" = "fd --hidden";
-              "rp" = "rippkgs";
               "adb" = "env HOME=${config.xdg.dataHome}/android adb";
-              "g" = "git";
-              "gd" = "git diff";
-              "gds" = "git diff --staged";
-              "gl" = "git log";
-              "gst" = "git status";
-              "ga" = "git add";
-              "gaa" = "git add --all";
-              "gc" = "git commit --verbose";
-              "gp" = "git push";
               "k" = "kubecolor";
             };
 
