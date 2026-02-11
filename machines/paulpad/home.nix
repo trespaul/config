@@ -29,9 +29,8 @@
               # dev
               difftastic kubectl kubectl-cnpg
               # LSPs
-              haskell-language-server ltex-ls-plus markdown-oxide
-              marksman nil nodePackages.bash-language-server
-              nodePackages.typescript-language-server tinymist
+              haskell-language-server ltex-ls-plus markdown-oxide marksman
+              nil bash-language-server typescript-language-server tinymist
               vscode-langservers-extracted yaml-language-server
               # pentesting
               aircrack-ng angryoxide bettercap hashcat hcxdumptool hcxtools iw
