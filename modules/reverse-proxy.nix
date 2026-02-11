@@ -19,13 +19,13 @@
     { enable = true;
       virtualHosts =
         let
-          certs = "/var/lib/acme/${config.networking.hostName}.in.trespaul.com";
+          subdomain = "${config.networking.hostName}.in.trespaul.com";
           mkHost = { name, port }:
-            { name = "${name}.${config.networking.hostName}.in.trespaul.com";
-              value.extraConfig = ''
-                reverse_proxy http://localhost:${port}
-                tls ${certs}/cert.pem ${certs}/key.pem
-              '';
+            { name = "${name}.${subdomain}";
+              value =
+                { useACMEHost = subdomain;
+                  extraConfig = "reverse_proxy http://localhost:${port}";
+                };
             };
         in
           builtins.listToAttrs <| builtins.map mkHost config.custom.reverse-proxy.hosts;
