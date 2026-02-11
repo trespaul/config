@@ -10,7 +10,7 @@
               # nix related
               nh nix-output-monitor
               # media utils
-              amberol celluloid ffmpeg helvum pwvucontrol showtime
+              amberol celluloid crosspipe ffmpeg pwvucontrol showtime
               # desktop environment
               file-roller gnomeExtensions.gsconnect gnome-tweaks
               gnome-themes-extra gnome-decoder gnome-solanum
@@ -18,7 +18,7 @@
               hunspell ghostscript pdftk poppler-utils jbig2dec jbig2enc librsvg
               libtiff ocrmypdf texliveFull
               # internet
-              signal-desktop-bin telegram-desktop tuba vesktop warp wike
+              signal-desktop telegram-desktop tuba vesktop warp wike
               bitwarden-desktop fractal fragments gnome-connections newsflash
               packet zen-browser.packages.${stdenv.hostPlatform.system}.default
               # audio production
