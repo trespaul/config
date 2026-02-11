@@ -27,6 +27,11 @@
 
   services =
     {
+      postgresql =
+        { enable = true;
+          package = pkgs.postgresql_18;
+        };
+
       cloudflared =
         { enable = true;
           certificateFile = config.age.secrets.cloudflare-cert.path;
