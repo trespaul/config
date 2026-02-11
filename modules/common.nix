@@ -89,6 +89,10 @@
       dbus.implementation = "broker";
       power-profiles-daemon.enable = false;
       fwupd.enable = true;
+      kmscon =
+        { enable = true;
+          fonts = [ { name = "Iosevka Extended"; package = pkgs.iosevka; } ];
+        };
 
       auto-cpufreq =
         { enable = true;
@@ -116,7 +120,10 @@
     };
 
   security =
-    { sudo-rs.enable = true;
+    {
+      # sudo-rs.enable = true;
+      sudo.enable = false;
+      run0.enableSudoAlias = true;
 
       # for audio
       rtkit.enable = true;

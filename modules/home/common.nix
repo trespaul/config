@@ -10,6 +10,7 @@
             { "l" = "eza -l";
               "la" = "eza -la";
               "lt" = "eza -laT";
+              "sudo" = "run0 --empower";
               "qmv" = "qmv --format destination-only";
               "ffmpeg" = "ffmpeg -hide_banner";
               "ffprobe" = "ffprobe -hide_banner";
