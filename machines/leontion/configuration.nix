@@ -52,7 +52,15 @@
 
       miniflux =
         { enable = true;
-          config.LISTEN_ADDR = "0.0.0.0:8081";
+          config =
+            { LISTEN_ADDR = "0.0.0.0:8081";
+              OAUTH2_PROVIDER = "oidc";
+              OAUTH2_CLIENT_ID = "miniflux";
+              OAUTH2_REDIRECT_URL = "https://miniflux.leontion.in.trespaul.com/oauth2/oidc/callback";
+              OAUTH2_OIDC_DISCOVERY_ENDPOINT = "https://auth.trespaul.com/oauth2/openid/miniflux";
+              OAUTH2_USER_CREATION = 1;
+              DISABLE_LOCAL_AUTH = 1;
+            };
           adminCredentialsFile = config.age.secrets.miniflux-admin.path;
         };
 
