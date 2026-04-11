@@ -6,6 +6,10 @@
       ragenix =
         { url = "github:yaxitech/ragenix";
           inputs.nixpkgs.follows = "nixpkgs";
+          inputs.agenix.inputs =
+            { home-manager.follows = "home-manager";
+              darwin.follows = "";
+            };
         };
       home-manager =
         { url = "github:nix-community/home-manager";
@@ -20,8 +24,11 @@
           inputs.nixpkgs.follows = "nixpkgs";
         };
       zen-browser =
-        { url = "github:mrcjkb/zen-browser-flake";
-          inputs.nixpkgs.follows = "nixpkgs";
+        { url = "github:0xc000022070/zen-browser-flake";
+          inputs =
+            { nixpkgs.follows = "nixpkgs";
+              home-manager.follows = "home-manager";
+            };
         };
     };
 
