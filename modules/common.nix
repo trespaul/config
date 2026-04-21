@@ -166,7 +166,7 @@
                 description = "Paul Joubert";
                 extraGroups =
                   [ "networkmanager" "wheel" "audio" "dialout"
-                    "adbusers" "wireshark" "scanner"
+                    "adbusers" "wireshark" "scanner" "libvirtd"
                   ];
                 shell = pkgs.nushell;
                 linger = true;
