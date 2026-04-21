@@ -78,6 +78,8 @@
       services =
         { NetworkManager-wait-online.enable = false;
           nix-daemon.environment.TMPDIR = "/var/tmp"; # don't use tmpfs
+          tailscaled.serviceConfig.Environment =
+            [ "TS_DEBUG_FIREWALL_MODE=nftables" ];
         };
     };
 
