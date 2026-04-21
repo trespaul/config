@@ -111,55 +111,38 @@
 
           nushell =
             { enable = true;
+              shellAliases = config.home.shellAliases;
+              settings =
+                { filesize.unit = "metric";
+                  highlight_resolved_externals = true;
+                  show_banner = false;
+                  use_kitty_protocol = true;
+                  table =
+                    { mode = "light";
+                      index_mode = "auto";
+                    };
+                  datetime_format =
+                    { normal = "%a %Y-%m-%d %H:%M:%S %z";
+                      table = "%a %Y-%m-%d %H:%M:%S";
+                    };
+                  completions =
+                    { case_sensitive = false;
+                      algorithm = "fuzzy";
+                      external.enable = true;
+                    };
+                };
+              environmentVariables =
+                { GNUPGHOME = "${config.xdg.dataHome}/gnupg";
+                  EDITOR = "hx";
+                };
               extraConfig = # nu
                 ''
-                  $env.GNUPGHOME = "${config.xdg.dataHome}/gnupg"
-                  $env.EDITOR = "hx"
-
-                  let carapace_completer = { |spans: list<string>|
-                    carapace $spans.0 nushell ...$spans
-                    | from json
-                    | if ($in | default [] | where value == $"($spans | last)ERR" | is-empty) { $in } else { null }
-                  }
-
-                  let multiple_completers = { |spans|
-                    # alias completions fix
-                    let expanded_alias = (scope aliases | where name == $spans.0 | get -o 0 | get -o expansion)
-                    let spans = (if $expanded_alias != null  {
-                      $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1)
-                    } else { $spans })
-
-                    match $spans.0 {
-                      _ => $carapace_completer
-                    } | do $in $spans
-                  }
-
-                  $env.config = {
-                    table: {
-                      mode: light
-                      index_mode: auto
-                    }
-                    filesize: {
-                      unit: metric
-                    }
-                    datetime_format: {
-                      normal: "%a %Y-%m-%d %H:%M:%S %z"
-                      table:  "%a %Y-%m-%d %H:%M:%S"
-                    }
-                    completions: {
-                      case_sensitive: false
-                      algorithm: "fuzzy"
-                      external: {
-                        enable: true
-                        completer: $multiple_completers
-                      }
-                    }
-                    highlight_resolved_externals: true
-                    show_banner: false
-                    use_kitty_protocol: true
+                  $env.config.completions.external.completer = {
+                    |spans: list<string>|
+                      CARAPACE_LENIENT=1 carapace $spans.0 nushell ...$spans
+                      | from json
                   }
                 '';
-              shellAliases = config.home.shellAliases;
             };
 
           atuin =
