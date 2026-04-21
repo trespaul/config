@@ -11,7 +11,7 @@
 
   config = lib.mkIf config.custom.kanidm.enable
     { services.kanidm =
-        { package = pkgs.kanidm_1_9;
+        { package = pkgs.kanidm_1_10;
           server =
             { enable = true;
               settings =
