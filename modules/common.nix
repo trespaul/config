@@ -42,7 +42,10 @@
             };
           efi.canTouchEfiVariables = true;
         };
-      initrd.systemd.enable = true;
+      initrd.systemd =
+        { enable = true;
+          network.wait-online.enable = false;
+        };
       tmp.useTmpfs = true;
     };
 
@@ -70,9 +73,12 @@
       powertop.enable = true;
     };
 
-  systemd.services =
-    { NetworkManager-wait-online.enable = false;
-      nix-daemon.environment.TMPDIR = "/var/tmp"; # don't use tmpfs
+  systemd =
+    { network.wait-online.enable = false;
+      services =
+        { NetworkManager-wait-online.enable = false;
+          nix-daemon.environment.TMPDIR = "/var/tmp"; # don't use tmpfs
+        };
     };
 
   time.timeZone = "Africa/Johannesburg";
