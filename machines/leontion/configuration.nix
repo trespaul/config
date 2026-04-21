@@ -11,20 +11,6 @@
         ];
     };
 
-  virtualisation.oci-containers.containers =
-    { anmari-cms =
-        { image = "directus/directus:latest";
-          autoStart = true;
-          ports = [ "8080:8055" ];
-          volumes =
-            [ "anmari-cms-database:/directus/database"
-              "anmari-cms-uploads:/directus/uploads"
-              "anmari-cms-extensions:/directus/extensions"
-            ];
-          environmentFiles = [ config.age.secrets.anmari-cms.path ];
-        };
-    };
-
   services =
     {
       postgresql =
@@ -40,8 +26,7 @@
                 { credentialsFile = config.age.secrets.cloudflare-tunnel.path;
                   default = "http_status:404";
                   ingress =
-                    { "anmari.trespaul.com" =  "http://127.0.0.1:8080";
-                      "auth.trespaul.com" =
+                    { "auth.trespaul.com" =
                         { service = "https://127.0.0.1:8443";
                           originRequest.originServerName = "kanidm";
                         };
@@ -82,8 +67,6 @@
         ../../secrets/encrypted/cloudflare-tunnel.age;
       cloudflare-cert.file =
         ../../secrets/encrypted/cloudflare-cert.age;
-      anmari-cms.file =
-        ../../secrets/encrypted/container_anmari-cms_config.age;
       miniflux-admin.file =
         ../../secrets/encrypted/miniflux-admin.age;
    };

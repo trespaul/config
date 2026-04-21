@@ -27,7 +27,6 @@ in
     "encrypted/cloudflare-tunnel.age".publicKeys = [ paul leontion ];
     "encrypted/cloudflare-cert.age".publicKeys = [ paul leontion ];
     "encrypted/cloudflare-dns-api-env.age".publicKeys = [ paul leontion metrodorus ];
-    "encrypted/container_anmari-cms_config.age".publicKeys = [ paul leontion ];
     "encrypted/miniflux-admin.age".publicKeys = [ paul leontion ];
     "encrypted/repo-watcher-env.age".publicKeys = [ paul leontion ];
     "encrypted/tailscale-authkey.age".publicKeys = all;
