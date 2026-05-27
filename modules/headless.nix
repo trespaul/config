@@ -8,7 +8,6 @@
 
   config = lib.mkIf config.custom.headless
     { boot.kernelParams = [ "consoleblank=10" ];
-      programs.mosh.enable = true;
       environment.systemPackages = with pkgs; [ zellij ];
 
       services =

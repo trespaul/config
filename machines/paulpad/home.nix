@@ -3,41 +3,34 @@
     { home =
         { packages = with pkgs;
             [ # misc cli
-              android-tools gpg-tui ouch parallel pinentry-gnome3 slides
-              systemctl-tui yq-go
+              android-tools gpg-tui ouch pinentry-gnome3 systemctl-tui
               # networking tools
-              mdns-scanner mosh netscanner nmap rustscan slumber
+              mdns-scanner netscanner nmap rustscan slumber
               # nix related
-              nh nix-output-monitor
+              nix-output-monitor
               # media utils
               amberol celluloid crosspipe ffmpeg pwvucontrol showtime
               # desktop environment
-              file-roller gnomeExtensions.gsconnect gnome-tweaks
-              gnome-themes-extra gnome-decoder gnome-solanum
+              file-roller gnome-tweaks gnome-themes-extra gnome-decoder
               # document cli utils
               hunspell ghostscript pdftk poppler-utils jbig2dec jbig2enc librsvg
               libtiff ocrmypdf
               # internet
-              signal-desktop telegram-desktop tuba vesktop warp wike fractal
-              fragments gnome-connections newsflash
-              packet zen-browser.packages.${stdenv.hostPlatform.system}.default
+              signal-desktop tuba warp fractal fragments
+              gnome-connections newsflash packet
+              zen-browser.packages.${stdenv.hostPlatform.system}.default
               # audio production
-              ardour audacity bespokesynth calf cardinal haskellPackages.tidal
-              lsp-plugins musescore plugdata supercollider-with-sc3-plugins vital
+              ardour cardinal lsp-plugins plugdata vital
               # graphics & video apps
-              darktable eyedropper gimp hugin inkscape-with-extensions scrcpy
+              darktable eyedropper gimp inkscape-with-extensions scrcpy
               # dev
               kubectl kubectl-cnpg
               # LSPs
               haskell-language-server ltex-ls-plus markdown-oxide marksman
               nil bash-language-server typescript-language-server tinymist
               vscode-langservers-extracted yaml-language-server
-              # pentesting
-              aircrack-ng angryoxide bettercap hashcat hcxdumptool hcxtools iw
-              macchanger tcpdump wireshark
               # document apps
-              dialect errands foliate geary libreoffice-fresh papers planify
-              scantailor-advanced typst zotero
+              dialect geary papers planify scantailor-advanced typst zotero
               # fonts
               brill inter iosevka noto-fonts-cjk-sans public-sans ubuntu-sans
             ];
@@ -46,16 +39,13 @@
 
       programs =
         { obs-studio.enable = true;
-          gitui.enable = true;
-          jq.enable = true;
           ripgrep.enable = true;
-          tealdeer.enable = true;
-          yt-dlp.enable = true;
           gh.enable = true;
           gh-dash.enable = true;
-          pandoc.enable = true;
-          hwatch.enable = true;
           trippy.enable = true;
+          nh.enable = true;
+          vesktop.enable = true;
+          foliate.enable = true;
 
           nushell.plugins = with pkgs.nushellPlugins; [ polars query ];
 
@@ -147,6 +137,11 @@
                     };
                 };
             };
+        };
+
+      services.kdeconnect =
+        { enable = true;
+          package = pkgs.gnomeExtensions.gsconnect;
         };
 
       dconf =

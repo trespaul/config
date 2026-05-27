@@ -112,6 +112,7 @@
   programs =
     { steam.enable = true; # doesn't work as user program
       gnupg.agent.enable = true;
+      tcpdump.enable = true;
       wireshark =
         { enable = true;
           usbmon.enable = true;

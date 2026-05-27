@@ -161,8 +161,8 @@
               { isNormalUser = true;
                 description = "Paul Joubert";
                 extraGroups =
-                  [ "networkmanager" "wheel" "audio" "dialout"
-                    "adbusers" "wireshark" "scanner" "libvirtd"
+                  [ "networkmanager" "wheel" "audio" "dialout" "adbusers"
+                    "scanner" "libvirtd" "wireshark" "pcap"
                   ];
                 shell = pkgs.nushell;
                 linger = true;
@@ -174,6 +174,7 @@
   programs =
     { zsh.enable = true; # necessary for defaultUserShell
       virt-manager.enable = true;
+      mosh.enable = true;
       npm.npmrc =
         ''
           prefix=$\{XDG_DATA_HOME}/npm
