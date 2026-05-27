@@ -226,6 +226,7 @@
         };
 
       shells = with pkgs; [ zsh nushell ];
+      enableAllTerminfo = true;
 
       systemPackages = with pkgs;
         [ curl

@@ -67,8 +67,11 @@
                   font-feature = "+NWID";
                   cursor-style = "bar";
                   cursor-style-blink = false;
+                  cursor-click-to-move = true;
+                  mouse-hide-while-typing = true;
                   window-decoration = "none";
                   gtk-titlebar = false;
+                  unfocused-split-opacity = 1;
                 };
             };
 
