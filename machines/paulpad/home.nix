@@ -46,6 +46,11 @@
           nh.enable = true;
           vesktop.enable = true;
           foliate.enable = true;
+          nix-your-shell =
+            { enable = true;
+              enableNushellIntegration = true;
+              nix-output-monitor.enable = true;
+            };
 
           nushell.plugins = with pkgs.nushellPlugins; [ polars query ];
 
