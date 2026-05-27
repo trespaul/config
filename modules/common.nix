@@ -126,9 +126,8 @@
 
   security =
     {
-      # sudo-rs.enable = true;
       sudo.enable = false;
-      run0.enableSudoAlias = true;
+      run0.enable = true;
 
       pki.certificateFiles = [ ./r1.crt.pem ];
 
