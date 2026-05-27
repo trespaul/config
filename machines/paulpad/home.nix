@@ -18,8 +18,8 @@
               hunspell ghostscript pdftk poppler-utils jbig2dec jbig2enc librsvg
               libtiff ocrmypdf
               # internet
-              signal-desktop telegram-desktop tuba vesktop warp wike
-              bitwarden-desktop fractal fragments gnome-connections newsflash
+              signal-desktop telegram-desktop tuba vesktop warp wike fractal
+              fragments gnome-connections newsflash
               packet zen-browser.packages.${stdenv.hostPlatform.system}.default
               # audio production
               ardour audacity bespokesynth calf cardinal haskellPackages.tidal
@@ -104,9 +104,6 @@
                 { email = "paul@trespaul.com";
                   pinentry = pkgs.pinentry-gnome3;
                   lock_timeout = 600;
-                  base_url = "https://vault.bitwarden.com/";
-                  identity_url = "https://identity.bitwarden.com/";
-                  notifications_url = "https://notifications.bitwarden.com/";
                 };
             };
 
