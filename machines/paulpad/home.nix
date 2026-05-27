@@ -27,7 +27,7 @@
               # graphics & video apps
               darktable eyedropper gimp hugin inkscape-with-extensions scrcpy
               # dev
-              difftastic kubectl kubectl-cnpg
+              kubectl kubectl-cnpg
               # LSPs
               haskell-language-server ltex-ls-plus markdown-oxide marksman
               nil bash-language-server typescript-language-server tinymist
@@ -143,7 +143,7 @@
                     };
                   ui =
                     { default-command = "log";
-                      diff-formatter = ["difft" "--color=always" "$left" "$right"];
+                      pager = "bat";
                     };
                 };
             };

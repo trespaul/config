@@ -94,6 +94,8 @@
           difftastic =
             { enable = true;
               git.enable = true;
+              jujutsu.enable = true;
+              options.display = "side-by-side-show-both";
             };
 
           mergiraf =
