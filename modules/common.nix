@@ -97,10 +97,7 @@
       dbus.implementation = "broker";
       power-profiles-daemon.enable = false;
       fwupd.enable = true;
-      kmscon =
-        { enable = true;
-          fonts = [ { name = "Iosevka Extended"; package = pkgs.iosevka; } ];
-        };
+      kmscon.enable = true;
 
       auto-cpufreq =
         { enable = true;
